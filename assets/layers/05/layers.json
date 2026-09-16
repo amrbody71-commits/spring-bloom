@@ -1,0 +1,91 @@
+{
+ "spread": 5,
+ "horizon": 0.66,
+ "hero": false,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the mangrove tree",
+   "src": "assets/layers/05/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.67
+   ],
+   "foot": [
+    0.5,
+    0.67
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    741
+   ]
+  },
+  {
+   "id": "falcon",
+   "name": "the young falcon",
+   "src": "assets/layers/05/falcon.webp",
+   "box": [
+    0.3416,
+    0.3834,
+    0.4516,
+    0.5136
+   ],
+   "foot": [
+    0.3966,
+    0.5136
+   ],
+   "tilt": 90,
+   "order": 1,
+   "px": [
+    191,
+    144
+   ]
+  },
+  {
+   "id": "fox",
+   "name": "the red fox",
+   "src": "assets/layers/05/fox.webp",
+   "box": [
+    0.0,
+    0.7224,
+    0.1048,
+    0.868
+   ],
+   "foot": [
+    0.0524,
+    0.868
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    182,
+    161
+   ]
+  },
+  {
+   "id": "kids",
+   "name": "Aliya and Zade",
+   "src": "assets/layers/05/kids.webp",
+   "box": [
+    0.1964,
+    0.5118,
+    0.4528,
+    0.9593
+   ],
+   "foot": [
+    0.3246,
+    0.9593
+   ],
+   "tilt": 86,
+   "order": 3,
+   "px": [
+    445,
+    495
+   ]
+  }
+ ]
+}

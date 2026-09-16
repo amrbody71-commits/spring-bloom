@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Every module resolves its assets against the page URL; the base makes
+     this page resolve them from the site root like index.html does. -->
+<base href="../">
+<title>Spring Bloom scene probe</title>
+<!-- Boots the app at a pinned frame size (default 1280x720, or ?w=1080&h=1920
+     for the reel's portrait) and shows the rendered frame as a true-aspect
+     blit, DOM overlays hidden, so the setting can be judged in the browser
+     pane whatever size the pane is. Buttons jump to the three rest poses.
+     The readout measures the oak under the lamp against the oak beside the
+     book and the page's white, the two numbers the scene brief is tuned to.
+     Never deployed: tools/ is in .vercelignore. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/",
+    "postprocessing": "./vendor/postprocessing/index.js"
+  }
+}
+</script>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/labels.css">
+<link rel="stylesheet" href="css/ui.css">
+<style>
+  html, body { background: #14100f; }
+  #stage { visibility: hidden; }
+  #ui, #cards { visibility: hidden; }
+  body[data-ui="1"] #ui, body[data-ui="1"] #cards { visibility: visible; }
+  #blit { position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: contain; background: #14100f; z-index: 1; pointer-events: none; }
+  #bar { position: fixed; left: 8px; bottom: 8px; z-index: 20; display: flex; gap: 6px; align-items: center; font: 13px/1.2 var(--body); color: #f4ead8; }
+  #bar button { font: inherit; padding: 5px 9px; border-radius: 999px; border: 1px solid #6a5a4a; background: #2a2220; color: #f4ead8; cursor: pointer; }
+  #bar output { background: rgba(0,0,0,0.55); padding: 4px 8px; border-radius: 8px; white-space: pre; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="ui"></div>
+<div id="cards"></div>
+<img id="blit" alt="">
+<div id="bar">
+  <button data-pose="closed">Closed</button>
+  <button data-pose="title">Title</button>
+  <button data-pose="home">Home 4</button>
+  <button data-pose="blit">Blit</button>
+  <output id="out">booting</output>
+</div>
+<script type="module">
+  import { boot } from './js/app.js';
+  const q = new URLSearchParams(location.search);
+  const w = Number(q.get('w')) || 1280;
+  const h = Number(q.get('h')) || 720;
+  const params = new URLSearchParams(`seed=${q.get('seed') || 7}&w=${w}&h=${h}&dpr=${q.get('dpr') || 1}`);
+  if (q.get('ui') === '1') document.body.dataset.ui = '1';
+  const canvas = document.getElementById('stage');
+  const api = boot({ canvas, params });
+  const out = document.getElementById('out');
+  const img = document.getElementById('blit');
+
+  function settle(n = 90) { for (let i = 0; i < n; i += 1) api.frame(1 / 60); }
+
+  /* Mean sRGB luminance of a small patch at a world point on the table. */
+  function sample(gl, cv, ctx, world) {
+    const v = world.clone().project(api.camera);
+    const px = Math.round((v.x + 1) / 2 * cv.width);
+    const py = Math.round((1 - v.y) / 2 * cv.height);
+    const d = ctx.getImageData(px - 3, py - 3, 7, 7).data;
+    let sum = 0;
+    for (let i = 0; i < d.length; i += 4) sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+    return { x: px, y: py, luma: sum / (d.length / 4) };
+  }
+
+  async function blit() {
+    const THREE = await import('three');
+    api.forceRender();
+    const cv = document.createElement('canvas');
+    cv.width = canvas.width; cv.height = canvas.height;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(canvas, 0, 0);
+    img.src = cv.toDataURL('image/png');
+    const gl = api.renderer.getContext();
+    /* Oak by the lamp's base (on its right, where the bear does not sit)
+       against oak just below the book's near edge: both are bare table in
+       every rest pose (spread 4's cut-outs stand over the oak left of the
+       book, so that side is never sampled). */
+    const lampAt = api.scene.getObjectByName('lamp').position;
+    const underLamp = sample(gl, cv, ctx, new THREE.Vector3(lampAt.x + 0.5, 0.001, lampAt.z - 0.15));
+    const byBook = sample(gl, cv, ctx, new THREE.Vector3(0, 0.001, 1.0));
+    const page = sample(gl, cv, ctx, api.book.pageToWorld(0.75, 0.5));
+    const corner = sample(gl, cv, ctx, api.book.pageToWorld(0.03, 0.04));
+    const s = api.stats();
+    out.value = `${cv.width}x${cv.height}  spread ${api.book.spread} ${api.book.state}\n`
+      + `oak at lamp ${underLamp.luma.toFixed(0)}  below book ${byBook.luma.toFixed(0)}  ratio ${(underLamp.luma / byBook.luma).toFixed(2)}\n`
+      + `page mid ${page.luma.toFixed(0)}  page top-left ${corner.luma.toFixed(0)}  calls ${s.calls}  tris ${s.triangles}  gpu ${api.renderer.userData.gpuTier}`;
+  }
+
+  async function pose(kind) {
+    await api.ready;
+    if (kind === 'closed') api.book.reset();
+    else if (kind === 'title') { api.book.reset(); api.book.open(0); }
+    else if (kind === 'home') { api.book.reset(); api.book.open(4); }
+    settle(kind === 'title' ? 150 : 90);
+    await blit();
+  }
+  document.querySelectorAll('#bar button').forEach((b) => {
+    b.addEventListener('click', () => (b.dataset.pose === 'blit' ? blit() : pose(b.dataset.pose)));
+  });
+  window.__probe = { pose, blit, api };
+  api.ready.then(() => pose(q.get('pose') || 'home'));
+</script>
+</body>
+</html>

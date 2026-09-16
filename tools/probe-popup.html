@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- The probe lives in tools/ (excluded from deploy) but runs the app from
+     the project root, so every relative URL resolves against the root. -->
+<base href="../">
+<title>Spring Bloom pop-up probe</title>
+<link rel="stylesheet" href="css/site.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "postprocessing": "https://cdn.jsdelivr.net/npm/postprocessing@6.36.4/build/index.js"
+  }
+}
+</script>
+<style>
+  #log {
+    position: fixed; left: 12px; top: 12px; z-index: 2;
+    max-width: 46rem; max-height: calc(100vh - 24px); overflow: auto;
+    margin: 0; padding: 0.75rem 1rem;
+    background: rgba(251, 245, 232, 0.92); color: var(--ink);
+    font: 0.85rem/1.5 var(--body); white-space: pre-wrap;
+    border-radius: 8px;
+  }
+  #log .ok { color: #2F6B2F; }
+  #log .fail { color: #A0281E; font-weight: 700; }
+  body.quiet #log { display: none; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="ui"></div>
+<div id="cards"></div>
+<pre id="log">Pop-up probe: loading…</pre>
+
+<script type="module">
+  import * as THREE from 'three';
+  import { boot } from './js/app.js';
+
+  const out = document.getElementById('log');
+  const results = [];
+  function report(ok, label, detail = '') {
+    results.push({ ok, label, detail });
+    const line = `${ok ? 'PASS' : 'FAIL'}  ${label}${detail ? `  (${detail})` : ''}`;
+    const span = document.createElement('span');
+    span.className = ok ? 'ok' : 'fail';
+    span.textContent = line + '\n';
+    out.appendChild(span);
+    console.assert(ok, line);
+    if (ok) console.log('popup-probe', line);
+  }
+  function note(text) {
+    out.appendChild(document.createTextNode(text + '\n'));
+    console.log('popup-probe', text);
+  }
+
+  const params = new URLSearchParams(location.search);
+  const B = boot({ canvas: document.getElementById('stage'), params });
+
+  /* The pane serves stale modules from Chrome's cache when the local server
+     sends no cache headers; refresh the entries for the files under test
+     before importing them. */
+  await Promise.all(['js/popup.js', 'js/labels.js', 'css/labels.css'].map((u) => fetch(u, { cache: 'reload' }).catch(() => null)));
+  const { init } = await import(`./js/popup.js?v=${Date.now()}`);
+  const popup = init(B);
+  B.popup = popup;
+
+  const events = [];
+  for (const n of ['rise', 'fold', 'tap', 'focus', 'unfocus', 'hint', 'beforeTurn', 'settle', 'turnStart', 'jump']) {
+    B.events.on(n, (p) => { events.push({ n, t: +B.time.toFixed(3), p }); });
+  }
+
+  out.textContent = '';
+  await B.ready;
+  const { book, turn } = B;
+
+  /* ---- helpers, also used from the browser pane ------------------------ */
+
+  function blit() {
+    const src = document.getElementById('stage');
+    const cv = document.createElement('canvas');
+    cv.width = src.width; cv.height = src.height;
+    const ctx = cv.getContext('2d');
+    B.forceRender();
+    ctx.drawImage(src, 0, 0);
+    document.querySelectorAll('img.__blit').forEach((el) => el.remove());
+    const img = document.createElement('img');
+    img.className = '__blit';
+    img.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:0;pointer-events:none';
+    img.src = cv.toDataURL('image/png');
+    document.body.appendChild(img);
+    src.style.visibility = 'hidden';
+    return true;
+  }
+  function unblit() {
+    document.querySelectorAll('img.__blit').forEach((el) => el.remove());
+    document.getElementById('stage').style.visibility = '';
+  }
+  function step(n = 1, dt = 1 / 60) { for (let i = 0; i < n; i += 1) B.frame(dt); return +B.time.toFixed(3); }
+
+  /* Open at spread s and settle it, the way a landed turn would. */
+  async function settle(s) {
+    book.open(s);
+    await popup.ready(s);
+    B.events.emit('settle', { spread: s, from: s, to: s, committed: true });
+    B.forceRender();
+    return popup.stateAt(B.time);
+  }
+
+  const v3 = new THREE.Vector3();
+  function screenOfWorld(w) {
+    v3.copy(w).project(B.camera);
+    return { x: ((v3.x + 1) / 2) * B.vw(), y: ((1 - v3.y) / 2) * B.vh() };
+  }
+  function screenOfPage(u, v) { return screenOfWorld(book.pageToWorld(u, v, v3)); }
+  function screenOfLayer(id, s = popup.shown) {
+    const L = popup.layers(s).find((x) => x.id === id);
+    if (!L) return null;
+    v3.set(0, 0, 0);
+    L.mesh.localToWorld(v3);
+    return screenOfWorld(v3);
+  }
+  function pointerEvent(type, x, y, extra = {}) {
+    return new PointerEvent(type, { clientX: x, clientY: y, bubbles: true, cancelable: true, pointerId: 1, pointerType: 'mouse', button: 0, isPrimary: true, ...extra });
+  }
+  const stage = document.getElementById('stage');
+  function hover(x, y) { stage.dispatchEvent(pointerEvent('pointermove', x, y)); step(1); return popup.labels.pill.textContent; }
+  function tapAt(x, y) {
+    stage.dispatchEvent(pointerEvent('pointerdown', x, y));
+    stage.dispatchEvent(pointerEvent('pointerup', x, y));
+    step(1);
+  }
+  function tilts(s = popup.shown) {
+    return popup.layers(s).map((L) => ({ id: L.id, order: L.order, tilt: L.tilt, deg: +THREE.MathUtils.radToDeg(L.pivot.rotation.x + Math.PI / 2).toFixed(2), p: +L.p.toFixed(3), textured: L.textured, t0: L.t0, t1: L.t1 }));
+  }
+
+  window.__probe = { results, events, blit, unblit, step, settle, screenOfPage, screenOfLayer, screenOfWorld, hover, tapAt, tilts, popup, THREE };
+
+  /* ---- assertions ------------------------------------------------------- */
+
+  if (params.get('auto') !== '0') {
+    const reduced = B.reduced;
+
+    /* 1. spread 4 rises within 1.3 s */
+    const st0 = await settle(4);
+    report(st0.spread === 4 && st0.phase === (reduced ? 'risen' : 'rising'), 'settle(4) starts the rise', `phase ${st0.phase}`);
+    report(events.some((e) => e.n === 'rise' && e.p.spread === 4), 'rise event fired for spread 4');
+    report(events.some((e) => e.n === 'hint' && /fox/i.test(e.p.text)), 'hint event carries the spread 4 hint', JSON.stringify(events.filter((e) => e.n === 'hint').map((e) => e.p.text)));
+    step(1);
+    const early = tilts(4);
+    report(reduced || early.every((L) => L.p < 0.05), 'one frame in, nothing has risen yet', JSON.stringify(early.map((L) => [L.id, L.p])));
+    step(Math.round(60 * 0.65) - 1);
+    const mid = tilts(4);
+    const wall = mid.find((L) => L.id === 'wall');
+    report(reduced || (wall && wall.p > 0.2 && wall.p < 1.1 && mid.filter((L) => L.order >= 2).every((L) => L.p < 0.4)), 'at 0.65 s the wall leads and the characters trail', JSON.stringify(mid.map((L) => [L.id, L.p])));
+    step(Math.round(60 * 0.65));
+    const done = tilts(4);
+    report(done.every((L) => Math.abs(L.deg - L.tilt) < 0.05 && L.textured), 'all three layers of spread 4 stand at their tilt by 1.3 s', JSON.stringify(done.map((L) => [L.id, L.deg, L.tilt])));
+    const e4 = popup.entry(4);
+    report(e4.plateL.visible && e4.plateL.material.opacity > 0.99 && e4.plateR.material.opacity > 0.99, 'the plate is fully faded in');
+    step(12);
+
+    /* 2. AE4: the fold before a turn */
+    const t0 = B.time;
+    const okNext = turn.next();
+    const be = events.find((e) => e.n === 'beforeTurn');
+    const fold = events.find((e) => e.n === 'fold' && e.p.spread === 4);
+    report(okNext && !!be && !!fold, 'turn.next() emits beforeTurn and the fold starts');
+    const start = turn.active ? turn.active.start : NaN;
+    report(reduced ? start - t0 < 1e-6 : Math.abs(start - t0 - 0.6) < 1e-6, 'the sheet waits 0.6 s for the fold (0 under reduced motion)', `start - call = ${(start - t0).toFixed(3)}`);
+    const mid2 = popup.stateAt(t0 + 0.3);
+    report(reduced || (mid2.phase === 'folding' && mid2.virtual > 0.6 && mid2.virtual < 0.7), 'halfway through the fold the virtual clock is halfway down', JSON.stringify(mid2));
+    step(Math.round(60 * 0.6) - 1);
+    const flat = tilts(4);
+    const stFlat = popup.stateAt(B.time);
+    report(reduced || stFlat.phase === 'folding' || stFlat.phase === 'hidden', 'just before the sheet moves the layers are folding or gone', `phase ${stFlat.phase}, max p ${Math.max(...flat.map((L) => L.p)).toFixed(3)}`);
+    step(2);
+    const stMove = popup.stateAt(B.time);
+    report(stMove.phase === 'hidden' && turn.active && B.time >= turn.active.start, 'the layers are hidden before the sheet starts moving', `phase ${stMove.phase}, t ${B.time.toFixed(3)}, start ${turn.active ? turn.active.start.toFixed(3) : 'none'}`);
+    for (let i = 0; i < 120 && turn.active; i += 1) B.frame(1 / 60);
+    report(book.spread === 5 && !turn.active, 'the turn lands on spread 5');
+    await popup.ready(5);
+    const st5 = popup.stateAt(B.time);
+    report(st5.spread === 5 && (st5.phase === 'rising' || st5.phase === 'risen'), 'spread 5 rises after the landing', `phase ${st5.phase}`);
+
+    /* 3. hover and tap on the fox of spread 4 */
+    await settle(4);
+    step(90);
+    const foxPt = screenOfLayer('fox', 4);
+    const label = hover(foxPt.x, foxPt.y);
+    report(label === 'the red fox' && popup.labels.pill.classList.contains('is-on'), 'hovering the fox shows "the red fox" within one frame', `pill: "${label}"`);
+    const hit = popup.hitTest({ x: foxPt.x, y: foxPt.y });
+    report(!!hit && hit.id === 'fox', 'hitTest at the fox centre returns the fox');
+    const kidsPt = screenOfLayer('kids', 4);
+    const hitKids = popup.hitTest({ x: kidsPt.x, y: kidsPt.y });
+    report(!!hitKids && hitKids.id === 'kids', 'hitTest at the kids centre returns the kids', hitKids ? hitKids.id : 'null');
+    const before = events.length;
+    tapAt(foxPt.x, foxPt.y);
+    const after = events.slice(before);
+    const tapEv = after.find((e) => e.n === 'tap');
+    const focusEv = after.find((e) => e.n === 'focus');
+    report(!!tapEv && tapEv.p.layer === 'fox' && tapEv.p.name === 'the red fox', 'tap emits tap {spread, layer, name, at}', JSON.stringify(tapEv && tapEv.p));
+    report(!!focusEv && focusEv.p.source === 'layer' && focusEv.p.layer === 'fox', 'tap emits focus with source layer', JSON.stringify(focusEv && focusEv.p));
+    report(!turn.active && !after.some((e) => e.n === 'beforeTurn'), 'a tap on a layer does not start a page turn');
+    const sparks = popup.root.getObjectByName('sparkles');
+    report(sparks && sparks.visible, 'sparkles are visible after the tap');
+    const before2 = events.length;
+    tapAt(foxPt.x, foxPt.y);
+    report(events.slice(before2).some((e) => e.n === 'unfocus'), 'a second tap on the same layer emits unfocus');
+    step(50);
+    report(!sparks.visible, 'sparkles are gone after 0.7 s');
+
+    /* 4. state is a function of time: seeking back gives the earlier pose */
+    const tNow = B.time;
+    const a = popup.stateAt(tNow - 1.0);
+    const b = popup.stateAt(tNow);
+    report(a.spread === b.spread && a.virtual <= b.virtual, 'stateAt(t) is monotone through a rise', `${a.phase} ${a.virtual.toFixed(2)} -> ${b.phase} ${b.virtual.toFixed(2)}`);
+
+    /* 5. the loading window */
+    const resident = [...Array(17).keys()].filter((n) => popup.entry(n));
+    report(resident.every((n) => Math.abs(n - 4) <= 3) && resident.includes(3) && resident.includes(5), 'entries stay within one turn loading and three kept', JSON.stringify(resident));
+
+    /* 6. slugs */
+    const { slug } = popup.labels;
+    report(slug('the red fox') === 'the-red-fox' && slug('Aliya and Zade') === 'aliya-and-zade' && slug("their father, Aliya and Zade") === 'their-father-aliya-and-zade', 'label slugs');
+
+    const failed = results.filter((r) => !r.ok).length;
+    const summary = `${results.length - failed}/${results.length} assertions passed`;
+    note(summary);
+    window.__probe.done = true;
+    window.__probe.summary = summary;
+  } else {
+    note('manual mode: use window.__probe');
+    window.__probe.done = true;
+  }
+</script>
+</body>
+</html>

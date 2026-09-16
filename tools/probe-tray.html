@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Probe for js/tray.js. Lives in tools/ (excluded from deploy) and runs the
+     app from the project root through <base>. Boots in capture mode so time
+     moves only through frame() and renderAt(), then runs the unit's checks
+     and leaves the book open at spread 8 with 58 on the tray. -->
+<base href="../">
+<title>Spring Bloom tray probe</title>
+<link rel="stylesheet" href="css/site.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "postprocessing": "https://cdn.jsdelivr.net/npm/postprocessing@6.36.4/build/index.js"
+  }
+}
+</script>
+<style>
+  #log {
+    position: fixed; left: 12px; top: 12px; z-index: 2;
+    max-width: 46rem; max-height: calc(100vh - 24px); overflow: auto;
+    margin: 0; padding: 0.75rem 1rem;
+    background: rgba(251, 245, 232, 0.92); color: var(--ink);
+    font: 0.8rem/1.45 var(--body); white-space: pre-wrap;
+    border-radius: 8px;
+  }
+  #log .ok { color: #2F6B2F; }
+  #log .fail { color: #A0281E; font-weight: 700; }
+  #log .info { color: #5A4A3A; }
+  body[data-quiet="1"] #log { display: none; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="ui"></div>
+<div id="cards"></div>
+<pre id="log">Tray probe: loading…</pre>
+
+<script type="module">
+  import * as THREE from 'three';
+  import { boot } from './js/app.js';
+  import { init as initTray } from './js/tray.js';
+
+  const out = document.getElementById('log');
+  const results = [];
+  function report(ok, label, detail = '') {
+    results.push({ ok, label, detail });
+    const span = document.createElement('span');
+    span.className = ok ? 'ok' : 'fail';
+    span.textContent = `${ok ? 'PASS' : 'FAIL'}  ${label}${detail ? `  (${detail})` : ''}\n`;
+    out.appendChild(span);
+  }
+  function info(text) {
+    const span = document.createElement('span');
+    span.className = 'info';
+    span.textContent = `      ${text}\n`;
+    out.appendChild(span);
+  }
+
+  const B = boot({ canvas: document.getElementById('stage'), params: new URLSearchParams('?capture&probe=1') });
+  const counts = { shell: 0, twig: 0, pebble: 0, carry: 0 };
+  B.events.on('count', (e) => { if (e && counts[e.kind] !== undefined) counts[e.kind] += 1; });
+
+  function blit() {
+    const src = document.getElementById('stage'); const cv = document.createElement('canvas');
+    cv.width = src.width; cv.height = src.height; const ctx = cv.getContext('2d'); B.forceRender(); ctx.drawImage(src, 0, 0);
+    document.querySelectorAll('img.__blit').forEach((e) => e.remove());
+    const img = document.createElement('img'); img.className = '__blit'; img.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:0;pointer-events:none';
+    img.src = cv.toDataURL('image/png'); document.body.appendChild(img); src.style.visibility = 'hidden';
+  }
+  function unblit() {
+    document.querySelectorAll('img.__blit').forEach((e) => e.remove());
+    document.getElementById('stage').style.visibility = '';
+  }
+  const narrate = (spread, state = 'start', at = B.time) => B.events.emit('narration', { spread, state, at });
+  const tap = (spread, layer) => B.events.emit('tap', { spread, layer, name: layer, at: [0.5, 0.3] });
+  const seek = (t) => B.renderAt(t);
+  function stepTo(t, fn) {
+    while (B.time < t - 1e-9) { B.frame(1 / 60); if (fn) fn(B.time); }
+  }
+  /* A hash of everything the tray shows: instance matrices, counts, tiles. */
+  function hash() {
+    const T = B.tray.meshes;
+    let h = 7;
+    const mix = (v) => { h = (Math.imul(h, 31) + (Math.round(v * 1e6) | 0)) | 0; };
+    for (const m of [T.shells, T.twigs, T.pebbles]) {
+      mix(m.count);
+      const a = m.instanceMatrix.array;
+      for (let i = 0; i < m.count * 16; i += 1) mix(a[i]);
+    }
+    for (const tile of T.tiles) { mix(tile.rotation.x); mix(tile.userData.digit); }
+    return h;
+  }
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+  window.__probe = { B, results, blit, unblit, narrate, tap, seek, stepTo, hash, counts };
+  out.textContent = '';
+
+  /* -- draw calls before and after init (empty tray) -- */
+  const tray = initTray(B);
+  window.__probe.tray = tray;
+  await tray.ready;
+  /* Draw calls the tray adds: the same frame with the tray hidden and shown. */
+  function trayCalls() {
+    tray.group.visible = false; B.forceRender(); const without = B.renderer.info.render.calls;
+    tray.group.visible = true; B.forceRender(); const withTray = B.renderer.info.render.calls;
+    return { without, withTray, added: withTray - without };
+  }
+  const c1 = trayCalls();
+  report(c1.added < 12, 'empty tray adds fewer than 12 draw calls', `${c1.without} -> ${c1.withTray}`);
+  report(tray.story.loaded && tray.story.missing.length === 0, 'story beats resolved to timing words', `missing: ${JSON.stringify(tray.story.missing)}`);
+  report(tray.story.storyValueAt(4) === 0 && tray.story.storyValueAt(5) === 6 && tray.story.storyValueAt(8) === 58 && tray.story.storyValueAt(11) === 399,
+    'story value by spread: 0 / 6 / 58 / 399', `spread 10 -> ${tray.story.storyValueAt(10)}`);
+
+  await B.ready;
+  B.book.open(8);
+  await B.pool.idle();
+  report(tray.total === 58, 'jump to spread 8 snaps the total to 58', `total ${tray.total}`);
+
+  /* -- AE3: set(6), narrate spread 8, step past "52" -- */
+  tray.set(6);
+  const T0 = B.time;
+  narrate(8, 'start', T0);
+  const beat8 = T0 + 8.261;
+  const pend = tray.story.pending();
+  report(pend.length === 1 && pend[0].beats.length === 1 && Math.abs(pend[0].beats[0].at - beat8) < 1e-6,
+    'narration start schedules set(58) at the word "52"', `at +${(pend[0]?.beats[0]?.at - T0).toFixed(3)} s`);
+  seek(beat8 - 0.5);
+  report(tray.stateAt(B.time).landed === 6 && tray.total === 6, 'before the beat the tray holds 6 shells');
+  let doneAt = null; let landedAt = null; let monotone = true; let prevL = -1;
+  stepTo(beat8 + 2.6, (t) => {
+    const s = tray.stateAt(t);
+    if (s.landed < prevL) monotone = false;
+    prevL = s.landed;
+    if (landedAt === null && s.landed === 58) landedAt = t - beat8;
+    if (doneAt === null && landedAt !== null && !s.animating) doneAt = t - beat8;
+  });
+  const s1 = tray.stateAt(beat8 + 1.0);
+  info(`state 1.0 s past "52": landed ${s1.landed}, digits ${s1.digits.join(' ')}, total ${s1.total}`);
+  const s8 = tray.stateAt(B.time);
+  report(s8.total === 58 && s8.landed === 58 && s8.twigs === 5 && s8.shells === 8 && s8.pebbles === 0 && same(s8.digits, [0, 5, 8]) && !s8.animating,
+    'AE3: 5 twigs, 8 shells, digits 0 5 8, total 58', JSON.stringify(s8));
+  report(monotone && landedAt !== null && doneAt !== null && doneAt <= 2.4,
+    'the 6 -> 58 change lands and finishes within 2.4 s', `last shell +${landedAt?.toFixed(3)} s, animation over +${doneAt?.toFixed(3)} s`);
+  const c2 = trayCalls();
+  report(c2.added < 12, 'full tray adds fewer than 12 draw calls', `${c2.without} -> ${c2.withTray}`);
+  report(counts.shell === 52 && counts.carry === 5 && counts.twig === 5, 'count events: 52 shells, 5 carries, 5 twigs', JSON.stringify(counts));
+
+  /* -- spread 11: 58 -> 341 -> 399 -- */
+  tray.set(58, B.time, { snap: true });
+  const T1 = B.time;
+  narrate(11, 'start', T1);
+  const beat341 = T1 + 3.884; const beat399 = T1 + 14.391;
+  let done341 = null; let land341 = null;
+  seek(beat341 - 0.05);
+  stepTo(beat341 + 2.6, (t) => {
+    const s = tray.stateAt(t);
+    if (land341 === null && s.landed === 341) land341 = t - beat341;
+    if (done341 === null && land341 !== null && !s.animating) done341 = t - beat341;
+  });
+  const sA = tray.stateAt(B.time);
+  report(same(sA.digits, [3, 4, 1]) && sA.pebbles === 3 && sA.twigs === 4 && sA.shells === 1 && !sA.animating,
+    'spread 11: reads 3 4 1 after "341"', JSON.stringify(sA));
+  report(done341 !== null && done341 <= 2.4, '58 -> 341 finishes within 2.4 s', `last shell +${land341?.toFixed(3)} s, over +${done341?.toFixed(3)} s`);
+  let done399 = null; let land399 = null;
+  seek(beat399 - 0.05);
+  stepTo(beat399 + 2.6, (t) => {
+    const s = tray.stateAt(t);
+    if (land399 === null && s.landed === 399) land399 = t - beat399;
+    if (done399 === null && land399 !== null && !s.animating) done399 = t - beat399;
+  });
+  const sB = tray.stateAt(B.time);
+  report(same(sB.digits, [3, 9, 9]) && sB.pebbles === 3 && sB.twigs === 9 && sB.shells === 9 && !sB.animating,
+    'spread 11: reads 3 9 9 with 3 pebbles, 9 twigs, 9 shells', JSON.stringify(sB));
+  report(done399 !== null && done399 <= 2.4, '341 -> 399 finishes within 2.4 s', `last shell +${land399?.toFixed(3)} s, over +${done399?.toFixed(3)} s`);
+
+  /* -- seek test: mid-341 and after, forward, backward and from a reloaded log -- */
+  const ta = beat341 + 0.9; const tb = beat341 + 3.0;
+  seek(ta); const hA1 = hash(); const stA1 = tray.stateAt(ta);
+  seek(tb); const hB1 = hash(); const stB1 = tray.stateAt(tb);
+  seek(ta); const hA2 = hash();
+  tray.load(tray.log());
+  seek(ta); const hA3 = hash(); const stA3 = tray.stateAt(ta);
+  seek(tb); const hB3 = hash(); const stB3 = tray.stateAt(tb);
+  report(stA1.animating && stA1.landed > 58 && stA1.landed < 341, 'mid-341 seek is inside the animation', JSON.stringify(stA1));
+  report(hA1 === hA2 && hA1 === hA3 && hB1 === hB3 && same(stA1, stA3) && same(stB1, stB3),
+    'seek: forward, backward and recompiled-from-log frames match', `hashes ${hA1} ${hA2} ${hA3} / ${hB1} ${hB3}`);
+
+  /* -- taps on spread 5 -- */
+  B.book.open(5);
+  const base5 = tray.total;
+  const cap5 = tray.story.storyValueAt(5) + tray.story.tapConfig(5).max;
+  tap(5, 'wall'); tap(5, 'wall'); tap(5, 'wall');
+  report(tray.total === base5 + 3, 'three taps on the tree add three shells', `${base5} -> ${tray.total}, cap ${cap5}`);
+  tap(5, 'falcon');
+  report(tray.total === base5 + 3, 'a tap on another layer is ignored');
+  let guard = 0;
+  while (tray.total < cap5 && guard < 20) { tap(5, 'wall'); guard += 1; }
+  const atCap = tray.total;
+  tap(5, 'wall');
+  report(atCap === cap5 && tray.total === cap5, 'a tap beyond story value + max is ignored', `held at ${tray.total}`);
+  stepTo(B.time + 1.2);
+  const s5 = tray.stateAt(B.time);
+  report(s5.landed === cap5 && !s5.animating, 'tapped shells land', JSON.stringify(s5));
+
+  /* -- leave the book at spread 8 with 58 for the screenshots -- */
+  B.book.open(8);
+  await B.pool.idle();
+  stepTo(B.time + 0.5);
+  B.forceRender();
+
+  const failed = results.filter((r) => !r.ok).length;
+  const summary = `${results.length - failed}/${results.length} assertions passed`;
+  out.appendChild(document.createTextNode(summary + '\n'));
+  console.log('tray-probe', summary);
+  window.__probe.done = true;
+  window.__probe.summary = summary;
+</script>
+</body>
+</html>

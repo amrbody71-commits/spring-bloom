@@ -1,0 +1,112 @@
+{
+ "spread": 11,
+ "horizon": 0.7,
+ "hero": false,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the cave",
+   "src": "assets/layers/11/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.7107
+   ],
+   "foot": [
+    0.5,
+    0.7107
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    786
+   ]
+  },
+  {
+   "id": "bats",
+   "name": "the bats",
+   "src": "assets/layers/11/bats.webp",
+   "box": [
+    0.5668,
+    0.0307,
+    0.9568,
+    0.3101
+   ],
+   "foot": [
+    0.7618,
+    0.3101
+   ],
+   "tilt": 90,
+   "order": 1,
+   "px": [
+    677,
+    309
+   ]
+  },
+  {
+   "id": "falcon",
+   "name": "the young falcon",
+   "src": "assets/layers/11/falcon.webp",
+   "box": [
+    0.2218,
+    0.4286,
+    0.4228,
+    0.7016
+   ],
+   "foot": [
+    0.3223,
+    0.7016
+   ],
+   "tilt": 90,
+   "order": 1,
+   "px": [
+    349,
+    302
+   ]
+  },
+  {
+   "id": "zade",
+   "name": "Zade",
+   "src": "assets/layers/11/zade.webp",
+   "box": [
+    0.0132,
+    0.4241,
+    0.2298,
+    1.0
+   ],
+   "foot": [
+    0.1215,
+    1.0
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    376,
+    637
+   ]
+  },
+  {
+   "id": "aliya",
+   "name": "Aliya",
+   "src": "assets/layers/11/aliya.webp",
+   "box": [
+    0.5858,
+    0.4503,
+    0.8929,
+    1.0
+   ],
+   "foot": [
+    0.7393,
+    1.0
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    533,
+    608
+   ]
+  }
+ ]
+}

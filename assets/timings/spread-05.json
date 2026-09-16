@@ -1,0 +1,505 @@
+{
+ "id": "05",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 32.334,
+ "words": [
+  {
+   "i": 0,
+   "text": "Aliya",
+   "start": 0.0,
+   "end": 0.511
+  },
+  {
+   "i": 1,
+   "text": "and",
+   "start": 0.54,
+   "end": 0.697
+  },
+  {
+   "i": 2,
+   "text": "Zade",
+   "start": 0.726,
+   "end": 1.289
+  },
+  {
+   "i": 3,
+   "text": "thought",
+   "start": 1.342,
+   "end": 1.718
+  },
+  {
+   "i": 4,
+   "text": "for",
+   "start": 1.725,
+   "end": 1.904
+  },
+  {
+   "i": 5,
+   "text": "a",
+   "start": 1.922,
+   "end": 1.985
+  },
+  {
+   "i": 6,
+   "text": "few",
+   "start": 2.015,
+   "end": 2.218
+  },
+  {
+   "i": 7,
+   "text": "minutes.",
+   "start": 2.224,
+   "end": 2.995
+  },
+  {
+   "i": 8,
+   "text": "“We",
+   "start": 3.365,
+   "end": 3.514
+  },
+  {
+   "i": 9,
+   "text": "need",
+   "start": 3.52,
+   "end": 3.769
+  },
+  {
+   "i": 10,
+   "text": "to",
+   "start": 3.776,
+   "end": 3.932
+  },
+  {
+   "i": 11,
+   "text": "count",
+   "start": 3.996,
+   "end": 4.443
+  },
+  {
+   "i": 12,
+   "text": "how",
+   "start": 4.484,
+   "end": 4.733
+  },
+  {
+   "i": 13,
+   "text": "many",
+   "start": 4.798,
+   "end": 5.139
+  },
+  {
+   "i": 14,
+   "text": "gray",
+   "start": 5.169,
+   "end": 5.476
+  },
+  {
+   "i": 15,
+   "text": "mangrove",
+   "start": 5.517,
+   "end": 6.103
+  },
+  {
+   "i": 16,
+   "text": "trees",
+   "start": 6.109,
+   "end": 6.486
+  },
+  {
+   "i": 17,
+   "text": "we",
+   "start": 6.527,
+   "end": 6.695
+  },
+  {
+   "i": 18,
+   "text": "see,”",
+   "start": 6.748,
+   "end": 7.225
+  },
+  {
+   "i": 19,
+   "text": "Aliya",
+   "start": 7.495,
+   "end": 7.855
+  },
+  {
+   "i": 20,
+   "text": "said.",
+   "start": 7.897,
+   "end": 8.482
+  },
+  {
+   "i": 21,
+   "text": "Zade",
+   "start": 9.151,
+   "end": 9.492
+  },
+  {
+   "i": 22,
+   "text": "looked",
+   "start": 9.492,
+   "end": 9.783
+  },
+  {
+   "i": 23,
+   "text": "quickly",
+   "start": 9.801,
+   "end": 10.247
+  },
+  {
+   "i": 24,
+   "text": "around.",
+   "start": 10.265,
+   "end": 10.944
+  },
+  {
+   "i": 25,
+   "text": "“That’s",
+   "start": 11.274,
+   "end": 11.646
+  },
+  {
+   "i": 26,
+   "text": "easy.",
+   "start": 11.675,
+   "end": 12.191
+  },
+  {
+   "i": 27,
+   "text": "There",
+   "start": 12.191,
+   "end": 12.423
+  },
+  {
+   "i": 28,
+   "text": "are",
+   "start": 12.423,
+   "end": 12.551
+  },
+  {
+   "i": 29,
+   "text": "six",
+   "start": 12.551,
+   "end": 12.865
+  },
+  {
+   "i": 30,
+   "text": "trees.”",
+   "start": 12.894,
+   "end": 13.394
+  },
+  {
+   "i": 31,
+   "text": "“Correct,”",
+   "start": 13.814,
+   "end": 14.539
+  },
+  {
+   "i": 32,
+   "text": "said",
+   "start": 14.539,
+   "end": 14.759
+  },
+  {
+   "i": 33,
+   "text": "the",
+   "start": 14.766,
+   "end": 14.875
+  },
+  {
+   "i": 34,
+   "text": "fox.",
+   "start": 14.905,
+   "end": 15.63
+  },
+  {
+   "i": 35,
+   "text": "“Now",
+   "start": 15.915,
+   "end": 16.303
+  },
+  {
+   "i": 36,
+   "text": "you",
+   "start": 16.333,
+   "end": 16.466
+  },
+  {
+   "i": 37,
+   "text": "must",
+   "start": 16.484,
+   "end": 16.721
+  },
+  {
+   "i": 38,
+   "text": "find",
+   "start": 16.751,
+   "end": 17.023
+  },
+  {
+   "i": 39,
+   "text": "the",
+   "start": 17.03,
+   "end": 17.139
+  },
+  {
+   "i": 40,
+   "text": "flamingos",
+   "start": 17.145,
+   "end": 17.847
+  },
+  {
+   "i": 41,
+   "text": "for",
+   "start": 17.865,
+   "end": 18.045
+  },
+  {
+   "i": 42,
+   "text": "the",
+   "start": 18.063,
+   "end": 18.172
+  },
+  {
+   "i": 43,
+   "text": "next",
+   "start": 18.19,
+   "end": 18.486
+  },
+  {
+   "i": 44,
+   "text": "puzzle.",
+   "start": 18.504,
+   "end": 19.194
+  },
+  {
+   "i": 45,
+   "text": "Walk",
+   "start": 19.676,
+   "end": 20.03
+  },
+  {
+   "i": 46,
+   "text": "along",
+   "start": 20.071,
+   "end": 20.413
+  },
+  {
+   "i": 47,
+   "text": "the",
+   "start": 20.431,
+   "end": 20.541
+  },
+  {
+   "i": 48,
+   "text": "beach",
+   "start": 20.559,
+   "end": 20.935
+  },
+  {
+   "i": 49,
+   "text": "until",
+   "start": 21.035,
+   "end": 21.446
+  },
+  {
+   "i": 50,
+   "text": "you",
+   "start": 21.476,
+   "end": 21.609
+  },
+  {
+   "i": 51,
+   "text": "see",
+   "start": 21.65,
+   "end": 21.887
+  },
+  {
+   "i": 52,
+   "text": "them",
+   "start": 21.894,
+   "end": 22.096
+  },
+  {
+   "i": 53,
+   "text": "frolicking",
+   "start": 22.149,
+   "end": 22.758
+  },
+  {
+   "i": 54,
+   "text": "in",
+   "start": 22.776,
+   "end": 22.886
+  },
+  {
+   "i": 55,
+   "text": "the",
+   "start": 22.892,
+   "end": 23.002
+  },
+  {
+   "i": 56,
+   "text": "water.",
+   "start": 23.02,
+   "end": 23.745
+  },
+  {
+   "i": 57,
+   "text": "Do",
+   "start": 23.995,
+   "end": 24.175
+  },
+  {
+   "i": 58,
+   "text": "not",
+   "start": 24.228,
+   "end": 24.465
+  },
+  {
+   "i": 59,
+   "text": "forget",
+   "start": 24.495,
+   "end": 24.906
+  },
+  {
+   "i": 60,
+   "text": "the",
+   "start": 24.924,
+   "end": 25.034
+  },
+  {
+   "i": 61,
+   "text": "number",
+   "start": 25.052,
+   "end": 25.417
+  },
+  {
+   "i": 62,
+   "text": "of",
+   "start": 25.447,
+   "end": 25.556
+  },
+  {
+   "i": 63,
+   "text": "trees.”",
+   "start": 25.597,
+   "end": 26.357
+  },
+  {
+   "i": 64,
+   "text": "“Let’s",
+   "start": 26.697,
+   "end": 26.966
+  },
+  {
+   "i": 65,
+   "text": "take",
+   "start": 26.972,
+   "end": 27.233
+  },
+  {
+   "i": 66,
+   "text": "6",
+   "start": 27.239,
+   "end": 27.511
+  },
+  {
+   "i": 67,
+   "text": "shells",
+   "start": 27.518,
+   "end": 27.952
+  },
+  {
+   "i": 68,
+   "text": "to",
+   "start": 27.959,
+   "end": 28.069
+  },
+  {
+   "i": 69,
+   "text": "remember",
+   "start": 28.121,
+   "end": 28.591
+  },
+  {
+   "i": 70,
+   "text": "how",
+   "start": 28.621,
+   "end": 28.777
+  },
+  {
+   "i": 71,
+   "text": "many",
+   "start": 28.806,
+   "end": 29.021
+  },
+  {
+   "i": 72,
+   "text": "trees",
+   "start": 29.05,
+   "end": 29.381
+  },
+  {
+   "i": 73,
+   "text": "we",
+   "start": 29.387,
+   "end": 29.531
+  },
+  {
+   "i": 74,
+   "text": "counted,”",
+   "start": 29.573,
+   "end": 30.457
+  },
+  {
+   "i": 75,
+   "text": "Zade",
+   "start": 30.831,
+   "end": 31.196
+  },
+  {
+   "i": 76,
+   "text": "suggested.",
+   "start": 31.196,
+   "end": 32.334
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "aliya": "Pt5YrLNyu6d2s3s4CVMg",
+  "zade": "loY1uopAz31XyhAEhNSa"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "aliya",
+   "tokens": [
+    8,
+    18
+   ],
+   "gain_db": -7.9
+  },
+  {
+   "quote": 1,
+   "speaker": "zade",
+   "tokens": [
+    25,
+    30
+   ],
+   "gain_db": -7.5
+  },
+  {
+   "quote": 4,
+   "speaker": "zade",
+   "tokens": [
+    64,
+    74
+   ],
+   "gain_db": -8.2
+  }
+ ],
+ "built": "2026-09-16 13:34"
+}

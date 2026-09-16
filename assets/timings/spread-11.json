@@ -1,0 +1,384 @@
+{
+ "id": "11",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 25.089,
+ "words": [
+  {
+   "i": 0,
+   "text": "They",
+   "start": 0.0,
+   "end": 0.244
+  },
+  {
+   "i": 1,
+   "text": "returned",
+   "start": 0.285,
+   "end": 0.743
+  },
+  {
+   "i": 2,
+   "text": "inside",
+   "start": 0.749,
+   "end": 1.161
+  },
+  {
+   "i": 3,
+   "text": "the",
+   "start": 1.161,
+   "end": 1.254
+  },
+  {
+   "i": 4,
+   "text": "cave",
+   "start": 1.26,
+   "end": 1.66
+  },
+  {
+   "i": 5,
+   "text": "and",
+   "start": 1.69,
+   "end": 1.892
+  },
+  {
+   "i": 6,
+   "text": "Aliya",
+   "start": 1.922,
+   "end": 2.31
+  },
+  {
+   "i": 7,
+   "text": "announced,",
+   "start": 2.328,
+   "end": 3.135
+  },
+  {
+   "i": 8,
+   "text": "“There",
+   "start": 3.494,
+   "end": 3.714
+  },
+  {
+   "i": 9,
+   "text": "are",
+   "start": 3.744,
+   "end": 3.97
+  },
+  {
+   "i": 10,
+   "text": "341",
+   "start": 4.023,
+   "end": 5.305
+  },
+  {
+   "i": 11,
+   "text": "flowers.”",
+   "start": 5.358,
+   "end": 6.134
+  },
+  {
+   "i": 12,
+   "text": "The",
+   "start": 6.554,
+   "end": 6.734
+  },
+  {
+   "i": 13,
+   "text": "young",
+   "start": 6.775,
+   "end": 6.989
+  },
+  {
+   "i": 14,
+   "text": "falcon",
+   "start": 7.03,
+   "end": 7.477
+  },
+  {
+   "i": 15,
+   "text": "looked",
+   "start": 7.483,
+   "end": 7.778
+  },
+  {
+   "i": 16,
+   "text": "at",
+   "start": 7.785,
+   "end": 7.895
+  },
+  {
+   "i": 17,
+   "text": "the",
+   "start": 7.901,
+   "end": 8.011
+  },
+  {
+   "i": 18,
+   "text": "shells",
+   "start": 8.029,
+   "end": 8.417
+  },
+  {
+   "i": 19,
+   "text": "and",
+   "start": 8.423,
+   "end": 8.556
+  },
+  {
+   "i": 20,
+   "text": "twigs",
+   "start": 8.574,
+   "end": 8.928
+  },
+  {
+   "i": 21,
+   "text": "in",
+   "start": 8.934,
+   "end": 9.044
+  },
+  {
+   "i": 22,
+   "text": "front",
+   "start": 9.074,
+   "end": 9.323
+  },
+  {
+   "i": 23,
+   "text": "of",
+   "start": 9.329,
+   "end": 9.439
+  },
+  {
+   "i": 24,
+   "text": "him",
+   "start": 9.468,
+   "end": 9.682
+  },
+  {
+   "i": 25,
+   "text": "and",
+   "start": 9.735,
+   "end": 9.949
+  },
+  {
+   "i": 26,
+   "text": "said,",
+   "start": 10.002,
+   "end": 10.6
+  },
+  {
+   "i": 27,
+   "text": "“If",
+   "start": 11.012,
+   "end": 11.261
+  },
+  {
+   "i": 28,
+   "text": "we",
+   "start": 11.279,
+   "end": 11.436
+  },
+  {
+   "i": 29,
+   "text": "add",
+   "start": 11.477,
+   "end": 11.726
+  },
+  {
+   "i": 30,
+   "text": "the",
+   "start": 11.732,
+   "end": 11.842
+  },
+  {
+   "i": 31,
+   "text": "58",
+   "start": 11.883,
+   "end": 12.446
+  },
+  {
+   "i": 32,
+   "text": "from",
+   "start": 12.452,
+   "end": 12.678
+  },
+  {
+   "i": 33,
+   "text": "before,",
+   "start": 12.696,
+   "end": 13.409
+  },
+  {
+   "i": 34,
+   "text": "we",
+   "start": 13.613,
+   "end": 13.792
+  },
+  {
+   "i": 35,
+   "text": "have",
+   "start": 13.81,
+   "end": 14.036
+  },
+  {
+   "i": 36,
+   "text": "a",
+   "start": 14.036,
+   "end": 14.083
+  },
+  {
+   "i": 37,
+   "text": "total",
+   "start": 14.112,
+   "end": 14.512
+  },
+  {
+   "i": 38,
+   "text": "of",
+   "start": 14.53,
+   "end": 14.617
+  },
+  {
+   "i": 39,
+   "text": "399.”",
+   "start": 14.681,
+   "end": 16.207
+  },
+  {
+   "i": 40,
+   "text": "The",
+   "start": 16.458,
+   "end": 16.625
+  },
+  {
+   "i": 41,
+   "text": "bats",
+   "start": 16.655,
+   "end": 16.997
+  },
+  {
+   "i": 42,
+   "text": "cheered,",
+   "start": 17.026,
+   "end": 17.717
+  },
+  {
+   "i": 43,
+   "text": "“Correct.",
+   "start": 17.816,
+   "end": 18.82
+  },
+  {
+   "i": 44,
+   "text": "You",
+   "start": 19.07,
+   "end": 19.249
+  },
+  {
+   "i": 45,
+   "text": "now",
+   "start": 19.279,
+   "end": 19.482
+  },
+  {
+   "i": 46,
+   "text": "have",
+   "start": 19.523,
+   "end": 19.749
+  },
+  {
+   "i": 47,
+   "text": "the",
+   "start": 19.755,
+   "end": 19.865
+  },
+  {
+   "i": 48,
+   "text": "password.",
+   "start": 19.871,
+   "end": 20.782
+  },
+  {
+   "i": 49,
+   "text": "Walk",
+   "start": 21.264,
+   "end": 21.595
+  },
+  {
+   "i": 50,
+   "text": "through",
+   "start": 21.624,
+   "end": 21.943
+  },
+  {
+   "i": 51,
+   "text": "the",
+   "start": 21.949,
+   "end": 22.059
+  },
+  {
+   "i": 52,
+   "text": "field",
+   "start": 22.077,
+   "end": 22.407
+  },
+  {
+   "i": 53,
+   "text": "of",
+   "start": 22.437,
+   "end": 22.524
+  },
+  {
+   "i": 54,
+   "text": "flowers",
+   "start": 22.542,
+   "end": 23.081
+  },
+  {
+   "i": 55,
+   "text": "until",
+   "start": 23.11,
+   "end": 23.464
+  },
+  {
+   "i": 56,
+   "text": "you",
+   "start": 23.494,
+   "end": 23.603
+  },
+  {
+   "i": 57,
+   "text": "meet",
+   "start": 23.621,
+   "end": 23.859
+  },
+  {
+   "i": 58,
+   "text": "the",
+   "start": 23.865,
+   "end": 23.975
+  },
+  {
+   "i": 59,
+   "text": "wolf.”",
+   "start": 24.004,
+   "end": 25.089
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "aliya": "Pt5YrLNyu6d2s3s4CVMg"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "aliya",
+   "tokens": [
+    8,
+    11
+   ],
+   "gain_db": -11.9
+  }
+ ],
+ "built": "2026-09-16 13:34"
+}

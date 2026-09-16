@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- The probe lives in tools/ (excluded from deploy) but runs the app from
+     the project root, so every relative URL resolves against the root. -->
+<base href="../">
+<title>Spring Bloom card probe</title>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/card.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "postprocessing": "https://cdn.jsdelivr.net/npm/postprocessing@6.36.4/build/index.js"
+  }
+}
+</script>
+<style>
+  /* The pane's blit image is appended after #cards; give the overlay a
+     level so the card composites above it in screenshots. */
+  #cards { z-index: 2; }
+  #log {
+    position: fixed; left: 12px; bottom: 12px; z-index: 3;
+    max-width: 30rem; max-height: 46vh; overflow: auto;
+    margin: 0; padding: 0.6rem 0.9rem;
+    background: rgba(251, 245, 232, 0.94); color: var(--ink);
+    font: 0.78rem/1.45 var(--body); white-space: pre-wrap;
+    border-radius: 8px;
+  }
+  #log .ok { color: #2F6B2F; }
+  #log .fail { color: #A0281E; font-weight: 700; }
+  #log[hidden] { display: none; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="ui"></div>
+<div id="cards"></div>
+<pre id="log">Card probe: loading…</pre>
+
+<script type="module">
+  import { boot } from './js/app.js';
+  import { init as initNarration } from './js/narration.js';
+  import { init as initCard } from './js/card.js';
+  import { tokenise, syllabify, activeIndex } from './js/words.js';
+
+  const out = document.getElementById('log');
+  const results = [];
+  function report(ok, label, detail = '') {
+    results.push({ ok, label, detail });
+    const line = `${ok ? 'PASS' : 'FAIL'}  ${label}${detail ? `  (${detail})` : ''}`;
+    const span = document.createElement('span');
+    span.className = ok ? 'ok' : 'fail';
+    span.textContent = line + '\n';
+    out.appendChild(span);
+    console.assert(ok, line);
+    if (ok) console.log('card-probe', line);
+  }
+  const near = (a, b, eps = 1e-6) => Math.abs(a - b) <= eps;
+
+  const B = boot({ canvas: document.getElementById('stage'), params: new URLSearchParams('?probe=1') });
+  window.__probe = { results };
+  out.textContent = '';
+  await B.ready;
+
+  /* Step by hand: the pane suspends rAF anyway, and the checks want exact times. */
+  B.clock.stop();
+  const narration = initNarration(B);
+  B.narration = narration;
+  const card = initCard(B);
+  B.card = card;
+  /* Silent for the checks: no AudioContext before a real gesture. Re-enabled
+     at the end so a click in the pane exercises the audio path. */
+  narration.audioEnabled = false;
+  const { book, events } = B;
+
+  const captured = { focus: [], unfocus: [], word: [], wordTap: [], narration: [], hint: [] };
+  for (const n of Object.keys(captured)) events.on(n, (p) => captured[n].push({ ...p, t: B.time }));
+  window.__probe.captured = captured;
+
+  /* 0. tokeniser and syllables */
+  const tmProbe = await narration.loadTimings(4);
+  const textProbe = await fetch('assets/text/04.json').then((r) => r.json());
+  const tokens = tokenise(textProbe.paragraphs.join(' '));
+  report(tokens.length === tmProbe.words.length && tokens.every((t, i) => t === tmProbe.words[i].text),
+    'spread 4 tokenises to the timing words', `${tokens.length} words`);
+  report(syllabify('mangroves') === 'man·groves' && syllabify('flamingos') === 'fla·min·gos' && syllabify('fox') === 'fox',
+    'syllables: man·groves, fla·min·gos, fox', `${syllabify('mangroves')}, ${syllabify('flamingos')}, ${syllabify('Aliya')}, ${syllabify('riddle')}`);
+
+  /* Open at spread 4 the way the assignment describes. */
+  B.renderAt(1.0);
+  book.open(4);
+  const settleAt = B.time;
+  events.emit('settle', { spread: 4 });
+  await card.whenShown();
+  B.forceRender();
+
+  /* 2. reveal */
+  const cs = card.state();
+  report(cs.spread === 4 && cs.visible, 'card shows spread 4 after settle', `label "${card.element.querySelector('.card__label').textContent}", heading "${card.element.querySelector('.card__heading').textContent}"`);
+  const revealLen = cs.revealEndsAt - settleAt;
+  report(revealLen > 0 && revealLen < 1.6, 'reveal ends before narration would start', `${revealLen.toFixed(3)} s for ${cs.words} words`);
+  const words = card.words();
+  B.renderAt(settleAt + revealLen * 0.5);
+  const midFirst = Number(words[0].style.opacity);
+  const midLast = Number(words[words.length - 1].style.opacity);
+  report(midFirst === 1 && midLast < 1, 'mid-reveal: first word up, last word still rising', `first ${midFirst}, last ${midLast}`);
+  B.renderAt(settleAt + revealLen + 0.01);
+  report(words.every((w) => w.style.opacity === ''), 'after the reveal every word is clear');
+  report(words.filter((w) => w.classList.contains('is-link')).map((w) => w.textContent).join(' ') === 'falcon sky, Aliya Zade tree fox Zade fox. fox birds',
+    'linked words carry the dotted underline', words.filter((w) => w.classList.contains('is-link')).map((w) => w.textContent).join(' '));
+
+  /* 1. AE1: the active word is a pure function of time. */
+  B.renderAt(settleAt + 1.7);
+  await narration.play(4);
+  const t0 = narration.state().startedAt;
+  const tm = narration.timings(4);
+  report(narration.state().playing && t0 === settleAt + 1.7, 'play(4) starts at the current book time', `t0 = ${t0}`);
+  function expectAt(rel) {
+    B.renderAt(t0 + rel);
+    const actives = [...card.element.querySelectorAll('.w.is-active')];
+    const want = activeIndex(tm.words, rel);
+    const got = actives.length === 1 ? Number(actives[0].dataset.i) : null;
+    report(actives.length === 1 && got === want, `AE1 at t0 + ${rel.toFixed(2)} s: one active word, the last start at or before`,
+      `want ${want} "${tm.words[want].text}" (start ${tm.words[want].start}), got ${got} "${actives.map((a) => a.textContent).join('|')}"`);
+    const spoken = card.element.querySelectorAll('.w.is-spoken').length;
+    report(spoken === want, `spoken count equals the active index at +${rel.toFixed(2)}`, `${spoken}`);
+  }
+  expectAt(2.05);
+  expectAt(10.0);
+  expectAt(25.0);
+  /* A seek back lands right too (capture-mode safety). */
+  expectAt(3.0);
+  report(captured.word.length > 0 && captured.word[captured.word.length - 1].i === activeIndex(tm.words, 3.0),
+    'word events follow the active word', `${captured.word.length} so far, last i ${captured.word[captured.word.length - 1].i}`);
+
+  /* 4. pause then resume returns to the same word */
+  B.renderAt(t0 + 12.0);
+  const iPause = activeIndex(tm.words, 12.0);
+  narration.pause();
+  B.renderAt(t0 + 13.0);
+  const st1 = narration.state();
+  const activeWhilePaused = card.element.querySelector('.w.is-active');
+  report(st1.paused && near(st1.position, 12.0) && activeWhilePaused && Number(activeWhilePaused.dataset.i) === iPause,
+    'paused: position holds and the same word stays lit', `i ${iPause} "${tm.words[iPause].text}", position ${st1.position.toFixed(3)}`);
+  await narration.play(4);
+  B.renderAt(t0 + 13.0 + 1 / 60);
+  const st2 = narration.state();
+  const activeAfter = card.element.querySelector('.w.is-active');
+  report(st2.playing && near(st2.position, 12.0 + 1 / 60) && activeAfter && Number(activeAfter.dataset.i) === iPause,
+    'resume continues from the same word', `position ${st2.position.toFixed(3)}, i ${activeAfter && activeAfter.dataset.i}`);
+  const kinds = captured.narration.map((e) => e.state).join(',');
+  report(kinds === 'start,pause,resume', 'narration events so far: start, pause, resume', kinds);
+
+  /* 3. sayWord for "fox": a slice, a word card, and narration pauses then resumes */
+  const iFox = tm.words.findIndex((w) => w.text === 'fox');
+  const tSay = t0 + 14.0;
+  B.renderAt(tSay);
+  const say = await narration.sayWord(4, iFox);
+  const sliceOk = say && say.duration >= 0.25 && say.duration <= 1.2
+    && near(say.start, tm.words[iFox].start - 0.06) && near(say.end, tm.words[iFox].end + 0.06);
+  report(sliceOk, 'sayWord(4, "fox") slices start - 0.06 to end + 0.06',
+    `${say && say.start.toFixed(3)} to ${say && say.end.toFixed(3)}, ${say && say.duration.toFixed(3)} s`);
+  B.renderAt(tSay + 0.05);
+  const pillText = card.wordCard.querySelector('.wordcard__word').textContent;
+  report(!card.wordCard.hidden && pillText === 'fox' && card.wordCard.querySelector('.wordcard__syll').hidden,
+    'the word card shows "fox" with no syllable line', `"${pillText}"`);
+  /* The resume at t0 + 13 restarted from 12.0, so the take sits at 13.0 here. */
+  report(narration.state().paused && near(narration.state().position, 13.0), 'narration paused for the slice', `position ${narration.state().position.toFixed(3)}`);
+  B.renderAt(tSay + say.duration + 0.15 + 1 / 60);
+  const st3 = narration.state();
+  report(st3.playing && near(st3.position, 13.0 + 1 / 60), 'narration resumed from the same position after the slice', `position ${st3.position.toFixed(3)}`);
+  B.renderAt(tSay + 2.3);
+  report(card.wordCard.hidden, 'the word card closes after 2.2 s');
+
+  /* Tapping "Aliya" (a linked word) emits focus with layer kids, then unfocus when the card closes. */
+  const iAliya = tm.words.findIndex((w) => w.text === 'Aliya');
+  const tTap = B.time;
+  await card.tap(iAliya);
+  const f = captured.focus[captured.focus.length - 1];
+  report(!!f && f.layer === 'kids' && f.spread === 4 && f.source === 'word' && f.name === 'Aliya and Zade',
+    'tapping "Aliya" emits focus {layer: kids, source: word}', f ? JSON.stringify(f) : 'no focus event');
+  const wt = captured.wordTap[captured.wordTap.length - 1];
+  report(!!wt && wt.i === iAliya && wt.text === 'Aliya', 'wordTap emitted for the tap', wt ? JSON.stringify(wt) : '');
+  B.renderAt(tTap + 0.1);
+  const syll = card.wordCard.querySelector('.wordcard__syll');
+  report(!card.wordCard.hidden && !syll.hidden && syll.textContent === 'A·li·ya', 'the word card shows A·li·ya', syll.textContent);
+  B.renderAt(tTap + 2.3);
+  report(captured.unfocus.length === 1 && card.wordCard.hidden, 'unfocus emitted when the card closes', `${captured.unfocus.length}`);
+
+  /* The card hides on turnStart and returns on settle. */
+  events.emit('turnStart', { from: 4, to: 5, dir: 1, kind: 'tween', at: B.time });
+  B.forceRender();
+  report(card.element.hidden || card.state().spread === null, 'turnStart hides the card');
+  book.open(4);
+  events.emit('settle', { spread: 4 });
+  await card.whenShown();
+  B.forceRender();
+  report(card.state().spread === 4 && !card.element.hidden, 'settle shows the card again');
+
+  /* Title and activities cards build with their special copy. */
+  book.open(0);
+  events.emit('settle', { spread: 0 });
+  await card.whenShown();
+  B.forceRender();
+  const titleHeading = card.element.querySelector('.card__heading').textContent;
+  const credit = card.element.querySelector('.card__credit').textContent;
+  report(titleHeading === 'Spring Bloom' && card.element.querySelector('.card__subtitle').textContent === 'A math adventure story'
+    && credit.startsWith('By Sadia Mir and Summer Al-Jarrah Bateiha. Illustrated by Inna Ogando. Published by Hamad Bin Khalifa University Press, 2019.')
+    && !card.element.querySelector('.card__cta').hidden && card.words().length === 17,
+    'title card: heading, subtitle, credit, Read to me; 17 spoken words', `${card.words().length} spoken words`);
+  book.open(16);
+  events.emit('settle', { spread: 16 });
+  await card.whenShown();
+  B.forceRender();
+  const endParas = card.element.querySelectorAll('.card__text p');
+  report(card.element.querySelector('.card__heading').textContent === 'Activities for children' && endParas.length === 1
+    && endParas[0].textContent.startsWith('Spring Bloom introduces the idea of place-value'),
+    'activities card: heading and first paragraph only');
+
+  /* Back to spread 4, idle, for the screenshots. */
+  book.open(4);
+  events.emit('settle', { spread: 4 });
+  await card.whenShown();
+  B.renderAt(B.time + 2);
+  narration.audioEnabled = true;
+
+  const failed = results.filter((r) => !r.ok).length;
+  const summary = `${results.length - failed}/${results.length} assertions passed`;
+  out.appendChild(document.createTextNode(summary + '\n'));
+  console.log('card-probe', summary);
+  window.__probe.done = true;
+  window.__probe.summary = summary;
+
+  /* Helpers for the pane. */
+  window.__probe.goto = async (s) => { book.open(s); events.emit('settle', { spread: s }); await card.whenShown(); B.renderAt(B.time + 2); await B.pool.idle(); B.forceRender(); return card.state(); };
+  window.__probe.blit = () => {
+    const src = document.getElementById('stage');
+    const cv = document.createElement('canvas');
+    cv.width = src.width; cv.height = src.height;
+    const ctx = cv.getContext('2d');
+    B.forceRender();
+    ctx.drawImage(src, 0, 0);
+    document.querySelectorAll('img.__blit').forEach((e) => e.remove());
+    const img = document.createElement('img');
+    img.className = '__blit';
+    img.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:0;pointer-events:none';
+    img.src = cv.toDataURL('image/png');
+    document.body.appendChild(img);
+    src.style.visibility = 'hidden';
+    return { w: cv.width, h: cv.height };
+  };
+  window.__probe.unblit = () => { document.querySelectorAll('img.__blit').forEach((e) => e.remove()); document.getElementById('stage').style.visibility = ''; };
+  window.__probe.hideLog = () => { out.hidden = true; };
+  window.__probe.showLog = () => { out.hidden = false; };
+</script>
+</body>
+</html>

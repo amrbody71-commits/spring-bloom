@@ -1,0 +1,344 @@
+{
+ "id": "13",
+ "voice": "iCrDUkL56s3C8sCRl7wb",
+ "model": "eleven_multilingual_v2",
+ "duration": 22.663,
+ "words": [
+  {
+   "i": 0,
+   "text": "The",
+   "start": 0,
+   "end": 0.186
+  },
+  {
+   "i": 1,
+   "text": "young",
+   "start": 0.227,
+   "end": 0.488
+  },
+  {
+   "i": 2,
+   "text": "falcon",
+   "start": 0.54,
+   "end": 1.022
+  },
+  {
+   "i": 3,
+   "text": "found",
+   "start": 1.075,
+   "end": 1.37
+  },
+  {
+   "i": 4,
+   "text": "his",
+   "start": 1.388,
+   "end": 1.533
+  },
+  {
+   "i": 5,
+   "text": "family.",
+   "start": 1.562,
+   "end": 2.287
+  },
+  {
+   "i": 6,
+   "text": "“We",
+   "start": 2.491,
+   "end": 2.821
+  },
+  {
+   "i": 7,
+   "text": "were",
+   "start": 2.839,
+   "end": 3.077
+  },
+  {
+   "i": 8,
+   "text": "worried",
+   "start": 3.083,
+   "end": 3.518
+  },
+  {
+   "i": 9,
+   "text": "about",
+   "start": 3.518,
+   "end": 3.808
+  },
+  {
+   "i": 10,
+   "text": "you,”",
+   "start": 3.838,
+   "end": 4.098
+  },
+  {
+   "i": 11,
+   "text": "said",
+   "start": 4.098,
+   "end": 4.331
+  },
+  {
+   "i": 12,
+   "text": "the",
+   "start": 4.331,
+   "end": 4.423
+  },
+  {
+   "i": 13,
+   "text": "falcon's",
+   "start": 4.441,
+   "end": 4.992
+  },
+  {
+   "i": 14,
+   "text": "mother,",
+   "start": 4.999,
+   "end": 5.596
+  },
+  {
+   "i": 15,
+   "text": "“but",
+   "start": 5.8,
+   "end": 6.118
+  },
+  {
+   "i": 16,
+   "text": "we",
+   "start": 6.137,
+   "end": 6.293
+  },
+  {
+   "i": 17,
+   "text": "knew",
+   "start": 6.322,
+   "end": 6.571
+  },
+  {
+   "i": 18,
+   "text": "you",
+   "start": 6.589,
+   "end": 6.722
+  },
+  {
+   "i": 19,
+   "text": "would",
+   "start": 6.729,
+   "end": 6.954
+  },
+  {
+   "i": 20,
+   "text": "find",
+   "start": 6.972,
+   "end": 7.245
+  },
+  {
+   "i": 21,
+   "text": "your",
+   "start": 7.263,
+   "end": 7.419
+  },
+  {
+   "i": 22,
+   "text": "way.”",
+   "start": 7.448,
+   "end": 7.988
+  },
+  {
+   "i": 23,
+   "text": "The",
+   "start": 8.191,
+   "end": 8.359
+  },
+  {
+   "i": 24,
+   "text": "falcon",
+   "start": 8.4,
+   "end": 8.835
+  },
+  {
+   "i": 25,
+   "text": "squawked",
+   "start": 8.888,
+   "end": 9.427
+  },
+  {
+   "i": 26,
+   "text": "with",
+   "start": 9.427,
+   "end": 9.613
+  },
+  {
+   "i": 27,
+   "text": "joy.",
+   "start": 9.654,
+   "end": 10.344
+  },
+  {
+   "i": 28,
+   "text": "He",
+   "start": 10.757,
+   "end": 10.948
+  },
+  {
+   "i": 29,
+   "text": "explained",
+   "start": 10.989,
+   "end": 11.564
+  },
+  {
+   "i": 30,
+   "text": "how",
+   "start": 11.57,
+   "end": 11.738
+  },
+  {
+   "i": 31,
+   "text": "Aliya",
+   "start": 11.779,
+   "end": 12.249
+  },
+  {
+   "i": 32,
+   "text": "and",
+   "start": 12.278,
+   "end": 12.434
+  },
+  {
+   "i": 33,
+   "text": "Zade",
+   "start": 12.464,
+   "end": 12.98
+  },
+  {
+   "i": 34,
+   "text": "helped",
+   "start": 13.01,
+   "end": 13.398
+  },
+  {
+   "i": 35,
+   "text": "him",
+   "start": 13.404,
+   "end": 13.572
+  },
+  {
+   "i": 36,
+   "text": "solve",
+   "start": 13.613,
+   "end": 14.002
+  },
+  {
+   "i": 37,
+   "text": "the",
+   "start": 14.008,
+   "end": 14.118
+  },
+  {
+   "i": 38,
+   "text": "riddles",
+   "start": 14.136,
+   "end": 14.64
+  },
+  {
+   "i": 39,
+   "text": "and",
+   "start": 14.89,
+   "end": 15.174
+  },
+  {
+   "i": 40,
+   "text": "figure",
+   "start": 15.216,
+   "end": 15.592
+  },
+  {
+   "i": 41,
+   "text": "out",
+   "start": 15.592,
+   "end": 15.767
+  },
+  {
+   "i": 42,
+   "text": "the",
+   "start": 15.773,
+   "end": 15.883
+  },
+  {
+   "i": 43,
+   "text": "password.",
+   "start": 15.901,
+   "end": 16.777
+  },
+  {
+   "i": 44,
+   "text": "The",
+   "start": 17.189,
+   "end": 17.38
+  },
+  {
+   "i": 45,
+   "text": "family",
+   "start": 17.422,
+   "end": 17.914
+  },
+  {
+   "i": 46,
+   "text": "thanked",
+   "start": 17.979,
+   "end": 18.379
+  },
+  {
+   "i": 47,
+   "text": "Aliya",
+   "start": 18.42,
+   "end": 18.924
+  },
+  {
+   "i": 48,
+   "text": "and",
+   "start": 18.989,
+   "end": 19.215
+  },
+  {
+   "i": 49,
+   "text": "Zade",
+   "start": 19.256,
+   "end": 19.83
+  },
+  {
+   "i": 50,
+   "text": "and",
+   "start": 19.895,
+   "end": 20.26
+  },
+  {
+   "i": 51,
+   "text": "welcomed",
+   "start": 20.312,
+   "end": 20.852
+  },
+  {
+   "i": 52,
+   "text": "them",
+   "start": 20.852,
+   "end": 21.061
+  },
+  {
+   "i": 53,
+   "text": "to",
+   "start": 21.102,
+   "end": 21.235
+  },
+  {
+   "i": 54,
+   "text": "the",
+   "start": 21.265,
+   "end": 21.374
+  },
+  {
+   "i": 55,
+   "text": "celebration.",
+   "start": 21.381,
+   "end": 22.663
+  }
+ ]
+}

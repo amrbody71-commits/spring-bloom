@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, height=720">
+<title>Spring Bloom landscape snapshots</title>
+<!-- A 1280x720 copy of reel/index.html for snapshotting the setting in
+     landscape. HyperFrames serves a composition from its own folder, so this
+     folder holds the same four junctions (assets, js, css, vendor) as reel/
+     and a copy of tour.json. It is ignored by git and Vercel. The audio
+     elements are kept so the timeline matches the reel's exactly. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/",
+    "postprocessing": "./vendor/postprocessing/index.js"
+  }
+}
+</script>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/labels.css">
+<link rel="stylesheet" href="css/ui.css">
+<style>
+  html, body { margin: 0; background: #0b0908; }
+  #root { position: relative; width: 1280px; height: 720px; overflow: hidden; background: #2e2126; }
+  #stage { position: absolute; inset: 0; width: 1280px; height: 720px; display: block; }
+  #ui, #cards, #capture { position: absolute; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1280" data-height="720" data-duration="72">
+  <canvas id="stage" aria-label="Spring Bloom, a pop-up picture book"></canvas>
+  <div id="ui"></div>
+  <div id="cards"></div>
+
+  <audio id="vo-01" src="assets/audio/spread-01.mp3" data-start="7.8" data-duration="10.2" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-04" src="assets/audio/spread-04.mp3" data-start="24.5" data-duration="8.8" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-05" src="assets/audio/spread-05.mp3" data-start="36.5" data-duration="7.8" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-06" src="assets/audio/spread-06.mp3" data-start="47.0" data-duration="3.3" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-08" src="assets/audio/spread-08.mp3" data-start="54.0" data-duration="3.8" data-track-index="20" data-volume="1"></audio>
+  <audio id="sfx-cover" src="assets/sfx/cover-open.mp3" data-start="2.85" data-track-index="10" data-volume="0.8"></audio>
+  <audio id="bed" src="assets/bed/bed.mp3" data-start="0" data-duration="72" data-track-index="18" data-volume="0.14"></audio>
+</div>
+
+<script type="module">
+  import { boot } from './js/app.js';
+  const tl = gsap.timeline({ paused: true });
+  tl.to({ t: 0 }, { t: 1, duration: 72, ease: 'none' }, 0);
+  window.__timelines = window.__timelines || {};
+  window.__timelines['main'] = tl;
+
+  const canvas = document.getElementById('stage');
+  const api = boot({ canvas, params: new URLSearchParams('capture&fps=30&tour=tour.json&seed=7&w=1280&h=720&dpr=1') });
+  window.__book = api;
+
+  tl.eventCallback('onUpdate', () => api.renderAt(tl.time()));
+  api.tourReady.then(() => api.renderAt(tl.time()));
+</script>
+</body>
+</html>

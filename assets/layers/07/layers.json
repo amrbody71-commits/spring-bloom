@@ -1,0 +1,70 @@
+{
+ "spread": 7,
+ "horizon": 0.0,
+ "hero": false,
+ "layers": [
+  {
+   "id": "bubble",
+   "name": "the thought bubble",
+   "src": "assets/layers/07/bubble.webp",
+   "box": [
+    0.504,
+    0.0,
+    1.0,
+    0.481
+   ],
+   "foot": [
+    0.752,
+    0.481
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    861,
+    532
+   ]
+  },
+  {
+   "id": "zade",
+   "name": "Zade",
+   "src": "assets/layers/07/zade.webp",
+   "box": [
+    0.5271,
+    0.4213,
+    0.7644,
+    1.0
+   ],
+   "foot": [
+    0.6457,
+    1.0
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    412,
+    640
+   ]
+  },
+  {
+   "id": "aliya",
+   "name": "Aliya",
+   "src": "assets/layers/07/aliya.webp",
+   "box": [
+    0.7408,
+    0.3454,
+    1.0,
+    1.0
+   ],
+   "foot": [
+    0.8704,
+    1.0
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    450,
+    724
+   ]
+  }
+ ]
+}

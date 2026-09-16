@@ -1,0 +1,542 @@
+{
+ "id": "08",
+ "voice": "iCrDUkL56s3C8sCRl7wb",
+ "model": "eleven_multilingual_v2",
+ "duration": 36.594,
+ "words": [
+  {
+   "i": 0,
+   "text": "They",
+   "start": 0,
+   "end": 0.255
+  },
+  {
+   "i": 1,
+   "text": "started",
+   "start": 0.262,
+   "end": 0.685
+  },
+  {
+   "i": 2,
+   "text": "to",
+   "start": 0.691,
+   "end": 0.778
+  },
+  {
+   "i": 3,
+   "text": "count",
+   "start": 0.819,
+   "end": 1.126
+  },
+  {
+   "i": 4,
+   "text": "again.",
+   "start": 1.133,
+   "end": 1.649
+  },
+  {
+   "i": 5,
+   "text": "They",
+   "start": 1.818,
+   "end": 2.067
+  },
+  {
+   "i": 6,
+   "text": "approached",
+   "start": 2.073,
+   "end": 2.601
+  },
+  {
+   "i": 7,
+   "text": "the",
+   "start": 2.601,
+   "end": 2.694
+  },
+  {
+   "i": 8,
+   "text": "flamingos",
+   "start": 2.7,
+   "end": 3.402
+  },
+  {
+   "i": 9,
+   "text": "when",
+   "start": 3.408,
+   "end": 3.634
+  },
+  {
+   "i": 10,
+   "text": "they",
+   "start": 3.634,
+   "end": 3.773
+  },
+  {
+   "i": 11,
+   "text": "finished.",
+   "start": 3.791,
+   "end": 4.563
+  },
+  {
+   "i": 12,
+   "text": "“We",
+   "start": 4.906,
+   "end": 5.155
+  },
+  {
+   "i": 13,
+   "text": "have",
+   "start": 5.184,
+   "end": 5.433
+  },
+  {
+   "i": 14,
+   "text": "5",
+   "start": 5.475,
+   "end": 5.759
+  },
+  {
+   "i": 15,
+   "text": "twigs",
+   "start": 5.8,
+   "end": 6.281
+  },
+  {
+   "i": 16,
+   "text": "and",
+   "start": 6.345,
+   "end": 6.583
+  },
+  {
+   "i": 17,
+   "text": "2",
+   "start": 6.636,
+   "end": 6.885
+  },
+  {
+   "i": 18,
+   "text": "shells,",
+   "start": 6.914,
+   "end": 7.674
+  },
+  {
+   "i": 19,
+   "text": "which",
+   "start": 7.785,
+   "end": 8.057
+  },
+  {
+   "i": 20,
+   "text": "is",
+   "start": 8.075,
+   "end": 8.208
+  },
+  {
+   "i": 21,
+   "text": "52",
+   "start": 8.261,
+   "end": 8.8
+  },
+  {
+   "i": 22,
+   "text": "crabs,”",
+   "start": 8.83,
+   "end": 9.543
+  },
+  {
+   "i": 23,
+   "text": "Aliya",
+   "start": 9.55,
+   "end": 9.973
+  },
+  {
+   "i": 24,
+   "text": "said.",
+   "start": 10.003,
+   "end": 10.553
+  },
+  {
+   "i": 25,
+   "text": "“Correct,”",
+   "start": 10.839,
+   "end": 11.587
+  },
+  {
+   "i": 26,
+   "text": "said",
+   "start": 11.587,
+   "end": 11.819
+  },
+  {
+   "i": 27,
+   "text": "one",
+   "start": 11.849,
+   "end": 12.04
+  },
+  {
+   "i": 28,
+   "text": "of",
+   "start": 12.04,
+   "end": 12.109
+  },
+  {
+   "i": 29,
+   "text": "the",
+   "start": 12.116,
+   "end": 12.225
+  },
+  {
+   "i": 30,
+   "text": "flamingos.",
+   "start": 12.232,
+   "end": 13.247
+  },
+  {
+   "i": 31,
+   "text": "“Now,",
+   "start": 13.381,
+   "end": 13.862
+  },
+  {
+   "i": 32,
+   "text": "you",
+   "start": 13.904,
+   "end": 14.06
+  },
+  {
+   "i": 33,
+   "text": "must",
+   "start": 14.078,
+   "end": 14.327
+  },
+  {
+   "i": 34,
+   "text": "cross",
+   "start": 14.345,
+   "end": 14.698
+  },
+  {
+   "i": 35,
+   "text": "the",
+   "start": 14.716,
+   "end": 14.826
+  },
+  {
+   "i": 36,
+   "text": "marsh",
+   "start": 14.844,
+   "end": 15.232
+  },
+  {
+   "i": 37,
+   "text": "and",
+   "start": 15.297,
+   "end": 15.534
+  },
+  {
+   "i": 38,
+   "text": "enter",
+   "start": 15.587,
+   "end": 15.917
+  },
+  {
+   "i": 39,
+   "text": "the",
+   "start": 15.947,
+   "end": 16.056
+  },
+  {
+   "i": 40,
+   "text": "cave",
+   "start": 16.074,
+   "end": 16.44
+  },
+  {
+   "i": 41,
+   "text": "to",
+   "start": 16.458,
+   "end": 16.567
+  },
+  {
+   "i": 42,
+   "text": "find",
+   "start": 16.609,
+   "end": 16.892
+  },
+  {
+   "i": 43,
+   "text": "the",
+   "start": 16.899,
+   "end": 17.008
+  },
+  {
+   "i": 44,
+   "text": "trio",
+   "start": 17.027,
+   "end": 17.438
+  },
+  {
+   "i": 45,
+   "text": "of",
+   "start": 17.537,
+   "end": 17.67
+  },
+  {
+   "i": 46,
+   "text": "bats.",
+   "start": 17.723,
+   "end": 18.413
+  },
+  {
+   "i": 47,
+   "text": "They",
+   "start": 18.756,
+   "end": 18.994
+  },
+  {
+   "i": 48,
+   "text": "will",
+   "start": 19,
+   "end": 19.226
+  },
+  {
+   "i": 49,
+   "text": "have",
+   "start": 19.256,
+   "end": 19.516
+  },
+  {
+   "i": 50,
+   "text": "your",
+   "start": 19.523,
+   "end": 19.702
+  },
+  {
+   "i": 51,
+   "text": "next",
+   "start": 19.732,
+   "end": 20.039
+  },
+  {
+   "i": 52,
+   "text": "riddle",
+   "start": 20.068,
+   "end": 20.631
+  },
+  {
+   "i": 53,
+   "text": "but",
+   "start": 20.672,
+   "end": 20.933
+  },
+  {
+   "i": 54,
+   "text": "remember,",
+   "start": 20.962,
+   "end": 21.815
+  },
+  {
+   "i": 55,
+   "text": "do",
+   "start": 22.228,
+   "end": 22.419
+  },
+  {
+   "i": 56,
+   "text": "not",
+   "start": 22.472,
+   "end": 22.709
+  },
+  {
+   "i": 57,
+   "text": "forget",
+   "start": 22.75,
+   "end": 23.162
+  },
+  {
+   "i": 58,
+   "text": "the",
+   "start": 23.18,
+   "end": 23.289
+  },
+  {
+   "i": 59,
+   "text": "total",
+   "start": 23.354,
+   "end": 23.812
+  },
+  {
+   "i": 60,
+   "text": "number",
+   "start": 23.853,
+   "end": 24.218
+  },
+  {
+   "i": 61,
+   "text": "of",
+   "start": 24.248,
+   "end": 24.358
+  },
+  {
+   "i": 62,
+   "text": "objects",
+   "start": 24.457,
+   "end": 24.996
+  },
+  {
+   "i": 63,
+   "text": "you",
+   "start": 25.014,
+   "end": 25.147
+  },
+  {
+   "i": 64,
+   "text": "have.”",
+   "start": 25.2,
+   "end": 25.89
+  },
+  {
+   "i": 65,
+   "text": "Zade",
+   "start": 26.674,
+   "end": 27.074
+  },
+  {
+   "i": 66,
+   "text": "carried",
+   "start": 27.092,
+   "end": 27.527
+  },
+  {
+   "i": 67,
+   "text": "the",
+   "start": 27.534,
+   "end": 27.643
+  },
+  {
+   "i": 68,
+   "text": "6",
+   "start": 27.696,
+   "end": 27.98
+  },
+  {
+   "i": 69,
+   "text": "shells",
+   "start": 28.01,
+   "end": 28.433
+  },
+  {
+   "i": 70,
+   "text": "from",
+   "start": 28.451,
+   "end": 28.688
+  },
+  {
+   "i": 71,
+   "text": "before.",
+   "start": 28.706,
+   "end": 29.466
+  },
+  {
+   "i": 72,
+   "text": "Aliya",
+   "start": 29.948,
+   "end": 30.488
+  },
+  {
+   "i": 73,
+   "text": "picked",
+   "start": 30.517,
+   "end": 30.859
+  },
+  {
+   "i": 74,
+   "text": "up",
+   "start": 30.866,
+   "end": 31.022
+  },
+  {
+   "i": 75,
+   "text": "the",
+   "start": 31.051,
+   "end": 31.161
+  },
+  {
+   "i": 76,
+   "text": "5",
+   "start": 31.225,
+   "end": 31.509
+  },
+  {
+   "i": 77,
+   "text": "twigs",
+   "start": 31.562,
+   "end": 32.09
+  },
+  {
+   "i": 78,
+   "text": "and",
+   "start": 32.433,
+   "end": 32.682
+  },
+  {
+   "i": 79,
+   "text": "the",
+   "start": 32.712,
+   "end": 32.821
+  },
+  {
+   "i": 80,
+   "text": "young",
+   "start": 32.863,
+   "end": 33.158
+  },
+  {
+   "i": 81,
+   "text": "falcon",
+   "start": 33.211,
+   "end": 33.727
+  },
+  {
+   "i": 82,
+   "text": "swept",
+   "start": 33.826,
+   "end": 34.261
+  },
+  {
+   "i": 83,
+   "text": "the",
+   "start": 34.279,
+   "end": 34.389
+  },
+  {
+   "i": 84,
+   "text": "2",
+   "start": 34.441,
+   "end": 34.656
+  },
+  {
+   "i": 85,
+   "text": "shells",
+   "start": 34.697,
+   "end": 35.155
+  },
+  {
+   "i": 86,
+   "text": "under",
+   "start": 35.266,
+   "end": 35.596
+  },
+  {
+   "i": 87,
+   "text": "his",
+   "start": 35.626,
+   "end": 35.817
+  },
+  {
+   "i": 88,
+   "text": "wing.",
+   "start": 35.858,
+   "end": 36.594
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spring Bloom</title>
+<meta name="description" content="Spring Bloom, a children's picture book about a family picnic in the mangroves, as a pop-up book you can read and turn.">
+<meta name="theme-color" content="#F1D4A8">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/labels.css">
+<link rel="stylesheet" href="css/ui.css">
+
+<!-- Vanilla ES modules over a CDN import map, the same shape the other 3D
+     sites in this repo run. No bundler, no build step. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/",
+    "postprocessing": "./vendor/postprocessing/index.js"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="stage" aria-label="Spring Bloom, a picture book on a picnic blanket. Tap the book to open it; drag or use the arrow keys to turn pages."></canvas>
+<div id="ui"></div>
+<div id="cards"></div>
+
+<!-- Shown only when there is no WebGL2. Filled with the story text. -->
+<div id="fallback" hidden>
+  <h1>Spring Bloom</h1>
+  <p>This browser cannot draw the book, so here is the story as plain text.</p>
+  <div id="fallback-text"></div>
+</div>
+<noscript class="fallback">
+  <h1>Spring Bloom</h1>
+  <p>The book needs JavaScript to open. Turn it on to read the story.</p>
+</noscript>
+
+<script type="module">
+  const params = new URLSearchParams(location.search);
+  const reduced = params.get('reduced') === '1'
+    || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) document.documentElement.dataset.reduced = '1';
+
+  const canvas = document.getElementById('stage');
+  const fallback = document.getElementById('fallback');
+
+  async function showFallback() {
+    fallback.hidden = false;
+    canvas.hidden = true;
+    const box = document.getElementById('fallback-text');
+    for (let n = 1; n <= 15; n += 1) {
+      try {
+        const res = await fetch(`assets/text/${String(n).padStart(2, '0')}.json`);
+        const json = await res.json();
+        const section = document.createElement('section');
+        const h = document.createElement('h2');
+        h.textContent = `Page ${n}`;
+        section.appendChild(h);
+        for (const text of json.paragraphs || []) {
+          const p = document.createElement('p');
+          p.textContent = text;
+          section.appendChild(p);
+        }
+        box.appendChild(section);
+      } catch (err) {
+        /* a missing page leaves a gap; the rest still reads */
+      }
+    }
+  }
+
+  const probe = document.createElement('canvas').getContext('webgl2');
+  if (!probe) {
+    showFallback();
+  } else {
+    import('./js/app.js')
+      .then((m) => m.boot({ canvas, params }))
+      .catch((err) => { console.error(err); showFallback(); });
+  }
+</script>
+</body>
+</html>

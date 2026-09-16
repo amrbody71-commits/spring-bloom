@@ -1,0 +1,28 @@
+# The book itself stays out of git: it is the authors' file, and the PDF is
+# 2.3 MB of something a command regenerates every derived asset from.
+/source/
+# Intermediates: contact sheets, full-page renders, audition takes, masks in
+# progress. Anything worth keeping is promoted into assets/.
+/work/
+/reel/renders/
+node_modules/
+__pycache__/
+.env*
+
+.vercel
+
+# junctions so the reel composition can see the site's files from its own root
+/reel/assets/
+/reel/js/
+/reel/css/
+/reel/vendor/
+/reel/snapshots*/
+/reel/node_modules/
+
+# the landscape snapshot harness: junctions and renders, never the page itself
+/reel-landscape/assets/
+/reel-landscape/js/
+/reel-landscape/css/
+/reel-landscape/vendor/
+/reel-landscape/snapshots*/
+/reel-landscape/node_modules/

@@ -1,0 +1,112 @@
+{
+ "spread": 9,
+ "horizon": 0.68,
+ "hero": true,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the cave",
+   "src": "assets/layers/09/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.6908
+   ],
+   "foot": [
+    0.5,
+    0.6908
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    764
+   ]
+  },
+  {
+   "id": "falcon",
+   "name": "the young falcon",
+   "src": "assets/layers/09/falcon.webp",
+   "box": [
+    0.5772,
+    0.094,
+    0.7045,
+    0.2559
+   ],
+   "foot": [
+    0.6408,
+    0.2559
+   ],
+   "tilt": 90,
+   "order": 1,
+   "px": [
+    221,
+    179
+   ]
+  },
+  {
+   "id": "zade",
+   "name": "Zade",
+   "src": "assets/layers/09/zade.webp",
+   "box": [
+    0.4781,
+    0.2893,
+    0.6515,
+    0.8183
+   ],
+   "foot": [
+    0.5648,
+    0.8183
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    301,
+    585
+   ]
+  },
+  {
+   "id": "aliya",
+   "name": "Aliya",
+   "src": "assets/layers/09/aliya.webp",
+   "box": [
+    0.7033,
+    0.2667,
+    0.9597,
+    0.8083
+   ],
+   "foot": [
+    0.8315,
+    0.8083
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    445,
+    599
+   ]
+  },
+  {
+   "id": "plants",
+   "name": "the cave plants",
+   "src": "assets/layers/09/plants.webp",
+   "box": [
+    0.8808,
+    0.2016,
+    1.0,
+    0.7586
+   ],
+   "foot": [
+    0.9404,
+    0.7586
+   ],
+   "tilt": 88,
+   "order": 3,
+   "px": [
+    207,
+    616
+   ]
+  }
+ ]
+}

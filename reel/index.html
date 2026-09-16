@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=360, height=640">
+<title>Spring Bloom reel</title>
+<!-- The reel is the site itself in capture mode, driven by tour.json. The
+     GSAP timeline carries no tweens: it exists so HyperFrames has a duration
+     and a seek target; each seek is forwarded to the app, which steps its own
+     clock to that time. Audio is placed here as ordinary timed media so the
+     renderer mixes it; the app plays no sound in capture mode. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/",
+    "postprocessing": "./vendor/postprocessing/index.js"
+  }
+}
+</script>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/labels.css">
+<link rel="stylesheet" href="css/ui.css">
+<style>
+  html, body { margin: 0; background: #0b0908; }
+  #root { position: relative; width: 360px; height: 640px; overflow: hidden; background: #d9cdb0; }
+  /* the app lays itself out against the viewport; pin it to the root box */
+  #stage { position: absolute; inset: 0; width: 360px; height: 640px; display: block; }
+  #ui, #cards, #capture { position: absolute; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="360" data-height="640" data-duration="72">
+  <canvas id="stage" aria-label="Spring Bloom, a pop-up picture book"></canvas>
+  <div id="ui"></div>
+  <div id="cards"></div>
+
+  <!-- narration, at the tour's read times; each take is cut where the tour moves on -->
+  <audio id="vo-01" src="assets/audio/spread-01.mp3" data-start="7.8" data-duration="10.2" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-04" src="assets/audio/spread-04.mp3" data-start="24.5" data-duration="8.8" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-05" src="assets/audio/spread-05.mp3" data-start="36.5" data-duration="7.8" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-06" src="assets/audio/spread-06.mp3" data-start="47.0" data-duration="3.3" data-track-index="20" data-volume="1"></audio>
+  <audio id="vo-08" src="assets/audio/spread-08.mp3" data-start="54.0" data-duration="3.8" data-track-index="20" data-volume="1"></audio>
+
+  <!-- effects -->
+  <audio id="sfx-cover" src="assets/sfx/cover-open.mp3" data-start="2.85" data-track-index="10" data-volume="0.8"></audio>
+  <audio id="sfx-turn-1" src="assets/sfx/page-turn.mp3" data-start="5.2" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-2" src="assets/sfx/page-turn.mp3" data-start="18.85" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-3" src="assets/sfx/page-turn.mp3" data-start="20.3" data-track-index="12" data-volume="0.9"></audio>
+  <audio id="sfx-turn-4" src="assets/sfx/page-turn.mp3" data-start="21.8" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-5" src="assets/sfx/page-turn.mp3" data-start="34.15" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-6" src="assets/sfx/page-turn.mp3" data-start="45.15" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-7" src="assets/sfx/page-turn.mp3" data-start="51.1" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-8" src="assets/sfx/page-turn.mp3" data-start="52.6" data-track-index="12" data-volume="0.9"></audio>
+  <audio id="sfx-turn-9" src="assets/sfx/page-turn.mp3" data-start="58.6" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-10" src="assets/sfx/page-turn.mp3" data-start="60.1" data-track-index="12" data-volume="0.9"></audio>
+  <audio id="sfx-turn-11" src="assets/sfx/page-turn.mp3" data-start="61.6" data-track-index="11" data-volume="0.9"></audio>
+  <audio id="sfx-turn-12" src="assets/sfx/page-turn.mp3" data-start="67.2" data-track-index="12" data-volume="0.9"></audio>
+  <audio id="sfx-pop-1" src="assets/sfx/tap-pop.mp3" data-start="12.7" data-track-index="13" data-volume="0.7"></audio>
+  <audio id="sfx-pop-2" src="assets/sfx/tap-pop.mp3" data-start="28.2" data-track-index="13" data-volume="0.7"></audio>
+  <audio id="sfx-sparkle-1" src="assets/sfx/sparkle.mp3" data-start="28.25" data-track-index="14" data-volume="0.6"></audio>
+  <audio id="sfx-label-fox" src="assets/audio/labels/the-red-fox.mp3" data-start="28.4" data-track-index="21" data-volume="1"></audio>
+  <audio id="sfx-shell-1" src="assets/sfx/shell-drop.mp3" data-start="39.05" data-track-index="13" data-volume="0.8"></audio>
+  <audio id="sfx-shell-2" src="assets/sfx/shell-drop.mp3" data-start="39.75" data-track-index="14" data-volume="0.8"></audio>
+  <audio id="sfx-shell-3" src="assets/sfx/shell-drop.mp3" data-start="40.45" data-track-index="13" data-volume="0.8"></audio>
+  <audio id="sfx-carry-1" src="assets/sfx/carry.mp3" data-start="55.9" data-track-index="14" data-volume="0.7"></audio>
+  <audio id="sfx-carry-2" src="assets/sfx/carry.mp3" data-start="63.2" data-track-index="14" data-volume="0.7"></audio>
+  <audio id="sfx-pebble" src="assets/sfx/pebble-drop.mp3" data-start="65.0" data-track-index="13" data-volume="0.8"></audio>
+
+  <!-- ambience (14 s file laid end to end) and the bed -->
+  <audio id="amb-1" src="assets/sfx/ambience.mp3" data-start="0" data-duration="13.5" data-track-index="16" data-volume="0.3"></audio>
+  <audio id="amb-2" src="assets/sfx/ambience.mp3" data-start="13.5" data-duration="13.5" data-track-index="17" data-volume="0.3"></audio>
+  <audio id="amb-3" src="assets/sfx/ambience.mp3" data-start="27.0" data-duration="13.5" data-track-index="16" data-volume="0.3"></audio>
+  <audio id="amb-4" src="assets/sfx/ambience.mp3" data-start="40.5" data-duration="13.5" data-track-index="17" data-volume="0.3"></audio>
+  <audio id="amb-5" src="assets/sfx/ambience.mp3" data-start="54.0" data-duration="13.5" data-track-index="16" data-volume="0.3"></audio>
+  <audio id="amb-6" src="assets/sfx/ambience.mp3" data-start="67.5" data-duration="4.5" data-track-index="17" data-volume="0.3"></audio>
+  <audio id="bed" src="assets/bed/bed.mp3" data-start="0" data-duration="72" data-track-index="18" data-volume="0.14"></audio>
+</div>
+
+<script type="module">
+  import { boot } from './js/app.js';
+  const tl = gsap.timeline({ paused: true });
+  tl.to({ t: 0 }, { t: 1, duration: 72, ease: 'none' }, 0);
+  window.__timelines = window.__timelines || {};
+  window.__timelines['main'] = tl;
+
+  const canvas = document.getElementById('stage');
+  const api = boot({ canvas, params: new URLSearchParams('capture&fps=30&tour=tour.json&seed=7&w=360&h=640&dpr=3') });
+  window.__book = api;
+
+  /* Every seek reaches the app twice at most (hf-seek and the timeline's
+     own update); the second is a no-op because the clock is already there. */
+  tl.eventCallback('onUpdate', () => api.renderAt(tl.time()));
+  api.tourReady.then(() => api.renderAt(tl.time()));
+</script>
+</body>
+</html>

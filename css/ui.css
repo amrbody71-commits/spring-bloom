@@ -1,0 +1,350 @@
+/* ui.css, the interface chrome: title lockup, star progress pill, round tool
+   buttons, the reading controls, the hint pill and the settings sheet.
+
+   Look: cream paper pills with a soft warm drop shadow and a 1 px warm
+   border, round 44 px buttons, the "Read to me" pill as the largest control.
+   Colours are the site tokens (--paper, --ink, --amber, --brown) plus a sage
+   for the arrows and one shadow, both scoped to #ui so the site tokens stay
+   untouched. Type is Fredoka for the lockup and pills, Andika for the hint
+   and sheet, Andika caps with tracking for the small label. No monospace.
+
+   Layout: one fixed grid over the viewport with a 16 px gutter. Wide: lockup,
+   stars, tools along the top; controls and hint along the bottom. Under
+   600 px the hint, the stars and the controls stack into a bottom strip. */
+
+#ui {
+  --sage: #8FA98B;
+  --shadow: 0 8px 22px rgba(74, 46, 20, 0.16), 0 1px 3px rgba(74, 46, 20, 0.12);
+  --line: rgba(122, 74, 42, 0.26);
+  --gutter: 16px;
+  --btn: 44px;
+  z-index: 3;
+  font-family: var(--body);
+  color: var(--ink);
+}
+
+/* The grid covers the viewport but must not swallow taps meant for the
+   book, so only the pills and buttons opt back in to pointer events. */
+#ui .sb-chrome {
+  position: fixed;
+  inset: 0;
+  padding: var(--gutter);
+  padding-bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "lockup stars tools"
+    ". . ."
+    ". controls hint";
+  gap: 12px;
+  pointer-events: none;
+}
+#ui .sb-chrome > * { pointer-events: none; transition: opacity 0.28s ease; }
+#ui .sb-lockup, #ui .sb-stars, #ui .sb-btn, #ui .sb-read, #ui .sb-hint { pointer-events: auto; }
+
+#ui .sb-lockup { grid-area: lockup; justify-self: start; align-self: start; }
+#ui .sb-stars { grid-area: stars; justify-self: center; align-self: start; }
+#ui .sb-tools { grid-area: tools; justify-self: end; align-self: start; }
+#ui .sb-controls { grid-area: controls; justify-self: center; align-self: end; }
+#ui .sb-hint { grid-area: hint; justify-self: end; align-self: end; }
+#ui .sb-cardslot { display: none; }
+
+/* Landscape: the right column is the reading panel (tools, stars, the story
+   card's slot, the controls); the scene keeps the title and the hint. The
+   panel's width matches camera.js PANEL so the book is framed beside it. */
+@media (min-aspect-ratio: 4/5) and (min-width: 600px) {
+  #ui .sb-chrome {
+    --panel: clamp(280px, 30vw, 400px);
+    grid-template-columns: 1fr var(--panel);
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "lockup tools"
+      ". stars"
+      ". card"
+      "hint controls";
+    column-gap: 20px;
+  }
+  #ui .sb-stars { justify-self: center; align-self: start; }
+  #ui .sb-cardslot { display: block; grid-area: card; align-self: stretch; justify-self: stretch; min-height: 120px; }
+  #ui .sb-controls { justify-self: center; align-self: end; }
+  #ui .sb-hint { justify-self: start; align-self: end; }
+}
+
+/* While a page turns or the cover swings, the controls step back. Opacity
+   only: nothing moves, so nothing needs to come back into place. */
+#ui .sb-chrome.is-turning .sb-tools,
+#ui .sb-chrome.is-turning .sb-controls,
+#ui .sb-chrome.is-turning .sb-hint { opacity: 0; }
+
+/* ---- title lockup ------------------------------------------------------ */
+
+#ui .sb-lockup {
+  padding: 9px 16px 10px;
+  border-radius: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+#ui .sb-title {
+  display: block;
+  font: 600 1.35rem/1.1 var(--display);
+  color: var(--brown);
+  letter-spacing: 0.01em;
+}
+#ui .sb-sub {
+  display: block;
+  margin-top: 4px;
+  font: 700 0.62rem/1 var(--label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(42, 35, 32, 0.62);
+}
+
+/* ---- star progress pill ------------------------------------------------ */
+
+#ui .sb-stars {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(42, 35, 32, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+#ui .sb-star {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  color: rgba(251, 245, 232, 0.28);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+#ui .sb-star svg { width: 100%; height: 100%; display: block; }
+#ui .sb-star.is-done { color: var(--paper); }
+#ui .sb-star.is-now {
+  color: var(--amber);
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 4px rgba(242, 178, 51, 0.75));
+}
+
+/* ---- buttons ----------------------------------------------------------- */
+
+#ui .sb-tools, #ui .sb-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#ui .sb-controls { gap: 12px; }
+
+#ui .sb-btn {
+  width: var(--btn);
+  height: var(--btn);
+  padding: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  color: var(--brown);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+}
+#ui .sb-btn svg { width: 22px; height: 22px; display: block; }
+#ui .sb-btn:hover { transform: translateY(-1px); }
+#ui .sb-btn:active { transform: scale(0.96); }
+#ui .sb-btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+#ui .sb-btn.sb-arrow { color: var(--sage); }
+#ui .sb-btn.sb-arrow svg { width: 24px; height: 24px; }
+#ui .sb-btn .sb-ico-alt { display: none; }
+#ui .sb-btn.is-alt .sb-ico-main { display: none; }
+#ui .sb-btn.is-alt .sb-ico-alt { display: block; }
+
+#ui .sb-read {
+  height: 52px;
+  padding: 0 24px 0 18px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+  font: 600 1.12rem/1 var(--display);
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+#ui .sb-read svg { width: 20px; height: 20px; display: block; color: var(--amber); }
+#ui .sb-read:hover { transform: translateY(-1px); }
+#ui .sb-read:active { transform: scale(0.98); }
+#ui .sb-read .sb-ico-pause { display: none; }
+#ui .sb-read.is-playing .sb-ico-play { display: none; }
+#ui .sb-read.is-playing .sb-ico-pause { display: block; }
+
+/* ---- hint pill --------------------------------------------------------- */
+
+#ui .sb-hint {
+  max-width: 100%;
+  padding: 8px 15px 8px 12px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1.5px dashed rgba(122, 74, 42, 0.48);
+  box-shadow: var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+#ui .sb-hint svg { width: 18px; height: 18px; flex: none; color: var(--brown); display: block; }
+#ui .sb-hint-text { text-wrap: balance; }
+#ui .sb-hint.is-empty { display: none; }
+
+/* ---- focus ------------------------------------------------------------- */
+
+#ui button:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* ---- settings and credits sheet ---------------------------------------- */
+
+#ui .sb-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 35, 32, 0.14);
+}
+#ui .sb-sheet {
+  position: fixed;
+  top: calc(var(--gutter) + var(--btn) + 10px);
+  right: var(--gutter);
+  width: min(340px, calc(100vw - 2 * var(--gutter)));
+  max-height: calc(100vh - var(--gutter) * 2 - var(--btn) - 10px);
+  overflow: auto;
+  padding: 8px;
+  border-radius: 18px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+#ui .sb-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 4px 4px 12px;
+}
+#ui .sb-sheet h2 {
+  margin: 0;
+  font: 600 1.1rem/1.2 var(--display);
+  color: var(--brown);
+}
+#ui .sb-sheet .sb-btn { width: 36px; height: 36px; box-shadow: none; }
+#ui .sb-sheet .sb-btn svg { width: 18px; height: 18px; }
+
+#ui .sb-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: var(--ink);
+  font: 1rem/1.3 var(--body);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+#ui .sb-row:hover { background: rgba(122, 74, 42, 0.07); }
+#ui .sb-row svg { width: 18px; height: 18px; flex: none; color: var(--brown); }
+
+#ui .sb-switch {
+  position: relative;
+  flex: none;
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(42, 35, 32, 0.2);
+  transition: background 0.2s ease;
+}
+#ui .sb-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease;
+}
+#ui .sb-row[aria-checked="true"] .sb-switch { background: var(--amber); }
+#ui .sb-row[aria-checked="true"] .sb-switch::after { transform: translateX(18px); }
+
+#ui .sb-credits { padding: 4px 12px 8px; }
+#ui .sb-credits .sb-credits-title {
+  margin: 0 0 2px;
+  font: 600 1.3rem/1.15 var(--display);
+  color: var(--brown);
+}
+#ui .sb-credits .sb-credits-sub {
+  margin: 0 0 12px;
+  font: 700 0.62rem/1 var(--label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(42, 35, 32, 0.62);
+}
+#ui .sb-credits p { margin: 0 0 8px; font-size: 0.97rem; line-height: 1.45; }
+#ui .sb-credits p.sb-credits-love {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(122, 74, 42, 0.35);
+  color: var(--brown);
+}
+
+/* ---- narrow screens: a bottom strip ------------------------------------ */
+
+@media (max-width: 599px) {
+  #ui .sb-chrome {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto auto auto;
+    grid-template-areas:
+      "lockup tools"
+      ". ."
+      "hint hint"
+      "stars stars"
+      "controls controls";
+    gap: 10px;
+  }
+  #ui .sb-hint { justify-self: center; align-self: end; text-align: left; }
+  #ui .sb-stars { justify-self: center; align-self: end; }
+  #ui .sb-controls { justify-self: center; }
+  #ui .sb-lockup { padding: 7px 13px 8px; }
+  #ui .sb-title { font-size: 1.15rem; }
+  #ui .sb-tools { gap: 8px; }
+  #ui .sb-read { height: 50px; padding: 0 20px 0 16px; font-size: 1.05rem; }
+  #ui .sb-sheet {
+    left: var(--gutter);
+    right: var(--gutter);
+    width: auto;
+  }
+}
+
+/* ---- reduced motion ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  #ui * { transition: none !important; }
+}
+html[data-reduced="1"] #ui * { transition: none !important; }

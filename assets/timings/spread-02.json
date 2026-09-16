@@ -1,0 +1,430 @@
+{
+ "id": "02",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 29.169,
+ "words": [
+  {
+   "i": 0,
+   "text": "After",
+   "start": 0.0,
+   "end": 0.348
+  },
+  {
+   "i": 1,
+   "text": "their",
+   "start": 0.355,
+   "end": 0.557
+  },
+  {
+   "i": 2,
+   "text": "picnic,",
+   "start": 0.564,
+   "end": 1.335
+  },
+  {
+   "i": 3,
+   "text": "Aliya",
+   "start": 1.62,
+   "end": 2.101
+  },
+  {
+   "i": 4,
+   "text": "and",
+   "start": 2.131,
+   "end": 2.264
+  },
+  {
+   "i": 5,
+   "text": "Zade",
+   "start": 2.305,
+   "end": 2.682
+  },
+  {
+   "i": 6,
+   "text": "went",
+   "start": 2.688,
+   "end": 2.937
+  },
+  {
+   "i": 7,
+   "text": "off",
+   "start": 2.944,
+   "end": 3.135
+  },
+  {
+   "i": 8,
+   "text": "to",
+   "start": 3.141,
+   "end": 3.251
+  },
+  {
+   "i": 9,
+   "text": "play.",
+   "start": 3.28,
+   "end": 3.889
+  },
+  {
+   "i": 10,
+   "text": "They",
+   "start": 4.372,
+   "end": 4.632
+  },
+  {
+   "i": 11,
+   "text": "came",
+   "start": 4.639,
+   "end": 4.934
+  },
+  {
+   "i": 12,
+   "text": "across",
+   "start": 4.934,
+   "end": 5.352
+  },
+  {
+   "i": 13,
+   "text": "a",
+   "start": 5.359,
+   "end": 5.445
+  },
+  {
+   "i": 14,
+   "text": "young",
+   "start": 5.486,
+   "end": 5.7
+  },
+  {
+   "i": 15,
+   "text": "falcon.",
+   "start": 5.742,
+   "end": 6.513
+  },
+  {
+   "i": 16,
+   "text": "The",
+   "start": 6.996,
+   "end": 7.175
+  },
+  {
+   "i": 17,
+   "text": "falcon",
+   "start": 7.205,
+   "end": 7.651
+  },
+  {
+   "i": 18,
+   "text": "was",
+   "start": 7.669,
+   "end": 7.86
+  },
+  {
+   "i": 19,
+   "text": "in",
+   "start": 7.89,
+   "end": 8.022
+  },
+  {
+   "i": 20,
+   "text": "tears.",
+   "start": 8.052,
+   "end": 8.824
+  },
+  {
+   "i": 21,
+   "text": "“Hi,",
+   "start": 9.194,
+   "end": 9.868
+  },
+  {
+   "i": 22,
+   "text": "are",
+   "start": 9.956,
+   "end": 10.193
+  },
+  {
+   "i": 23,
+   "text": "you",
+   "start": 10.193,
+   "end": 10.321
+  },
+  {
+   "i": 24,
+   "text": "okay?”",
+   "start": 10.409,
+   "end": 10.984
+  },
+  {
+   "i": 25,
+   "text": "Zade",
+   "start": 11.254,
+   "end": 11.619
+  },
+  {
+   "i": 26,
+   "text": "asked.",
+   "start": 11.626,
+   "end": 12.316
+  },
+  {
+   "i": 27,
+   "text": "“No,",
+   "start": 12.45,
+   "end": 12.92
+  },
+  {
+   "i": 28,
+   "text": "I",
+   "start": 12.961,
+   "end": 13.059
+  },
+  {
+   "i": 29,
+   "text": "can’t",
+   "start": 13.123,
+   "end": 13.454
+  },
+  {
+   "i": 30,
+   "text": "find",
+   "start": 13.472,
+   "end": 13.721
+  },
+  {
+   "i": 31,
+   "text": "the",
+   "start": 13.727,
+   "end": 13.837
+  },
+  {
+   "i": 32,
+   "text": "party,”",
+   "start": 13.843,
+   "end": 14.313
+  },
+  {
+   "i": 33,
+   "text": "the",
+   "start": 14.313,
+   "end": 14.406
+  },
+  {
+   "i": 34,
+   "text": "young",
+   "start": 14.435,
+   "end": 14.673
+  },
+  {
+   "i": 35,
+   "text": "falcon",
+   "start": 14.725,
+   "end": 15.172
+  },
+  {
+   "i": 36,
+   "text": "answered.",
+   "start": 15.213,
+   "end": 15.985
+  },
+  {
+   "i": 37,
+   "text": "“What",
+   "start": 16.355,
+   "end": 16.617
+  },
+  {
+   "i": 38,
+   "text": "party?”",
+   "start": 16.67,
+   "end": 17.335
+  },
+  {
+   "i": 39,
+   "text": "Aliya",
+   "start": 17.605,
+   "end": 17.977
+  },
+  {
+   "i": 40,
+   "text": "questioned.",
+   "start": 18.018,
+   "end": 18.906
+  },
+  {
+   "i": 41,
+   "text": "“Every",
+   "start": 19.249,
+   "end": 19.777
+  },
+  {
+   "i": 42,
+   "text": "year,",
+   "start": 19.795,
+   "end": 20.183
+  },
+  {
+   "i": 43,
+   "text": "I",
+   "start": 20.213,
+   "end": 20.322
+  },
+  {
+   "i": 44,
+   "text": "attend",
+   "start": 20.422,
+   "end": 20.821
+  },
+  {
+   "i": 45,
+   "text": "a",
+   "start": 20.839,
+   "end": 20.926
+  },
+  {
+   "i": 46,
+   "text": "party",
+   "start": 20.956,
+   "end": 21.332
+  },
+  {
+   "i": 47,
+   "text": "with",
+   "start": 21.339,
+   "end": 21.541
+  },
+  {
+   "i": 48,
+   "text": "my",
+   "start": 21.548,
+   "end": 21.704
+  },
+  {
+   "i": 49,
+   "text": "parents",
+   "start": 21.745,
+   "end": 22.319
+  },
+  {
+   "i": 50,
+   "text": "to",
+   "start": 22.349,
+   "end": 22.517
+  },
+  {
+   "i": 51,
+   "text": "celebrate",
+   "start": 22.569,
+   "end": 23.213
+  },
+  {
+   "i": 52,
+   "text": "the",
+   "start": 23.22,
+   "end": 23.329
+  },
+  {
+   "i": 53,
+   "text": "blooming",
+   "start": 23.347,
+   "end": 23.84
+  },
+  {
+   "i": 54,
+   "text": "of",
+   "start": 23.87,
+   "end": 23.979
+  },
+  {
+   "i": 55,
+   "text": "our",
+   "start": 24.009,
+   "end": 24.188
+  },
+  {
+   "i": 56,
+   "text": "cherished",
+   "start": 24.218,
+   "end": 24.734
+  },
+  {
+   "i": 57,
+   "text": "yellow",
+   "start": 24.752,
+   "end": 25.106
+  },
+  {
+   "i": 58,
+   "text": "flower,",
+   "start": 25.135,
+   "end": 25.732
+  },
+  {
+   "i": 59,
+   "text": "the",
+   "start": 25.785,
+   "end": 25.965
+  },
+  {
+   "i": 60,
+   "text": "hyacinth,",
+   "start": 26.006,
+   "end": 27.01
+  },
+  {
+   "i": 61,
+   "text": "but",
+   "start": 27.353,
+   "end": 27.59
+  },
+  {
+   "i": 62,
+   "text": "I",
+   "start": 27.62,
+   "end": 27.683
+  },
+  {
+   "i": 63,
+   "text": "lost",
+   "start": 27.782,
+   "end": 28.182
+  },
+  {
+   "i": 64,
+   "text": "my",
+   "start": 28.223,
+   "end": 28.391
+  },
+  {
+   "i": 65,
+   "text": "way.”",
+   "start": 28.432,
+   "end": 29.169
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "zade": "loY1uopAz31XyhAEhNSa",
+  "aliya": "Pt5YrLNyu6d2s3s4CVMg"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "zade",
+   "tokens": [
+    21,
+    24
+   ],
+   "gain_db": -5.4
+  },
+  {
+   "quote": 2,
+   "speaker": "aliya",
+   "tokens": [
+    37,
+    38
+   ],
+   "gain_db": -10.4
+  }
+ ],
+ "built": "2026-09-16 13:33"
+}

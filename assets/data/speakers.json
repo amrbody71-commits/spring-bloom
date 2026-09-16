@@ -1,0 +1,17 @@
+{
+  "_": "Who says each quoted line, spread by spread, in the order the quotes appear in the text. A value is a keyword matched against the spread's layer names (zade matches 'Aliya and Zade'), or a layer id; null keeps the line in the narrator's box.",
+  "02": ["zade", "falcon", "aliya", "falcon"],
+  "03": ["zade", "falcon", "aliya", "falcon", "falcon"],
+  "04": ["zade", "zade", "fox"],
+  "05": ["aliya", "zade", "fox", "fox", "zade"],
+  "06": ["aliya", "aliya", "flamingo", "flamingo", "zade", "flamingo"],
+  "07": ["zade", "zade", "aliya"],
+  "08": ["boat", "flamingo", "flamingo"],
+  "09": ["aliya", "wall", "wall", "zade", "wall"],
+  "10": ["aliya", "zade"],
+  "11": ["aliya", "falcon", "bats"],
+  "12": ["wolf", "zade", "wolf"],
+  "13": ["falcon", "falcon"],
+  "14": ["flamingo"],
+  "15": ["aliya"]
+}

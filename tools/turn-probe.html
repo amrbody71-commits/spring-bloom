@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- The probe lives in tools/ (excluded from deploy) but runs the app from
+     the project root, so every relative URL resolves against the root. -->
+<base href="../">
+<title>Spring Bloom turn probe</title>
+<link rel="stylesheet" href="css/site.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "postprocessing": "https://cdn.jsdelivr.net/npm/postprocessing@6.36.4/build/index.js"
+  }
+}
+</script>
+<style>
+  #log {
+    position: fixed; left: 12px; top: 12px; z-index: 2;
+    max-width: 44rem; max-height: calc(100vh - 24px); overflow: auto;
+    margin: 0; padding: 0.75rem 1rem;
+    background: rgba(251, 245, 232, 0.92); color: var(--ink);
+    font: 0.85rem/1.5 var(--body); white-space: pre-wrap;
+    border-radius: 8px;
+  }
+  #log .ok { color: #2F6B2F; }
+  #log .fail { color: #A0281E; font-weight: 700; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<pre id="log">Turn probe: loading…</pre>
+
+<script type="module">
+  import * as THREE from 'three';
+  import { boot } from './js/app.js';
+
+  const out = document.getElementById('log');
+  const results = [];
+  function report(ok, label, detail = '') {
+    results.push({ ok, label, detail });
+    const line = `${ok ? 'PASS' : 'FAIL'}  ${label}${detail ? `  (${detail})` : ''}`;
+    const span = document.createElement('span');
+    span.className = ok ? 'ok' : 'fail';
+    span.textContent = line + '\n';
+    out.appendChild(span);
+    console.assert(ok, line);
+    if (ok) console.log('turn-probe', line);
+  }
+
+  const B = boot({ canvas: document.getElementById('stage'), params: new URLSearchParams('?probe=1') });
+  window.__probe = { results };
+  out.textContent = '';
+
+  await B.ready;
+  const { book, turn } = B;
+  const leaves = book.leaves;
+
+  function maxAbsZ(mesh) {
+    const p = mesh.geometry.attributes.position;
+    let m = 0;
+    for (let i = 0; i < p.count; i += 1) m = Math.max(m, Math.abs(p.getZ(i)));
+    return m;
+  }
+
+  /* World position of the free-edge vertices (base x = +0.5 on the front face). */
+  function freeEdge(mesh) {
+    mesh.updateWorldMatrix(true, false);
+    const p = mesh.geometry.attributes.position;
+    const v = new THREE.Vector3();
+    let sx = 0; let sy = 0; let n = 0;
+    for (let i = 0; i < p.count; i += 1) {
+      if (Math.abs(p.getX(i) - 0.5) > 1e-6) continue;
+      v.set(p.getX(i), p.getY(i), p.getZ(i));
+      mesh.localToWorld(v);
+      sx += v.x; sy += v.y; n += 1;
+    }
+    return { x: sx / n, y: sy / n };
+  }
+
+  /* 1. flat at both ends */
+  book.open(0);
+  B.forceRender();
+  turn.set(0);
+  const leaf = leaves[turn.active.leaf];
+  report(leaf.bent, 'turning leaf uses the bend geometry');
+  const z0 = Math.max(maxAbsZ(leaf.front), maxAbsZ(leaf.back));
+  report(z0 < 1e-5, 'every vertex z is 0 at t = 0', `max |z| = ${z0.toExponential(2)}`);
+  turn.set(1);
+  const z1 = Math.max(maxAbsZ(leaf.front), maxAbsZ(leaf.back));
+  report(z1 < 1e-5, 'every vertex z is 0 at t = 1', `max |z| = ${z1.toExponential(2)}`);
+
+  /* 2. mid-turn: free edge above the gutter, bend at its peak */
+  turn.set(0.5);
+  const edge = freeEdge(leaf.front);
+  report(Math.abs(edge.x) < 0.06 && edge.y > 0.9,
+    'free edge is above the gutter at t = 0.5', `x = ${edge.x.toFixed(3)}, y = ${edge.y.toFixed(3)}`);
+  const zMid = maxAbsZ(leaf.front);
+  turn.set(0.25); const zQ1 = maxAbsZ(leaf.front);
+  turn.set(0.75); const zQ3 = maxAbsZ(leaf.front);
+  report(zMid > 0.15 && zMid > zQ1 && zMid > zQ3,
+    'bend peaks at t = 0.5', `|z| 0.25: ${zQ1.toFixed(3)}, 0.5: ${zMid.toFixed(3)}, 0.75: ${zQ3.toFixed(3)}`);
+  report(Math.abs(leaf.pivot.rotation.z - Math.PI * 0.75) < 1e-9, 'pivot rotation is PI * t');
+
+  /* 3. two consecutive turns leave order and spacing intact */
+  turn.settle(1);
+  report(book.spread === 1 && !turn.active, 'settle(1) lands on spread 1');
+  turn.next();
+  for (let i = 0; i < 80 && turn.active; i += 1) B.frame(1 / 60);
+  report(book.spread === 2 && !turn.active, 'a tweened next() lands on spread 2 within 80 frames');
+
+  B.forceRender();
+  const spread = book.spread;
+  let orderOk = true; let spacingOk = true; let flatOk = true; let sideOk = true;
+  const detail = [];
+  for (let k = 0; k < leaves.length; k += 1) {
+    const L = leaves[k];
+    const left = k < spread;
+    if ((L.pivot.rotation.z === Math.PI) !== left) sideOk = false;
+    if (L.bent || maxAbsZ(L.front) > 1e-7) flatOk = false;
+  }
+  const rightYs = leaves.filter((L, k) => k >= spread).map((L) => L.pivot.position.y);
+  const leftYs = leaves.filter((L, k) => k < spread).map((L) => L.pivot.position.y);
+  for (let i = 1; i < rightYs.length; i += 1) {
+    const d = rightYs[i - 1] - rightYs[i];
+    if (d <= 0) orderOk = false;
+    if (Math.abs(d - 0.0015) > 1e-6) spacingOk = false;
+  }
+  for (let i = 1; i < leftYs.length; i += 1) {
+    const d = leftYs[i] - leftYs[i - 1];
+    if (d <= 0) orderOk = false;
+    if (Math.abs(d - 0.0015) > 1e-6) spacingOk = false;
+  }
+  detail.push(`right top ${rightYs[0].toFixed(4)}`, `left top ${leftYs[leftYs.length - 1].toFixed(4)}`);
+  report(sideOk, 'leaves 0..s-1 lie left, s..16 lie right');
+  report(orderOk, 'each stack is ordered top-down');
+  report(spacingOk, 'resting leaves are 0.0015 apart', detail.join(', '));
+  report(flatOk, 'every resting leaf is flat');
+  report(leftYs[leftYs.length - 1] > 0.012 + 0.002 - 1e-9, 'the turned stack sits above the left board');
+
+  /* 4. a turn back */
+  turn.prev();
+  for (let i = 0; i < 80 && turn.active; i += 1) B.frame(1 / 60);
+  report(book.spread === 1 && !turn.active, 'prev() returns to spread 1');
+
+  const failed = results.filter((r) => !r.ok).length;
+  const summary = `${results.length - failed}/${results.length} assertions passed`;
+  out.appendChild(document.createTextNode(summary + '\n'));
+  console.log('turn-probe', summary);
+  window.__probe.done = true;
+  window.__probe.summary = summary;
+</script>
+</body>
+</html>

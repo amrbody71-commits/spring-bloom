@@ -1,0 +1,266 @@
+{
+ "id": "14",
+ "voice": "iCrDUkL56s3C8sCRl7wb",
+ "model": "eleven_multilingual_v2",
+ "duration": 15.511,
+ "words": [
+  {
+   "i": 0,
+   "text": "Aliya",
+   "start": 0,
+   "end": 0.488
+  },
+  {
+   "i": 1,
+   "text": "and",
+   "start": 0.529,
+   "end": 0.662
+  },
+  {
+   "i": 2,
+   "text": "Zade",
+   "start": 0.691,
+   "end": 1.08
+  },
+  {
+   "i": 3,
+   "text": "danced,",
+   "start": 1.098,
+   "end": 1.869
+  },
+  {
+   "i": 4,
+   "text": "picked",
+   "start": 2.038,
+   "end": 2.392
+  },
+  {
+   "i": 5,
+   "text": "flowers",
+   "start": 2.41,
+   "end": 3.03
+  },
+  {
+   "i": 6,
+   "text": "and",
+   "start": 3.071,
+   "end": 3.274
+  },
+  {
+   "i": 7,
+   "text": "climbed",
+   "start": 3.304,
+   "end": 3.692
+  },
+  {
+   "i": 8,
+   "text": "trees",
+   "start": 3.692,
+   "end": 4.04
+  },
+  {
+   "i": 9,
+   "text": "with",
+   "start": 4.047,
+   "end": 4.226
+  },
+  {
+   "i": 10,
+   "text": "their",
+   "start": 4.232,
+   "end": 4.435
+  },
+  {
+   "i": 11,
+   "text": "new",
+   "start": 4.465,
+   "end": 4.667
+  },
+  {
+   "i": 12,
+   "text": "friends.",
+   "start": 4.708,
+   "end": 5.468
+  },
+  {
+   "i": 13,
+   "text": "They",
+   "start": 5.951,
+   "end": 6.188
+  },
+  {
+   "i": 14,
+   "text": "didn't",
+   "start": 6.195,
+   "end": 6.513
+  },
+  {
+   "i": 15,
+   "text": "want",
+   "start": 6.52,
+   "end": 6.769
+  },
+  {
+   "i": 16,
+   "text": "the",
+   "start": 6.775,
+   "end": 6.885
+  },
+  {
+   "i": 17,
+   "text": "fun",
+   "start": 6.914,
+   "end": 7.152
+  },
+  {
+   "i": 18,
+   "text": "to",
+   "start": 7.17,
+   "end": 7.279
+  },
+  {
+   "i": 19,
+   "text": "end",
+   "start": 7.332,
+   "end": 7.593
+  },
+  {
+   "i": 20,
+   "text": "but",
+   "start": 7.623,
+   "end": 7.837
+  },
+  {
+   "i": 21,
+   "text": "soon",
+   "start": 7.89,
+   "end": 8.255
+  },
+  {
+   "i": 22,
+   "text": "it",
+   "start": 8.296,
+   "end": 8.44
+  },
+  {
+   "i": 23,
+   "text": "was",
+   "start": 8.447,
+   "end": 8.626
+  },
+  {
+   "i": 24,
+   "text": "time",
+   "start": 8.656,
+   "end": 8.975
+  },
+  {
+   "i": 25,
+   "text": "to",
+   "start": 8.981,
+   "end": 9.067
+  },
+  {
+   "i": 26,
+   "text": "go.",
+   "start": 9.097,
+   "end": 9.636
+  },
+  {
+   "i": 27,
+   "text": "“See",
+   "start": 10.049,
+   "end": 10.519
+  },
+  {
+   "i": 28,
+   "text": "you",
+   "start": 10.525,
+   "end": 10.658
+  },
+  {
+   "i": 29,
+   "text": "next",
+   "start": 10.688,
+   "end": 10.995
+  },
+  {
+   "i": 30,
+   "text": "year,”",
+   "start": 11.001,
+   "end": 11.331
+  },
+  {
+   "i": 31,
+   "text": "one",
+   "start": 11.338,
+   "end": 11.505
+  },
+  {
+   "i": 32,
+   "text": "of",
+   "start": 11.512,
+   "end": 11.598
+  },
+  {
+   "i": 33,
+   "text": "the",
+   "start": 11.605,
+   "end": 11.714
+  },
+  {
+   "i": 34,
+   "text": "flamingos",
+   "start": 11.721,
+   "end": 12.353
+  },
+  {
+   "i": 35,
+   "text": "called",
+   "start": 12.383,
+   "end": 12.736
+  },
+  {
+   "i": 36,
+   "text": "out",
+   "start": 12.754,
+   "end": 13.003
+  },
+  {
+   "i": 37,
+   "text": "as",
+   "start": 13.033,
+   "end": 13.259
+  },
+  {
+   "i": 38,
+   "text": "the",
+   "start": 13.3,
+   "end": 13.433
+  },
+  {
+   "i": 39,
+   "text": "animals",
+   "start": 13.486,
+   "end": 13.978
+  },
+  {
+   "i": 40,
+   "text": "waved",
+   "start": 14.02,
+   "end": 14.362
+  },
+  {
+   "i": 41,
+   "text": "them",
+   "start": 14.362,
+   "end": 14.524
+  },
+  {
+   "i": 42,
+   "text": "goodbye.",
+   "start": 14.542,
+   "end": 15.511
+  }
+ ]
+}

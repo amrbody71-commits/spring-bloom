@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- The probe lives in tools/ (excluded from deploy) but runs the app from
+     the project root, so every relative URL resolves against the root. -->
+<base href="../">
+<title>Spring Bloom camera probe</title>
+<link rel="stylesheet" href="css/site.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "postprocessing": "https://cdn.jsdelivr.net/npm/postprocessing@6.36.4/build/index.js"
+  }
+}
+</script>
+<style>
+  #log {
+    position: fixed; left: 12px; top: 12px; z-index: 2;
+    max-width: 46rem; max-height: calc(100vh - 24px); overflow: auto;
+    margin: 0; padding: 0.75rem 1rem;
+    background: rgba(251, 245, 232, 0.92); color: var(--ink);
+    font: 0.8rem/1.45 var(--body); white-space: pre-wrap;
+    border-radius: 8px;
+  }
+  #log .ok { color: #2F6B2F; }
+  #log .fail { color: #A0281E; font-weight: 700; }
+  #log[hidden] { display: none; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<pre id="log">Camera probe: loading…</pre>
+
+<script type="module">
+  import * as THREE from 'three';
+
+  /* The static server sends no Cache-Control, and Chrome's disk cache will
+     hand back last hour's module for an unchanged URL. Refresh every module
+     before the first import so the probe runs the code on disk. */
+  const MODULES = ['js/app.js', 'js/camera.js', 'js/ledger.js', 'js/scene.js', 'js/book.js', 'js/turn.js',
+    'js/leaf.js', 'js/clock.js', 'js/events.js', 'js/rng.js', 'js/textures.js', 'js/viewport.js'];
+  await Promise.all(MODULES.map((m) => fetch(m, { cache: 'reload' }).catch(() => null)));
+  const { boot } = await import('./js/app.js');
+  const { init } = await import('./js/ledger.js');
+
+  const out = document.getElementById('log');
+  const results = [];
+  function report(ok, label, detail = '') {
+    results.push({ ok, label, detail });
+    const line = `${ok ? 'PASS' : 'FAIL'}  ${label}${detail ? `  (${detail})` : ''}`;
+    const span = document.createElement('span');
+    span.className = ok ? 'ok' : 'fail';
+    span.textContent = line + '\n';
+    out.appendChild(span);
+    console.assert(ok, line);
+    if (ok) console.log('camera-probe', line);
+  }
+  function note(text) {
+    out.appendChild(document.createTextNode(text + '\n'));
+    console.log('camera-probe', text);
+  }
+
+  const params = new URLSearchParams(location.search);
+  params.set('probe', '1');
+  const B = boot({ canvas: document.getElementById('stage'), params });
+  const camera = init(B);
+  const { book, events } = B;
+  out.textContent = '';
+
+  /* ---- helpers, also exposed on window.__probe ------------------------ */
+
+  const step = (n, dt = 1 / 60) => { for (let i = 0; i < n; i += 1) B.frame(dt); };
+
+  function blit() {
+    const src = document.getElementById('stage');
+    const cv = document.createElement('canvas');
+    cv.width = src.width; cv.height = src.height;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    B.forceRender();
+    ctx.drawImage(src, 0, 0);
+    document.querySelectorAll('img.__blit').forEach((e) => e.remove());
+    const img = document.createElement('img');
+    img.className = '__blit';
+    img.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:0;pointer-events:none';
+    img.src = cv.toDataURL('image/png');
+    document.body.appendChild(img);
+    src.style.visibility = 'hidden';
+    window.__blitCanvas = cv;
+    return { w: cv.width, h: cv.height };
+  }
+  function unblit() {
+    document.querySelectorAll('img.__blit').forEach((e) => e.remove());
+    document.getElementById('stage').style.visibility = '';
+  }
+  /* Mean sRGB over a region of the last blit, in 0..1 of the frame. */
+  function sample(x0, y0, x1, y1) {
+    const cv = window.__blitCanvas;
+    if (!cv) return null;
+    const ctx = cv.getContext('2d');
+    const X = Math.round(x0 * cv.width); const Y = Math.round(y0 * cv.height);
+    const W = Math.max(1, Math.round((x1 - x0) * cv.width)); const H = Math.max(1, Math.round((y1 - y0) * cv.height));
+    const d = ctx.getImageData(X, Y, W, H).data;
+    let r = 0; let g = 0; let b = 0; let mx = 0;
+    for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; mx = Math.max(mx, d[i], d[i + 1], d[i + 2]); }
+    const n = d.length / 4;
+    return { r: Math.round(r / n), g: Math.round(g / n), b: Math.round(b / n), max: mx };
+  }
+
+  const v3 = new THREE.Vector3();
+  function project(x, y, z) {
+    v3.set(x, y, z).project(B.camera);
+    return { x: v3.x, y: v3.y, z: v3.z };
+  }
+  /* NDC bounds of a set of world points with the camera as rendered now. */
+  function bounds(points) {
+    B.camera.updateMatrixWorld(true);
+    let xMin = 9; let xMax = -9; let yMin = 9; let yMax = -9;
+    for (const [x, y, z] of points) {
+      const p = project(x, y, z);
+      xMin = Math.min(xMin, p.x); xMax = Math.max(xMax, p.x);
+      yMin = Math.min(yMin, p.y); yMax = Math.max(yMax, p.y);
+    }
+    return { xMin, xMax, yMin, yMax, w: (xMax - xMin) / 2, h: (yMax - yMin) / 2 };
+  }
+  const CLOSED = [];
+  for (const x of [0, 1.03]) for (const y of [0, 0.069]) for (const z of [-0.655, 0.655]) CLOSED.push([x, y, z]);
+  const OPEN = [];
+  for (const x of [-1.03, 1.03]) for (const z of [-0.655, 0.655]) OPEN.push([x, 0.06, z]);
+  const inside = (b, m = 1) => b.xMin >= -m && b.xMax <= m && b.yMin >= -m && b.yMax <= m;
+  const fmt = (b) => `x ${b.xMin.toFixed(2)}..${b.xMax.toFixed(2)}, y ${b.yMin.toFixed(2)}..${b.yMax.toFixed(2)}`;
+
+  /* Layer box centre and size on screen: corners of the standing plane. */
+  function layerScreen(spread, id) {
+    const recipe = camera.ledger.recipes.get(spread);
+    const L = recipe.layers.find((l) => l.id === id);
+    const [u0, v0, u1, v1] = L.box;
+    const h = (v1 - v0) * 1.27;
+    const foot = book.pageToWorld(L.foot[0], L.foot[1]);
+    const tilt = THREE.MathUtils.degToRad(L.tilt);
+    const pts = [];
+    for (const u of [u0, u1]) {
+      const x = (u * 2 - 1) * 1.0;
+      for (const k of [0, 1]) pts.push([x, foot.y + h * k * Math.sin(tilt), foot.z - h * k * Math.cos(tilt)]);
+    }
+    return bounds(pts);
+  }
+
+  /* Four pointer corners, each settled for 150 frames: the whole open book
+     must stay inside the frame. Returns the worst bounds. */
+  function corners(label = '') {
+    const rows = [];
+    let ok = true;
+    for (const [px, py] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+      camera.setPointer(px, py);
+      step(150);
+      B.forceRender();
+      const b = bounds(OPEN);
+      rows.push(`(${px},${py}) ${fmt(b)}`);
+      if (!inside(b)) ok = false;
+    }
+    camera.setPointer(0, 0);
+    step(150);
+    report(ok, `open book stays in frame at all four pointer corners ${label}`.trim(), `${B.vw()}x${B.vh()}; ` + rows.join('; '));
+    return ok;
+  }
+
+  /* Largest single-frame move of the base pose while stepping n frames. */
+  function travel(n) {
+    const prev = camera.pose.cam.clone();
+    let mx = 0;
+    for (let i = 0; i < n; i += 1) {
+      B.frame(1 / 60);
+      mx = Math.max(mx, camera.pose.cam.distanceTo(prev));
+      prev.copy(camera.pose.cam);
+    }
+    return mx;
+  }
+
+  window.__probe = { B, camera, book, events, step, blit, unblit, sample, project, bounds, layerScreen, corners, travel, results, CLOSED, OPEN };
+
+  /* ---- the run (?run=0 boots and stops, for driving by hand) ----------- */
+
+  await B.ready;
+  await camera.ready;
+  B.resize();
+  B.forceRender();
+  window.__probe.ready = true;
+  if (params.get('run') === '0') {
+    note(`ready by hand: viewport ${B.vw()}x${B.vh()}, gpu ${B.renderer.userData.gpuTier}, dpr ${B.renderer.getPixelRatio()}`);
+    out.hidden = true;
+  } else {
+
+  note(`viewport ${B.vw()}x${B.vh()}, aspect ${(B.vw() / B.vh()).toFixed(3)}, gpu ${B.renderer.userData.gpuTier} (${B.renderer.userData.gpuName || 'no string'}), dpr ${B.renderer.getPixelRatio()}, bloom ${B.composer.passes.length}-pass chain`);
+  report(typeof camera.focusOn === 'function' && typeof camera.release === 'function' && typeof camera.poseFor === 'function' && typeof camera.poseError === 'function' && !!camera.ledger,
+    'camera exposes focusOn, release, poseFor, ledger, poseError');
+  report(camera.ledger.recipes.size === 14 && camera.ledger.anchors.size === 17,
+    'ledger loaded 14 layer recipes and 17 card anchors', `${camera.ledger.recipes.size} recipes, ${camera.ledger.anchors.size} anchors`);
+
+  /* 1. closed */
+  const closedState = camera.stateAt(B.time);
+  report(closedState.kind === 'closed', 'camera starts at the closed pose', `state ${closedState.kind}`);
+  const bc = bounds(CLOSED);
+  report(bc.w > 0.40 && bc.w < 0.50, 'closed book fills about 45% of the frame width', `${(bc.w * 100).toFixed(1)}%, ${fmt(bc)}`);
+  report(camera.poseError() < 1e-6, 'poseError is zero at rest', camera.poseError().toExponential(2));
+
+  /* 2. cover opens: fly to title, no cut */
+  book.openCover();
+  const cut = travel(80);
+  const afterCover = camera.stateAt(B.time);
+  report(afterCover.kind === 'title' && camera.poseError() < 0.002, 'cover open flies to the title pose within 80 frames', `state ${afterCover.kind}, poseError ${camera.poseError().toExponential(2)}`);
+  report(cut < 0.12, 'no cut during the cover flight', `max per-frame travel ${cut.toFixed(4)}`);
+
+  book.open(4);
+  events.emit('settle', { spread: 4 });
+  step(60);
+  const home = camera.stateAt(B.time);
+  const bh = bounds(OPEN);
+  report(home.kind === 'home' && home.spread === 4 && camera.poseError() < 0.002, 'settle on spread 4 lands at home', `state ${home.kind}/${home.spread}, poseError ${camera.poseError().toExponential(2)}`);
+  report(inside(bh, 0.95), 'whole open book inside 95% of the frame at home', fmt(bh));
+
+  /* 3. focus flights */
+  for (const id of ['fox', 'kids']) {
+    const before = layerScreen(4, id);
+    const pose = camera.poseFor(4, id);
+    report(!!pose && pose.fov === 30 && Array.isArray(pose.via) && pose.via.length === 1,
+      `poseFor(4, '${id}') is a fov 30 row with one via point`, pose ? `cam ${pose.cam.map((n) => n.toFixed(2))}, look ${pose.look.map((n) => n.toFixed(2))}, via y ${pose.via ? pose.via[0][1].toFixed(2) : '-'}` : 'null');
+    camera.focusOn({ spread: 4, layer: id });
+    const mx = travel(70);
+    const after = layerScreen(4, id);
+    const cx = (after.xMin + after.xMax) / 2; const cy = (after.yMin + after.yMax) / 2;
+    report(Math.abs(cx) < 0.25 && Math.abs(cy) < 0.3 && after.h > before.h * 1.6,
+      `${id} is centred and larger after 70 frames`, `centre (${cx.toFixed(2)}, ${cy.toFixed(2)}), height ${before.h.toFixed(2)} -> ${after.h.toFixed(2)}, poseError ${camera.poseError().toExponential(2)}, max travel ${mx.toFixed(3)}`);
+    report(camera.poseError() < 0.002, `${id} pose is held after the flight`, camera.poseError().toExponential(2));
+    camera.release();
+    step(60);
+    report(camera.stateAt(B.time).kind === 'home' && camera.poseError() < 0.002, `release from ${id} is back home within 60 frames`, `poseError ${camera.poseError().toExponential(2)}`);
+  }
+
+  /* 5. aspect switch mid-read */
+  camera.focusOn({ spread: 4, layer: 'fox' });
+  step(70);
+  const errs = [];
+  let refitOk = true;
+  for (const a of [0.6, 1.6]) {
+    camera.refit(a);
+    const err = camera.poseError();
+    const st = camera.stateAt(B.time);
+    if (!(err < 0.002) || st.kind !== 'fox') refitOk = false;
+    errs.push(`${a}: ${err.toExponential(2)} (${camera.ledger.portrait ? 'portrait' : 'landscape'} rows, state ${st.kind})`);
+  }
+  report(refitOk, 'refit(0.6) then refit(1.6) keeps the held pose (poseError small, focus kept)', errs.join('; '));
+  camera.refit(B.vw() / B.vh());
+  camera.release();
+  step(60);
+
+  /* 4. pointer corners at the current size (call __probe.corners() again after a resize) */
+  corners('at boot size');
+
+  const failed = results.filter((r) => !r.ok).length;
+  const summary = `${results.length - failed}/${results.length} assertions passed`;
+  note(summary);
+  window.__probe.done = true;
+  window.__probe.summary = summary;
+  }
+</script>
+</body>
+</html>

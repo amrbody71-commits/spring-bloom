@@ -1,0 +1,11 @@
+{
+  "name": "spring-bloom-reel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.23 preview",
+    "check": "npx --yes hyperframes@0.8.23 check",
+    "snapshot": "npx --yes hyperframes@0.8.23 snapshot",
+    "render": "npx --yes hyperframes@0.8.23 render . --fps 30 -q high --browser-gpu -o renders/spring-bloom-reel.mp4"
+  }
+}

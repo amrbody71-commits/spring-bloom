@@ -1,0 +1,91 @@
+{
+ "spread": 2,
+ "horizon": 0.7,
+ "hero": false,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the trees",
+   "src": "assets/layers/02/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.7107
+   ],
+   "foot": [
+    0.5,
+    0.7107
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    786
+   ]
+  },
+  {
+   "id": "falcon",
+   "name": "the young falcon",
+   "src": "assets/layers/02/falcon.webp",
+   "box": [
+    0.0789,
+    0.2758,
+    0.3162,
+    0.5624
+   ],
+   "foot": [
+    0.1976,
+    0.5624
+   ],
+   "tilt": 90,
+   "order": 1,
+   "px": [
+    412,
+    317
+   ]
+  },
+  {
+   "id": "zade",
+   "name": "Zade",
+   "src": "assets/layers/02/zade.webp",
+   "box": [
+    0.2817,
+    0.6754,
+    0.4165,
+    0.9828
+   ],
+   "foot": [
+    0.3491,
+    0.9828
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    234,
+    340
+   ]
+  },
+  {
+   "id": "aliya",
+   "name": "Aliya",
+   "src": "assets/layers/02/aliya.webp",
+   "box": [
+    0.6463,
+    0.5452,
+    0.7581,
+    0.9765
+   ],
+   "foot": [
+    0.7022,
+    0.9765
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    194,
+    477
+   ]
+  }
+ ]
+}

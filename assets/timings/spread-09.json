@@ -1,0 +1,568 @@
+{
+ "id": "09",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 36.469,
+ "words": [
+  {
+   "i": 0,
+   "text": "“Hello!",
+   "start": 0.02,
+   "end": 0.731
+  },
+  {
+   "i": 1,
+   "text": "We",
+   "start": 0.958,
+   "end": 1.173
+  },
+  {
+   "i": 2,
+   "text": "are",
+   "start": 1.202,
+   "end": 1.358
+  },
+  {
+   "i": 3,
+   "text": "here",
+   "start": 1.4,
+   "end": 1.741
+  },
+  {
+   "i": 4,
+   "text": "to",
+   "start": 1.783,
+   "end": 1.939
+  },
+  {
+   "i": 5,
+   "text": "get",
+   "start": 1.98,
+   "end": 2.264
+  },
+  {
+   "i": 6,
+   "text": "the",
+   "start": 2.328,
+   "end": 2.496
+  },
+  {
+   "i": 7,
+   "text": "third",
+   "start": 2.549,
+   "end": 2.879
+  },
+  {
+   "i": 8,
+   "text": "riddle",
+   "start": 2.921,
+   "end": 3.483
+  },
+  {
+   "i": 9,
+   "text": "for",
+   "start": 3.489,
+   "end": 3.75
+  },
+  {
+   "i": 10,
+   "text": "the",
+   "start": 3.78,
+   "end": 3.901
+  },
+  {
+   "i": 11,
+   "text": "password",
+   "start": 3.965,
+   "end": 4.679
+  },
+  {
+   "i": 12,
+   "text": "to",
+   "start": 4.685,
+   "end": 4.841
+  },
+  {
+   "i": 13,
+   "text": "the",
+   "start": 4.883,
+   "end": 5.004
+  },
+  {
+   "i": 14,
+   "text": "party,”",
+   "start": 5.045,
+   "end": 5.69
+  },
+  {
+   "i": 15,
+   "text": "Aliya",
+   "start": 5.96,
+   "end": 6.343
+  },
+  {
+   "i": 16,
+   "text": "announced.",
+   "start": 6.372,
+   "end": 7.19
+  },
+  {
+   "i": 17,
+   "text": "“Welcome,”",
+   "start": 7.533,
+   "end": 8.235
+  },
+  {
+   "i": 18,
+   "text": "one",
+   "start": 8.235,
+   "end": 8.444
+  },
+  {
+   "i": 19,
+   "text": "of",
+   "start": 8.451,
+   "end": 8.537
+  },
+  {
+   "i": 20,
+   "text": "the",
+   "start": 8.543,
+   "end": 8.653
+  },
+  {
+   "i": 21,
+   "text": "bats",
+   "start": 8.671,
+   "end": 9.001
+  },
+  {
+   "i": 22,
+   "text": "greeted",
+   "start": 9.019,
+   "end": 9.419
+  },
+  {
+   "i": 23,
+   "text": "them.",
+   "start": 9.426,
+   "end": 9.895
+  },
+  {
+   "i": 24,
+   "text": "“This",
+   "start": 10.238,
+   "end": 10.615
+  },
+  {
+   "i": 25,
+   "text": "is",
+   "start": 10.633,
+   "end": 10.766
+  },
+  {
+   "i": 26,
+   "text": "your",
+   "start": 10.773,
+   "end": 10.975
+  },
+  {
+   "i": 27,
+   "text": "last",
+   "start": 10.993,
+   "end": 11.254
+  },
+  {
+   "i": 28,
+   "text": "stop.",
+   "start": 11.26,
+   "end": 11.881
+  },
+  {
+   "i": 29,
+   "text": "You",
+   "start": 12.166,
+   "end": 12.368
+  },
+  {
+   "i": 30,
+   "text": "can",
+   "start": 12.386,
+   "end": 12.566
+  },
+  {
+   "i": 31,
+   "text": "go",
+   "start": 12.584,
+   "end": 12.717
+  },
+  {
+   "i": 32,
+   "text": "to",
+   "start": 12.723,
+   "end": 12.809
+  },
+  {
+   "i": 33,
+   "text": "the",
+   "start": 12.839,
+   "end": 12.949
+  },
+  {
+   "i": 34,
+   "text": "party",
+   "start": 12.967,
+   "end": 13.355
+  },
+  {
+   "i": 35,
+   "text": "if",
+   "start": 13.373,
+   "end": 13.483
+  },
+  {
+   "i": 36,
+   "text": "you",
+   "start": 13.501,
+   "end": 13.634
+  },
+  {
+   "i": 37,
+   "text": "solve",
+   "start": 13.675,
+   "end": 14.017
+  },
+  {
+   "i": 38,
+   "text": "this",
+   "start": 14.017,
+   "end": 14.214
+  },
+  {
+   "i": 39,
+   "text": "riddle.",
+   "start": 14.256,
+   "end": 14.864
+  },
+  {
+   "i": 40,
+   "text": "First,",
+   "start": 15.068,
+   "end": 15.805
+  },
+  {
+   "i": 41,
+   "text": "what",
+   "start": 15.974,
+   "end": 16.211
+  },
+  {
+   "i": 42,
+   "text": "is",
+   "start": 16.218,
+   "end": 16.35
+  },
+  {
+   "i": 43,
+   "text": "your",
+   "start": 16.357,
+   "end": 16.548
+  },
+  {
+   "i": 44,
+   "text": "total",
+   "start": 16.578,
+   "end": 16.954
+  },
+  {
+   "i": 45,
+   "text": "from",
+   "start": 16.972,
+   "end": 17.175
+  },
+  {
+   "i": 46,
+   "text": "the",
+   "start": 17.181,
+   "end": 17.291
+  },
+  {
+   "i": 47,
+   "text": "last",
+   "start": 17.309,
+   "end": 17.628
+  },
+  {
+   "i": 48,
+   "text": "two",
+   "start": 17.634,
+   "end": 17.837
+  },
+  {
+   "i": 49,
+   "text": "puzzles?”",
+   "start": 17.878,
+   "end": 18.719
+  },
+  {
+   "i": 50,
+   "text": "“58,”",
+   "start": 19.089,
+   "end": 20.079
+  },
+  {
+   "i": 51,
+   "text": "Zade",
+   "start": 20.349,
+   "end": 20.703
+  },
+  {
+   "i": 52,
+   "text": "answered.",
+   "start": 20.732,
+   "end": 21.539
+  },
+  {
+   "i": 53,
+   "text": "“Perfect.",
+   "start": 21.708,
+   "end": 22.758
+  },
+  {
+   "i": 54,
+   "text": "Now,",
+   "start": 23.101,
+   "end": 23.524
+  },
+  {
+   "i": 55,
+   "text": "listen",
+   "start": 23.588,
+   "end": 24.012
+  },
+  {
+   "i": 56,
+   "text": "carefully.",
+   "start": 24.053,
+   "end": 24.975
+  },
+  {
+   "i": 57,
+   "text": "The",
+   "start": 25.318,
+   "end": 25.521
+  },
+  {
+   "i": 58,
+   "text": "party",
+   "start": 25.562,
+   "end": 25.974
+  },
+  {
+   "i": 59,
+   "text": "is",
+   "start": 25.992,
+   "end": 26.148
+  },
+  {
+   "i": 60,
+   "text": "in",
+   "start": 26.177,
+   "end": 26.287
+  },
+  {
+   "i": 61,
+   "text": "honor",
+   "start": 26.34,
+   "end": 26.717
+  },
+  {
+   "i": 62,
+   "text": "of",
+   "start": 26.746,
+   "end": 26.856
+  },
+  {
+   "i": 63,
+   "text": "my",
+   "start": 26.897,
+   "end": 27.135
+  },
+  {
+   "i": 64,
+   "text": "arrival.",
+   "start": 27.164,
+   "end": 27.936
+  },
+  {
+   "i": 65,
+   "text": "I",
+   "start": 28.035,
+   "end": 28.145
+  },
+  {
+   "i": 66,
+   "text": "only",
+   "start": 28.209,
+   "end": 28.47
+  },
+  {
+   "i": 67,
+   "text": "come",
+   "start": 28.488,
+   "end": 28.714
+  },
+  {
+   "i": 68,
+   "text": "in",
+   "start": 28.714,
+   "end": 28.806
+  },
+  {
+   "i": 69,
+   "text": "the",
+   "start": 28.813,
+   "end": 28.923
+  },
+  {
+   "i": 70,
+   "text": "spring.",
+   "start": 28.929,
+   "end": 29.584
+  },
+  {
+   "i": 71,
+   "text": "My",
+   "start": 29.835,
+   "end": 30.026
+  },
+  {
+   "i": 72,
+   "text": "color",
+   "start": 30.078,
+   "end": 30.467
+  },
+  {
+   "i": 73,
+   "text": "is",
+   "start": 30.496,
+   "end": 30.641
+  },
+  {
+   "i": 74,
+   "text": "sunny",
+   "start": 30.659,
+   "end": 31.024
+  },
+  {
+   "i": 75,
+   "text": "and",
+   "start": 31.042,
+   "end": 31.152
+  },
+  {
+   "i": 76,
+   "text": "bright.",
+   "start": 31.181,
+   "end": 31.86
+  },
+  {
+   "i": 77,
+   "text": "I",
+   "start": 32.342,
+   "end": 32.452
+  },
+  {
+   "i": 78,
+   "text": "stand",
+   "start": 32.551,
+   "end": 32.905
+  },
+  {
+   "i": 79,
+   "text": "outside",
+   "start": 32.923,
+   "end": 33.369
+  },
+  {
+   "i": 80,
+   "text": "this",
+   "start": 33.369,
+   "end": 33.567
+  },
+  {
+   "i": 81,
+   "text": "cave.",
+   "start": 33.608,
+   "end": 34.298
+  },
+  {
+   "i": 82,
+   "text": "How",
+   "start": 34.502,
+   "end": 34.739
+  },
+  {
+   "i": 83,
+   "text": "many",
+   "start": 34.78,
+   "end": 35.076
+  },
+  {
+   "i": 84,
+   "text": "of",
+   "start": 35.106,
+   "end": 35.215
+  },
+  {
+   "i": 85,
+   "text": "me",
+   "start": 35.245,
+   "end": 35.401
+  },
+  {
+   "i": 86,
+   "text": "do",
+   "start": 35.431,
+   "end": 35.563
+  },
+  {
+   "i": 87,
+   "text": "you",
+   "start": 35.605,
+   "end": 35.761
+  },
+  {
+   "i": 88,
+   "text": "see?”",
+   "start": 35.814,
+   "end": 36.469
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "aliya": "Pt5YrLNyu6d2s3s4CVMg",
+  "zade": "loY1uopAz31XyhAEhNSa"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "aliya",
+   "tokens": [
+    0,
+    14
+   ],
+   "gain_db": -7.3
+  },
+  {
+   "quote": 3,
+   "speaker": "zade",
+   "tokens": [
+    50,
+    50
+   ],
+   "gain_db": -11.0
+  }
+ ],
+ "built": "2026-09-16 13:34"
+}

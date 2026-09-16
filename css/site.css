@@ -1,0 +1,119 @@
+/* ============================================================
+   Spring Bloom, the pop-up storybook
+   ------------------------------------------------------------
+   The canvas is the page. Everything else here is tokens for the
+   units that add chrome, a story card and a counting tray, plus
+   the plain-text fallback for a browser without WebGL.
+
+   Type: Fredoka for display (one variable file covers 400 and
+   600), Andika for reading (designed for early readers). Labels
+   keep their register through size, tracking and caps on Andika.
+   No monospace anywhere.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('../vendor/fonts/fredoka-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Andika';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../vendor/fonts/andika-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Andika';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../vendor/fonts/andika-700.woff2') format('woff2');
+}
+
+:root {
+  --display: 'Fredoka', 'Nunito', system-ui, sans-serif;
+  --body: 'Andika', 'Nunito', system-ui, sans-serif;
+  --label: var(--body);
+
+  --ink: #2A2320;
+  --paper: #FBF5E8;
+  --amber: #F2B233;
+  --brown: #7A4A2A;
+  --sky: #F1D4A8;
+  --sage: #92A886;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--sky);
+  color: var(--ink);
+  font-family: var(--body);
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+#stage:active { cursor: grabbing; }
+
+/* Overlays for later units. They pass pointer events through until a
+   child opts back in. */
+#ui, #cards {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+#ui > *, #cards > * { pointer-events: auto; }
+/* The card sits above the canvas (and above a pane blit at z 0); the
+   interface bar sits above the card (ui.css sets #ui to 3). */
+#cards { z-index: 2; }
+
+/* Plain-text fallback: no WebGL, or JavaScript off. */
+#fallback, noscript.fallback {
+  display: block;
+  position: relative;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  height: 100%;
+  overflow: auto;
+  background: var(--paper);
+}
+#fallback[hidden] { display: none; }
+#fallback h1, noscript.fallback h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 2rem;
+  color: var(--brown);
+  margin: 0 0 0.5rem;
+}
+#fallback h2 {
+  font-family: var(--label);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin: 2rem 0 0.5rem;
+}
+#fallback p, noscript.fallback p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+body:has(#fallback:not([hidden])) { overflow: auto; }

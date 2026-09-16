@@ -1,0 +1,348 @@
+{
+ "id": "15",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 21.435,
+ "words": [
+  {
+   "i": 0,
+   "text": "Aliya",
+   "start": 0.0,
+   "end": 0.476
+  },
+  {
+   "i": 1,
+   "text": "and",
+   "start": 0.506,
+   "end": 0.662
+  },
+  {
+   "i": 2,
+   "text": "Zade",
+   "start": 0.691,
+   "end": 1.254
+  },
+  {
+   "i": 3,
+   "text": "arrived",
+   "start": 1.26,
+   "end": 1.834
+  },
+  {
+   "i": 4,
+   "text": "back",
+   "start": 1.876,
+   "end": 2.136
+  },
+  {
+   "i": 5,
+   "text": "at",
+   "start": 2.154,
+   "end": 2.264
+  },
+  {
+   "i": 6,
+   "text": "the",
+   "start": 2.282,
+   "end": 2.392
+  },
+  {
+   "i": 7,
+   "text": "picnic.",
+   "start": 2.41,
+   "end": 3.088
+  },
+  {
+   "i": 8,
+   "text": "Their",
+   "start": 3.501,
+   "end": 3.796
+  },
+  {
+   "i": 9,
+   "text": "mother",
+   "start": 3.803,
+   "end": 4.122
+  },
+  {
+   "i": 10,
+   "text": "asked",
+   "start": 4.163,
+   "end": 4.47
+  },
+  {
+   "i": 11,
+   "text": "if",
+   "start": 4.476,
+   "end": 4.609
+  },
+  {
+   "i": 12,
+   "text": "they",
+   "start": 4.616,
+   "end": 4.783
+  },
+  {
+   "i": 13,
+   "text": "had",
+   "start": 4.801,
+   "end": 5.004
+  },
+  {
+   "i": 14,
+   "text": "fun",
+   "start": 5.045,
+   "end": 5.283
+  },
+  {
+   "i": 15,
+   "text": "in",
+   "start": 5.301,
+   "end": 5.41
+  },
+  {
+   "i": 16,
+   "text": "the",
+   "start": 5.417,
+   "end": 5.526
+  },
+  {
+   "i": 17,
+   "text": "mangroves.",
+   "start": 5.533,
+   "end": 6.478
+  },
+  {
+   "i": 18,
+   "text": "They",
+   "start": 6.821,
+   "end": 7.082
+  },
+  {
+   "i": 19,
+   "text": "nodded",
+   "start": 7.1,
+   "end": 7.523
+  },
+  {
+   "i": 20,
+   "text": "and",
+   "start": 7.541,
+   "end": 7.651
+  },
+  {
+   "i": 21,
+   "text": "looked",
+   "start": 7.681,
+   "end": 7.999
+  },
+  {
+   "i": 22,
+   "text": "at",
+   "start": 8.006,
+   "end": 8.139
+  },
+  {
+   "i": 23,
+   "text": "each",
+   "start": 8.145,
+   "end": 8.382
+  },
+  {
+   "i": 24,
+   "text": "other",
+   "start": 8.4,
+   "end": 8.673
+  },
+  {
+   "i": 25,
+   "text": "with",
+   "start": 8.702,
+   "end": 8.928
+  },
+  {
+   "i": 26,
+   "text": "wide",
+   "start": 8.981,
+   "end": 9.404
+  },
+  {
+   "i": 27,
+   "text": "smiles",
+   "start": 9.422,
+   "end": 10.136
+  },
+  {
+   "i": 28,
+   "text": "that",
+   "start": 10.548,
+   "end": 10.82
+  },
+  {
+   "i": 29,
+   "text": "hid",
+   "start": 10.839,
+   "end": 11.064
+  },
+  {
+   "i": 30,
+   "text": "secrets",
+   "start": 11.117,
+   "end": 11.645
+  },
+  {
+   "i": 31,
+   "text": "of",
+   "start": 11.663,
+   "end": 11.773
+  },
+  {
+   "i": 32,
+   "text": "their",
+   "start": 11.791,
+   "end": 12.016
+  },
+  {
+   "i": 33,
+   "text": "afternoon",
+   "start": 12.034,
+   "end": 12.608
+  },
+  {
+   "i": 34,
+   "text": "adventures.",
+   "start": 12.615,
+   "end": 13.665
+  },
+  {
+   "i": 35,
+   "text": "When",
+   "start": 14.078,
+   "end": 14.35
+  },
+  {
+   "i": 36,
+   "text": "their",
+   "start": 14.356,
+   "end": 14.582
+  },
+  {
+   "i": 37,
+   "text": "father",
+   "start": 14.6,
+   "end": 14.977
+  },
+  {
+   "i": 38,
+   "text": "asked",
+   "start": 15.018,
+   "end": 15.325
+  },
+  {
+   "i": 39,
+   "text": "what",
+   "start": 15.325,
+   "end": 15.511
+  },
+  {
+   "i": 40,
+   "text": "they",
+   "start": 15.517,
+   "end": 15.708
+  },
+  {
+   "i": 41,
+   "text": "did,",
+   "start": 15.738,
+   "end": 16.242
+  },
+  {
+   "i": 42,
+   "text": "Aliya",
+   "start": 16.353,
+   "end": 16.835
+  },
+  {
+   "i": 43,
+   "text": "answered,",
+   "start": 16.876,
+   "end": 17.624
+  },
+  {
+   "i": 44,
+   "text": "“Oh,",
+   "start": 17.885,
+   "end": 18.222
+  },
+  {
+   "i": 45,
+   "text": "we",
+   "start": 18.222,
+   "end": 18.373
+  },
+  {
+   "i": 46,
+   "text": "just",
+   "start": 18.414,
+   "end": 18.674
+  },
+  {
+   "i": 47,
+   "text": "saw",
+   "start": 18.674,
+   "end": 18.883
+  },
+  {
+   "i": 48,
+   "text": "some",
+   "start": 18.936,
+   "end": 19.267
+  },
+  {
+   "i": 49,
+   "text": "animals",
+   "start": 19.267,
+   "end": 19.847
+  },
+  {
+   "i": 50,
+   "text": "and",
+   "start": 19.877,
+   "end": 20.056
+  },
+  {
+   "i": 51,
+   "text": "counted",
+   "start": 20.109,
+   "end": 20.579
+  },
+  {
+   "i": 52,
+   "text": "some",
+   "start": 20.579,
+   "end": 20.822
+  },
+  {
+   "i": 53,
+   "text": "stuff.”",
+   "start": 20.822,
+   "end": 21.195
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "aliya": "Pt5YrLNyu6d2s3s4CVMg"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "aliya",
+   "tokens": [
+    44,
+    53
+   ],
+   "gain_db": -7.7
+  }
+ ],
+ "built": "2026-09-16 13:34"
+}

@@ -1,0 +1,70 @@
+{
+ "spread": 4,
+ "horizon": 0.66,
+ "hero": true,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the trees",
+   "src": "assets/layers/04/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.6673
+   ],
+   "foot": [
+    0.5,
+    0.6673
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    738
+   ]
+  },
+  {
+   "id": "fox",
+   "name": "the red fox",
+   "src": "assets/layers/04/fox.webp",
+   "box": [
+    0.5104,
+    0.6401,
+    0.712,
+    0.9268
+   ],
+   "foot": [
+    0.6112,
+    0.9268
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    350,
+    317
+   ]
+  },
+  {
+   "id": "kids",
+   "name": "Aliya and Zade",
+   "src": "assets/layers/04/kids.webp",
+   "box": [
+    0.0,
+    0.189,
+    0.2788,
+    1.0
+   ],
+   "foot": [
+    0.1394,
+    1.0
+   ],
+   "tilt": 88,
+   "order": 3,
+   "px": [
+    484,
+    897
+   ]
+  }
+ ]
+}

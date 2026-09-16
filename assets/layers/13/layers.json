@@ -1,0 +1,70 @@
+{
+ "spread": 13,
+ "horizon": 0.72,
+ "hero": false,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the trees",
+   "src": "assets/layers/13/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.7306
+   ],
+   "foot": [
+    0.5,
+    0.7306
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    808
+   ]
+  },
+  {
+   "id": "falcons",
+   "name": "the falcon family",
+   "src": "assets/layers/13/falcons.webp",
+   "box": [
+    0.5945,
+    0.4087,
+    0.9574,
+    0.7315
+   ],
+   "foot": [
+    0.7759,
+    0.7315
+   ],
+   "tilt": 90,
+   "order": 1,
+   "px": [
+    630,
+    357
+   ]
+  },
+  {
+   "id": "kids",
+   "name": "Aliya and Zade",
+   "src": "assets/layers/13/kids.webp",
+   "box": [
+    0.0922,
+    0.3282,
+    0.4677,
+    1.0
+   ],
+   "foot": [
+    0.28,
+    1.0
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    652,
+    743
+   ]
+  }
+ ]
+}

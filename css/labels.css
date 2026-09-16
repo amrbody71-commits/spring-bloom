@@ -1,0 +1,58 @@
+/* labels.css — the label pill over a pop-up layer.
+   Positioned by js/labels.js through an inline transform (never left/top),
+   so following the layer costs no layout. */
+
+.layer-label {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 6;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: var(--paper, #FBF5E8);
+  color: var(--ink, #2A2320);
+  font-family: var(--display, 'Fredoka', 'Nunito', system-ui, sans-serif);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow:
+    0 6px 18px rgba(42, 35, 32, 0.16),
+    0 1px 3px rgba(42, 35, 32, 0.14);
+  opacity: 0;
+  transform: translate3d(-1000px, -1000px, 0);
+  transition: opacity 140ms ease-out;
+  will-change: transform, opacity;
+}
+
+.layer-label.is-on {
+  opacity: 1;
+}
+
+/* A small tail pointing down at the layer. */
+.layer-label::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 9px;
+  height: 9px;
+  margin-left: -4.5px;
+  background: inherit;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+html[data-reduced] .layer-label {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer-label {
+    transition: none;
+  }
+}

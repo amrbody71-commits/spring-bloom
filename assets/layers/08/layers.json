@@ -1,0 +1,70 @@
+{
+ "spread": 8,
+ "horizon": 0.55,
+ "hero": false,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the river bank",
+   "src": "assets/layers/08/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.5606
+   ],
+   "foot": [
+    0.5,
+    0.5606
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    620
+   ]
+  },
+  {
+   "id": "flamingos",
+   "name": "the flamingos",
+   "src": "assets/layers/08/flamingos.webp",
+   "box": [
+    0.2275,
+    0.3119,
+    0.4902,
+    0.9114
+   ],
+   "foot": [
+    0.3589,
+    0.9114
+   ],
+   "tilt": 88,
+   "order": 1,
+   "px": [
+    456,
+    663
+   ]
+  },
+  {
+   "id": "boat",
+   "name": "the boat",
+   "src": "assets/layers/08/boat.webp",
+   "box": [
+    0.5714,
+    0.4277,
+    0.9326,
+    0.8183
+   ],
+   "foot": [
+    0.752,
+    0.8183
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    627,
+    432
+   ]
+  }
+ ]
+}

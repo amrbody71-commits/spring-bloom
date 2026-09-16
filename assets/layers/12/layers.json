@@ -1,0 +1,238 @@
+{
+ "spread": 12,
+ "horizon": 0.62,
+ "hero": true,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the party trees",
+   "src": "assets/layers/12/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.6302
+   ],
+   "foot": [
+    0.5,
+    0.6302
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    697
+   ]
+  },
+  {
+   "id": "camel",
+   "name": "the camel",
+   "src": "assets/layers/12/camel.webp",
+   "box": [
+    0.5132,
+    0.3716,
+    0.6233,
+    0.5714
+   ],
+   "foot": [
+    0.5683,
+    0.5714
+   ],
+   "tilt": 88,
+   "order": 1,
+   "px": [
+    191,
+    221
+   ]
+  },
+  {
+   "id": "flamingos",
+   "name": "the flamingos",
+   "src": "assets/layers/12/flamingos.webp",
+   "box": [
+    0.6976,
+    0.3987,
+    0.807,
+    0.6383
+   ],
+   "foot": [
+    0.7523,
+    0.6383
+   ],
+   "tilt": 88,
+   "order": 1,
+   "px": [
+    190,
+    265
+   ]
+  },
+  {
+   "id": "falcon",
+   "name": "the young falcon",
+   "src": "assets/layers/12/falcon.webp",
+   "box": [
+    0.8618,
+    0.4503,
+    0.9366,
+    0.5579
+   ],
+   "foot": [
+    0.8992,
+    0.5579
+   ],
+   "tilt": 88,
+   "order": 1,
+   "px": [
+    130,
+    119
+   ]
+  },
+  {
+   "id": "wolf",
+   "name": "the wolf",
+   "src": "assets/layers/12/wolf.webp",
+   "box": [
+    0.2091,
+    0.6076,
+    0.2915,
+    0.7893
+   ],
+   "foot": [
+    0.2503,
+    0.7893
+   ],
+   "tilt": 88,
+   "order": 2,
+   "px": [
+    143,
+    201
+   ]
+  },
+  {
+   "id": "cobra",
+   "name": "the cobra",
+   "src": "assets/layers/12/cobra.webp",
+   "box": [
+    0.5196,
+    0.6465,
+    0.5899,
+    0.7794
+   ],
+   "foot": [
+    0.5547,
+    0.7794
+   ],
+   "tilt": 88,
+   "order": 2,
+   "px": [
+    122,
+    147
+   ]
+  },
+  {
+   "id": "meerkats",
+   "name": "the meerkats",
+   "src": "assets/layers/12/meerkats.webp",
+   "box": [
+    0.2702,
+    0.7685,
+    0.3934,
+    0.9168
+   ],
+   "foot": [
+    0.3318,
+    0.9168
+   ],
+   "tilt": 88,
+   "order": 3,
+   "px": [
+    214,
+    164
+   ]
+  },
+  {
+   "id": "aliya",
+   "name": "Aliya",
+   "src": "assets/layers/12/aliya.webp",
+   "box": [
+    0.6048,
+    0.6022,
+    0.7402,
+    0.9222
+   ],
+   "foot": [
+    0.6725,
+    0.9222
+   ],
+   "tilt": 86,
+   "order": 3,
+   "px": [
+    235,
+    354
+   ]
+  },
+  {
+   "id": "zade",
+   "name": "Zade",
+   "src": "assets/layers/12/zade.webp",
+   "box": [
+    0.8088,
+    0.613,
+    0.9217,
+    0.8662
+   ],
+   "foot": [
+    0.8652,
+    0.8662
+   ],
+   "tilt": 86,
+   "order": 3,
+   "px": [
+    196,
+    280
+   ]
+  },
+  {
+   "id": "fox",
+   "name": "the red fox",
+   "src": "assets/layers/12/fox.webp",
+   "box": [
+    0.5167,
+    0.7649,
+    0.6267,
+    0.9024
+   ],
+   "foot": [
+    0.5717,
+    0.9024
+   ],
+   "tilt": 86,
+   "order": 4,
+   "px": [
+    191,
+    152
+   ]
+  },
+  {
+   "id": "pup",
+   "name": "the hyena pup",
+   "src": "assets/layers/12/pup.webp",
+   "box": [
+    0.7321,
+    0.7794,
+    0.8065,
+    0.9222
+   ],
+   "foot": [
+    0.7693,
+    0.9222
+   ],
+   "tilt": 86,
+   "order": 4,
+   "px": [
+    129,
+    158
+   ]
+  }
+ ]
+}

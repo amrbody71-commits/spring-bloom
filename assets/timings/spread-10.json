@@ -1,0 +1,616 @@
+{
+ "id": "10",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 39.979,
+ "words": [
+  {
+   "i": 0,
+   "text": "Aliya",
+   "start": 0.0,
+   "end": 0.488
+  },
+  {
+   "i": 1,
+   "text": "and",
+   "start": 0.529,
+   "end": 0.697
+  },
+  {
+   "i": 2,
+   "text": "Zade",
+   "start": 0.726,
+   "end": 1.231
+  },
+  {
+   "i": 3,
+   "text": "walked",
+   "start": 1.284,
+   "end": 1.683
+  },
+  {
+   "i": 4,
+   "text": "outside.",
+   "start": 1.69,
+   "end": 2.438
+  },
+  {
+   "i": 5,
+   "text": "“We",
+   "start": 2.808,
+   "end": 2.962
+  },
+  {
+   "i": 6,
+   "text": "need",
+   "start": 2.962,
+   "end": 3.194
+  },
+  {
+   "i": 7,
+   "text": "to",
+   "start": 3.2,
+   "end": 3.368
+  },
+  {
+   "i": 8,
+   "text": "count",
+   "start": 3.433,
+   "end": 3.809
+  },
+  {
+   "i": 9,
+   "text": "the",
+   "start": 3.816,
+   "end": 3.937
+  },
+  {
+   "i": 10,
+   "text": "hyacinth",
+   "start": 3.978,
+   "end": 4.692
+  },
+  {
+   "i": 11,
+   "text": "flowers",
+   "start": 4.692,
+   "end": 5.237
+  },
+  {
+   "i": 12,
+   "text": "but",
+   "start": 5.267,
+   "end": 5.516
+  },
+  {
+   "i": 13,
+   "text": "there",
+   "start": 5.522,
+   "end": 5.771
+  },
+  {
+   "i": 14,
+   "text": "are",
+   "start": 5.801,
+   "end": 6.027
+  },
+  {
+   "i": 15,
+   "text": "so",
+   "start": 6.033,
+   "end": 6.271
+  },
+  {
+   "i": 16,
+   "text": "many!”",
+   "start": 6.324,
+   "end": 6.868
+  },
+  {
+   "i": 17,
+   "text": "Aliya",
+   "start": 7.138,
+   "end": 7.521
+  },
+  {
+   "i": 18,
+   "text": "exclaimed.",
+   "start": 7.551,
+   "end": 8.381
+  },
+  {
+   "i": 19,
+   "text": "The",
+   "start": 8.793,
+   "end": 8.973
+  },
+  {
+   "i": 20,
+   "text": "young",
+   "start": 9.002,
+   "end": 9.24
+  },
+  {
+   "i": 21,
+   "text": "falcon",
+   "start": 9.281,
+   "end": 9.739
+  },
+  {
+   "i": 22,
+   "text": "thought",
+   "start": 9.757,
+   "end": 10.052
+  },
+  {
+   "i": 23,
+   "text": "for",
+   "start": 10.059,
+   "end": 10.238
+  },
+  {
+   "i": 24,
+   "text": "a",
+   "start": 10.256,
+   "end": 10.319
+  },
+  {
+   "i": 25,
+   "text": "moment.",
+   "start": 10.337,
+   "end": 10.888
+  },
+  {
+   "i": 26,
+   "text": "“We",
+   "start": 11.238,
+   "end": 11.427
+  },
+  {
+   "i": 27,
+   "text": "have",
+   "start": 11.427,
+   "end": 11.624
+  },
+  {
+   "i": 28,
+   "text": "1",
+   "start": 11.631,
+   "end": 11.903
+  },
+  {
+   "i": 29,
+   "text": "twig",
+   "start": 11.956,
+   "end": 12.309
+  },
+  {
+   "i": 30,
+   "text": "for",
+   "start": 12.339,
+   "end": 12.495
+  },
+  {
+   "i": 31,
+   "text": "every",
+   "start": 12.536,
+   "end": 12.785
+  },
+  {
+   "i": 32,
+   "text": "10",
+   "start": 12.815,
+   "end": 13.122
+  },
+  {
+   "i": 33,
+   "text": "shells.",
+   "start": 13.163,
+   "end": 13.888
+  },
+  {
+   "i": 34,
+   "text": "We",
+   "start": 14.046,
+   "end": 14.248
+  },
+  {
+   "i": 35,
+   "text": "can",
+   "start": 14.278,
+   "end": 14.457
+  },
+  {
+   "i": 36,
+   "text": "use",
+   "start": 14.498,
+   "end": 14.759
+  },
+  {
+   "i": 37,
+   "text": "1",
+   "start": 14.765,
+   "end": 14.968
+  },
+  {
+   "i": 38,
+   "text": "pebble",
+   "start": 15.033,
+   "end": 15.444
+  },
+  {
+   "i": 39,
+   "text": "for",
+   "start": 15.444,
+   "end": 15.607
+  },
+  {
+   "i": 40,
+   "text": "every",
+   "start": 15.648,
+   "end": 15.92
+  },
+  {
+   "i": 41,
+   "text": "10",
+   "start": 15.95,
+   "end": 16.257
+  },
+  {
+   "i": 42,
+   "text": "twigs.",
+   "start": 16.286,
+   "end": 17.023
+  },
+  {
+   "i": 43,
+   "text": "I",
+   "start": 17.18,
+   "end": 17.348
+  },
+  {
+   "i": 44,
+   "text": "will",
+   "start": 17.401,
+   "end": 17.603
+  },
+  {
+   "i": 45,
+   "text": "watch",
+   "start": 17.61,
+   "end": 17.929
+  },
+  {
+   "i": 46,
+   "text": "over",
+   "start": 17.958,
+   "end": 18.23
+  },
+  {
+   "i": 47,
+   "text": "our",
+   "start": 18.26,
+   "end": 18.405
+  },
+  {
+   "i": 48,
+   "text": "5",
+   "start": 18.457,
+   "end": 18.764
+  },
+  {
+   "i": 49,
+   "text": "twigs",
+   "start": 18.806,
+   "end": 19.299
+  },
+  {
+   "i": 50,
+   "text": "and",
+   "start": 19.386,
+   "end": 19.67
+  },
+  {
+   "i": 51,
+   "text": "8",
+   "start": 19.758,
+   "end": 19.995
+  },
+  {
+   "i": 52,
+   "text": "shells",
+   "start": 20.025,
+   "end": 20.436
+  },
+  {
+   "i": 53,
+   "text": "while",
+   "start": 20.436,
+   "end": 20.657
+  },
+  {
+   "i": 54,
+   "text": "you",
+   "start": 20.663,
+   "end": 20.785
+  },
+  {
+   "i": 55,
+   "text": "count.”",
+   "start": 20.838,
+   "end": 21.478
+  },
+  {
+   "i": 56,
+   "text": "Each",
+   "start": 21.898,
+   "end": 22.193
+  },
+  {
+   "i": 57,
+   "text": "time",
+   "start": 22.211,
+   "end": 22.518
+  },
+  {
+   "i": 58,
+   "text": "Aliya",
+   "start": 22.536,
+   "end": 22.971
+  },
+  {
+   "i": 59,
+   "text": "and",
+   "start": 23.001,
+   "end": 23.122
+  },
+  {
+   "i": 60,
+   "text": "Zade",
+   "start": 23.152,
+   "end": 23.517
+  },
+  {
+   "i": 61,
+   "text": "collected",
+   "start": 23.523,
+   "end": 24.109
+  },
+  {
+   "i": 62,
+   "text": "ten",
+   "start": 24.127,
+   "end": 24.434
+  },
+  {
+   "i": 63,
+   "text": "shells,",
+   "start": 24.475,
+   "end": 25.235
+  },
+  {
+   "i": 64,
+   "text": "they",
+   "start": 25.52,
+   "end": 25.734
+  },
+  {
+   "i": 65,
+   "text": "replaced",
+   "start": 25.764,
+   "end": 26.28
+  },
+  {
+   "i": 66,
+   "text": "them",
+   "start": 26.28,
+   "end": 26.454
+  },
+  {
+   "i": 67,
+   "text": "with",
+   "start": 26.472,
+   "end": 26.663
+  },
+  {
+   "i": 68,
+   "text": "1",
+   "start": 26.704,
+   "end": 26.953
+  },
+  {
+   "i": 69,
+   "text": "twig,",
+   "start": 27.041,
+   "end": 27.638
+  },
+  {
+   "i": 70,
+   "text": "and",
+   "start": 28.097,
+   "end": 28.335
+  },
+  {
+   "i": 71,
+   "text": "each",
+   "start": 28.376,
+   "end": 28.66
+  },
+  {
+   "i": 72,
+   "text": "time",
+   "start": 28.69,
+   "end": 28.973
+  },
+  {
+   "i": 73,
+   "text": "they",
+   "start": 28.98,
+   "end": 29.136
+  },
+  {
+   "i": 74,
+   "text": "collected",
+   "start": 29.154,
+   "end": 29.705
+  },
+  {
+   "i": 75,
+   "text": "10",
+   "start": 29.734,
+   "end": 30.053
+  },
+  {
+   "i": 76,
+   "text": "twigs,",
+   "start": 30.071,
+   "end": 30.843
+  },
+  {
+   "i": 77,
+   "text": "they",
+   "start": 31.081,
+   "end": 31.307
+  },
+  {
+   "i": 78,
+   "text": "replaced",
+   "start": 31.337,
+   "end": 31.853
+  },
+  {
+   "i": 79,
+   "text": "them",
+   "start": 31.859,
+   "end": 32.05
+  },
+  {
+   "i": 80,
+   "text": "with",
+   "start": 32.068,
+   "end": 32.271
+  },
+  {
+   "i": 81,
+   "text": "1",
+   "start": 32.289,
+   "end": 32.538
+  },
+  {
+   "i": 82,
+   "text": "pebble.",
+   "start": 32.637,
+   "end": 33.234
+  },
+  {
+   "i": 83,
+   "text": "When",
+   "start": 33.879,
+   "end": 34.14
+  },
+  {
+   "i": 84,
+   "text": "they",
+   "start": 34.146,
+   "end": 34.326
+  },
+  {
+   "i": 85,
+   "text": "reached",
+   "start": 34.378,
+   "end": 34.743
+  },
+  {
+   "i": 86,
+   "text": "the",
+   "start": 34.75,
+   "end": 34.894
+  },
+  {
+   "i": 87,
+   "text": "end,",
+   "start": 34.947,
+   "end": 35.417
+  },
+  {
+   "i": 88,
+   "text": "they",
+   "start": 35.539,
+   "end": 35.788
+  },
+  {
+   "i": 89,
+   "text": "had",
+   "start": 35.818,
+   "end": 36.032
+  },
+  {
+   "i": 90,
+   "text": "3",
+   "start": 36.131,
+   "end": 36.404
+  },
+  {
+   "i": 91,
+   "text": "pebbles,",
+   "start": 36.468,
+   "end": 37.216
+  },
+  {
+   "i": 92,
+   "text": "4",
+   "start": 37.455,
+   "end": 37.774
+  },
+  {
+   "i": 93,
+   "text": "twigs",
+   "start": 37.815,
+   "end": 38.343
+  },
+  {
+   "i": 94,
+   "text": "and",
+   "start": 38.581,
+   "end": 38.853
+  },
+  {
+   "i": 95,
+   "text": "1",
+   "start": 38.906,
+   "end": 39.144
+  },
+  {
+   "i": 96,
+   "text": "shell.",
+   "start": 39.243,
+   "end": 39.979
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "aliya": "Pt5YrLNyu6d2s3s4CVMg",
+  "zade": "loY1uopAz31XyhAEhNSa"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "aliya",
+   "tokens": [
+    5,
+    16
+   ],
+   "gain_db": -8.7
+  },
+  {
+   "quote": 1,
+   "speaker": "zade",
+   "tokens": [
+    26,
+    55
+   ],
+   "gain_db": -8.2
+  }
+ ],
+ "built": "2026-09-16 13:34"
+}

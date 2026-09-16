@@ -1,0 +1,91 @@
+{
+ "spread": 15,
+ "horizon": 0.62,
+ "hero": false,
+ "layers": [
+  {
+   "id": "wall",
+   "name": "the picnic trees",
+   "src": "assets/layers/15/wall.webp",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    0.6302
+   ],
+   "foot": [
+    0.5,
+    0.6302
+   ],
+   "tilt": 90,
+   "order": 0,
+   "px": [
+    1736,
+    697
+   ]
+  },
+  {
+   "id": "car",
+   "name": "the car",
+   "src": "assets/layers/15/car.webp",
+   "box": [
+    0.0,
+    0.3933,
+    0.197,
+    0.7703
+   ],
+   "foot": [
+    0.0985,
+    0.7703
+   ],
+   "tilt": 88,
+   "order": 1,
+   "px": [
+    342,
+    417
+   ]
+  },
+  {
+   "id": "mother",
+   "name": "their mother",
+   "src": "assets/layers/15/mother.webp",
+   "box": [
+    0.1567,
+    0.4512,
+    0.3439,
+    0.8752
+   ],
+   "foot": [
+    0.2503,
+    0.8752
+   ],
+   "tilt": 86,
+   "order": 2,
+   "px": [
+    325,
+    469
+   ]
+  },
+  {
+   "id": "family",
+   "name": "their father, Aliya and Zade",
+   "src": "assets/layers/15/family.webp",
+   "box": [
+    0.6526,
+    0.3318,
+    0.9228,
+    0.9412
+   ],
+   "foot": [
+    0.7877,
+    0.9412
+   ],
+   "tilt": 86,
+   "order": 3,
+   "px": [
+    469,
+    674
+   ]
+  }
+ ]
+}

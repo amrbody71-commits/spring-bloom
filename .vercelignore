@@ -1,0 +1,32 @@
+# LEADING SLASHES MATTER. These are gitignore-style patterns: a bare `work/`
+# would match every directory of that name at any depth. Anchored to the
+# project root, each pattern means only what it says.
+#
+# COMMENTS GO ON THEIR OWN LINE. A trailing comment becomes part of the
+# pattern and the pattern then matches nothing; that is how the first smoke
+# deploy shipped tools/, source/ and work/ to production for twenty minutes
+# on 16 September 2026.
+
+# the Python asset pipeline; never runs on Vercel
+/tools/
+# ElevenLabs generation; needs the key, never ships
+/scripts/
+# the authors' PDF and cover
+/source/
+# intermediates and contact sheets
+/work/
+# the HyperFrames composition and its renders
+/reel/
+/node_modules/
+*.py
+*.mjs
+*.pdf
+*.md
+*.json.bak
+__pycache__/
+.env*
+.vercel/
+.vercelignore
+.gitignore
+# the landscape snapshot harness (junctions + a 1280x720 copy of the reel page)
+/reel-landscape/

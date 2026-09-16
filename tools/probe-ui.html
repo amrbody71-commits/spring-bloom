@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- The probe lives in tools/ (excluded from deploy) but runs the app from
+     the project root, so every relative URL resolves against the root. -->
+<base href="../">
+<title>Spring Bloom interface probe</title>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/ui.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "postprocessing": "https://cdn.jsdelivr.net/npm/postprocessing@6.36.4/build/index.js"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="ui"></div>
+<div id="cards"></div>
+
+<script type="module">
+  import { boot } from './js/app.js';
+  import { init as initAudio } from './js/audio.js';
+  import { init as initUi } from './js/ui.js';
+  import { init as initCursor } from './js/cursor.js';
+  import { masterGain } from './js/audio-core.js';
+
+  const params = new URLSearchParams(location.search);
+  params.set('probe', '1');
+  if (params.get('reduced') === '1') document.documentElement.dataset.reduced = '1';
+
+  const B = boot({ canvas: document.getElementById('stage'), params });
+  B.audio = initAudio(B);
+  B.ui = initUi(B);
+  B.cursor = initCursor(B);
+
+  const q = (sel) => document.querySelector(sel);
+  const qa = (sel) => Array.from(document.querySelectorAll(sel));
+
+  function blit() {
+    const src = document.getElementById('stage');
+    const cv = document.createElement('canvas');
+    cv.width = src.width; cv.height = src.height;
+    const ctx = cv.getContext('2d');
+    B.forceRender();
+    ctx.drawImage(src, 0, 0);
+    document.querySelectorAll('img.__blit').forEach((e) => e.remove());
+    const img = document.createElement('img');
+    img.className = '__blit';
+    img.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:0;pointer-events:none';
+    img.src = cv.toDataURL('image/png');
+    document.body.appendChild(img);
+    src.style.visibility = 'hidden';
+    return true;
+  }
+
+  function unblit() {
+    document.querySelectorAll('img.__blit').forEach((e) => e.remove());
+    document.getElementById('stage').style.visibility = '';
+  }
+
+  function step(n = 1, dt = 1 / 60) {
+    for (let i = 0; i < n; i += 1) B.frame(dt);
+    if (B.ui && B.ui.sync) B.ui.sync();
+    if (B.cursor && B.cursor.draw) B.cursor.draw();
+  }
+
+  function starState() {
+    return qa('.sb-star').map((s) => (s.classList.contains('is-now') ? 'now' : s.classList.contains('is-done') ? 'done' : 'dim'));
+  }
+
+  function state() {
+    const controls = q('.sb-controls');
+    return {
+      innerWidth: window.innerWidth,
+      innerHeight: window.innerHeight,
+      vw: B.vw(),
+      vh: B.vh(),
+      time: +B.time.toFixed(3),
+      spread: B.book.spread,
+      bookState: B.book.state,
+      turning: !!B.turn.active,
+      stars: starState(),
+      starNow: starState().indexOf('now') + 1,
+      prevDisabled: q('.sb-prev').disabled,
+      nextDisabled: q('.sb-next').disabled,
+      zoomDisabled: q('.sb-zoom').disabled,
+      readLabel: q('.sb-read-label').textContent,
+      hint: q('.sb-hint-text').textContent,
+      hintHidden: q('.sb-hint').classList.contains('is-empty'),
+      chromeTurning: q('.sb-chrome').classList.contains('is-turning'),
+      controlsOpacity: controls ? getComputedStyle(controls).opacity : null,
+      muted: B.audio.muted,
+      soundLabel: q('.sb-sound').getAttribute('aria-label'),
+      master: masterGain().gain.value,
+      unlocked: B.audio.unlocked,
+      ambienceRunning: !!(B.audio.loops && B.audio.loops.ambience.running),
+      bedRunning: !!(B.audio.loops && B.audio.loops.bed.running),
+      loaded: B.audio.buffers ? Array.from(B.audio.buffers.keys()) : [],
+      cursorEnabled: B.cursor.enabled,
+      motes: B.cursor.motes.length,
+      sheetOpen: !!q('.sb-sheet'),
+      sheetTitle: q('.sb-sheet h2') ? q('.sb-sheet h2').textContent : null,
+      zoomed: B.ui.zoomed,
+      reduced: B.reduced,
+    };
+  }
+
+  /* Sweep a synthetic mouse pointer across the canvas, stepping book time a
+     little between moves so the motes have different ages, then draw. */
+  function trail(n = 60) {
+    const w = B.vw();
+    const h = B.vh();
+    for (let i = 0; i <= n; i += 1) {
+      const k = i / n;
+      const x = w * 0.18 + w * 0.64 * k;
+      const y = h * 0.62 - h * 0.28 * Math.sin(k * Math.PI);
+      document.dispatchEvent(new PointerEvent('pointermove', { clientX: x, clientY: y, pointerType: 'mouse', bubbles: true }));
+      B.frame(1 / 240);
+    }
+    B.frame(1 / 60);
+    if (B.cursor.draw) B.cursor.draw();
+    return B.cursor.motes.length;
+  }
+
+  /* Run a next() turn and record the button state mid-turn and at settle. */
+  function turnNext(maxFrames = 120) {
+    const before = state();
+    const started = B.turn.next();
+    step(1);
+    const mid = state();
+    let frames = 1;
+    while (B.turn.active && frames < maxFrames) { step(1); frames += 1; }
+    const after = state();
+    return { started, frames, before, mid, after };
+  }
+
+  function pointerTapCanvas(x, y) {
+    const c = document.getElementById('stage');
+    c.dispatchEvent(new PointerEvent('pointerdown', { clientX: x, clientY: y, pointerId: 7, pointerType: 'mouse', button: 0, bubbles: true }));
+    c.dispatchEvent(new PointerEvent('pointerup', { clientX: x, clientY: y, pointerId: 7, pointerType: 'mouse', button: 0, bubbles: true }));
+  }
+
+  window.__probe = {
+    B, blit, unblit, step, state, trail, turnNext, pointerTapCanvas,
+    events: B.events,
+    ready: false,
+  };
+
+  await B.ready;
+  B.book.open(4);
+  B.events.emit('settle', { spread: 4, from: 3, to: 4, committed: true });
+  B.forceRender();
+  if (B.ui.sync) B.ui.sync(true);
+  window.__probe.ready = true;
+  console.log('probe-ui ready', JSON.stringify(state()));
+</script>
+</body>
+</html>

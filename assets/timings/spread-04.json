@@ -1,0 +1,573 @@
+{
+ "id": "04",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 36.232,
+ "words": [
+  {
+   "i": 0,
+   "text": "As",
+   "start": 0.0,
+   "end": 0.186
+  },
+  {
+   "i": 1,
+   "text": "the",
+   "start": 0.227,
+   "end": 0.337
+  },
+  {
+   "i": 2,
+   "text": "falcon",
+   "start": 0.366,
+   "end": 0.824
+  },
+  {
+   "i": 3,
+   "text": "sailed",
+   "start": 0.924,
+   "end": 1.324
+  },
+  {
+   "i": 4,
+   "text": "through",
+   "start": 1.324,
+   "end": 1.579
+  },
+  {
+   "i": 5,
+   "text": "the",
+   "start": 1.585,
+   "end": 1.695
+  },
+  {
+   "i": 6,
+   "text": "sky,",
+   "start": 1.695,
+   "end": 2.357
+  },
+  {
+   "i": 7,
+   "text": "Aliya",
+   "start": 2.7,
+   "end": 3.204
+  },
+  {
+   "i": 8,
+   "text": "and",
+   "start": 3.234,
+   "end": 3.367
+  },
+  {
+   "i": 9,
+   "text": "Zade",
+   "start": 3.397,
+   "end": 3.75
+  },
+  {
+   "i": 10,
+   "text": "trekked",
+   "start": 3.75,
+   "end": 4.133
+  },
+  {
+   "i": 11,
+   "text": "across",
+   "start": 4.14,
+   "end": 4.574
+  },
+  {
+   "i": 12,
+   "text": "rocks",
+   "start": 4.627,
+   "end": 5.05
+  },
+  {
+   "i": 13,
+   "text": "and",
+   "start": 5.08,
+   "end": 5.283
+  },
+  {
+   "i": 14,
+   "text": "sandy",
+   "start": 5.324,
+   "end": 5.712
+  },
+  {
+   "i": 15,
+   "text": "slopes.",
+   "start": 5.742,
+   "end": 6.56
+  },
+  {
+   "i": 16,
+   "text": "They",
+   "start": 7.042,
+   "end": 7.291
+  },
+  {
+   "i": 17,
+   "text": "made",
+   "start": 7.309,
+   "end": 7.57
+  },
+  {
+   "i": 18,
+   "text": "a",
+   "start": 7.576,
+   "end": 7.639
+  },
+  {
+   "i": 19,
+   "text": "turn",
+   "start": 7.657,
+   "end": 7.93
+  },
+  {
+   "i": 20,
+   "text": "at",
+   "start": 7.936,
+   "end": 8.057
+  },
+  {
+   "i": 21,
+   "text": "the",
+   "start": 8.064,
+   "end": 8.173
+  },
+  {
+   "i": 22,
+   "text": "first",
+   "start": 8.215,
+   "end": 8.568
+  },
+  {
+   "i": 23,
+   "text": "tree",
+   "start": 8.575,
+   "end": 8.916
+  },
+  {
+   "i": 24,
+   "text": "where",
+   "start": 8.923,
+   "end": 9.183
+  },
+  {
+   "i": 25,
+   "text": "they",
+   "start": 9.19,
+   "end": 9.346
+  },
+  {
+   "i": 26,
+   "text": "found",
+   "start": 9.387,
+   "end": 9.683
+  },
+  {
+   "i": 27,
+   "text": "the",
+   "start": 9.701,
+   "end": 9.81
+  },
+  {
+   "i": 28,
+   "text": "red",
+   "start": 9.84,
+   "end": 10.077
+  },
+  {
+   "i": 29,
+   "text": "fox",
+   "start": 10.13,
+   "end": 10.507
+  },
+  {
+   "i": 30,
+   "text": "lounging",
+   "start": 10.606,
+   "end": 11.111
+  },
+  {
+   "i": 31,
+   "text": "under",
+   "start": 11.164,
+   "end": 11.447
+  },
+  {
+   "i": 32,
+   "text": "the",
+   "start": 11.477,
+   "end": 11.587
+  },
+  {
+   "i": 33,
+   "text": "sun.",
+   "start": 11.616,
+   "end": 12.249
+  },
+  {
+   "i": 34,
+   "text": "“Hello",
+   "start": 12.619,
+   "end": 13.055
+  },
+  {
+   "i": 35,
+   "text": "there,”",
+   "start": 13.108,
+   "end": 13.529
+  },
+  {
+   "i": 36,
+   "text": "Zade",
+   "start": 13.799,
+   "end": 14.164
+  },
+  {
+   "i": 37,
+   "text": "greeted",
+   "start": 14.17,
+   "end": 14.582
+  },
+  {
+   "i": 38,
+   "text": "the",
+   "start": 14.588,
+   "end": 14.698
+  },
+  {
+   "i": 39,
+   "text": "fox.",
+   "start": 14.727,
+   "end": 15.452
+  },
+  {
+   "i": 40,
+   "text": "“Can",
+   "start": 15.822,
+   "end": 16.026
+  },
+  {
+   "i": 41,
+   "text": "we",
+   "start": 16.055,
+   "end": 16.165
+  },
+  {
+   "i": 42,
+   "text": "have",
+   "start": 16.172,
+   "end": 16.339
+  },
+  {
+   "i": 43,
+   "text": "the",
+   "start": 16.339,
+   "end": 16.444
+  },
+  {
+   "i": 44,
+   "text": "first",
+   "start": 16.485,
+   "end": 16.815
+  },
+  {
+   "i": 45,
+   "text": "riddle",
+   "start": 16.857,
+   "end": 17.233
+  },
+  {
+   "i": 46,
+   "text": "for",
+   "start": 17.233,
+   "end": 17.407
+  },
+  {
+   "i": 47,
+   "text": "the",
+   "start": 17.414,
+   "end": 17.523
+  },
+  {
+   "i": 48,
+   "text": "password",
+   "start": 17.53,
+   "end": 18.046
+  },
+  {
+   "i": 49,
+   "text": "to",
+   "start": 18.046,
+   "end": 18.15
+  },
+  {
+   "i": 50,
+   "text": "the",
+   "start": 18.18,
+   "end": 18.29
+  },
+  {
+   "i": 51,
+   "text": "party?”",
+   "start": 18.296,
+   "end": 18.902
+  },
+  {
+   "i": 52,
+   "text": "The",
+   "start": 19.183,
+   "end": 19.363
+  },
+  {
+   "i": 53,
+   "text": "red",
+   "start": 19.404,
+   "end": 19.63
+  },
+  {
+   "i": 54,
+   "text": "fox",
+   "start": 19.671,
+   "end": 20.025
+  },
+  {
+   "i": 55,
+   "text": "nodded.",
+   "start": 20.089,
+   "end": 20.733
+  },
+  {
+   "i": 56,
+   "text": "“Listen",
+   "start": 20.983,
+   "end": 21.487
+  },
+  {
+   "i": 57,
+   "text": "carefully.",
+   "start": 21.517,
+   "end": 22.405
+  },
+  {
+   "i": 58,
+   "text": "I",
+   "start": 22.887,
+   "end": 23.008
+  },
+  {
+   "i": 59,
+   "text": "exist",
+   "start": 23.119,
+   "end": 23.577
+  },
+  {
+   "i": 60,
+   "text": "where",
+   "start": 23.584,
+   "end": 23.786
+  },
+  {
+   "i": 61,
+   "text": "you",
+   "start": 23.793,
+   "end": 23.925
+  },
+  {
+   "i": 62,
+   "text": "stand.",
+   "start": 23.955,
+   "end": 24.68
+  },
+  {
+   "i": 63,
+   "text": "I",
+   "start": 25.093,
+   "end": 25.203
+  },
+  {
+   "i": 64,
+   "text": "provide",
+   "start": 25.302,
+   "end": 25.771
+  },
+  {
+   "i": 65,
+   "text": "a",
+   "start": 25.771,
+   "end": 25.818
+  },
+  {
+   "i": 66,
+   "text": "haven",
+   "start": 25.848,
+   "end": 26.259
+  },
+  {
+   "i": 67,
+   "text": "for",
+   "start": 26.289,
+   "end": 26.48
+  },
+  {
+   "i": 68,
+   "text": "birds",
+   "start": 26.521,
+   "end": 26.967
+  },
+  {
+   "i": 69,
+   "text": "and",
+   "start": 27.009,
+   "end": 27.234
+  },
+  {
+   "i": 70,
+   "text": "other",
+   "start": 27.287,
+   "end": 27.583
+  },
+  {
+   "i": 71,
+   "text": "animals.",
+   "start": 27.624,
+   "end": 28.465
+  },
+  {
+   "i": 72,
+   "text": "I",
+   "start": 28.878,
+   "end": 28.987
+  },
+  {
+   "i": 73,
+   "text": "store",
+   "start": 29.052,
+   "end": 29.417
+  },
+  {
+   "i": 74,
+   "text": "carbon",
+   "start": 29.447,
+   "end": 29.974
+  },
+  {
+   "i": 75,
+   "text": "and",
+   "start": 30.027,
+   "end": 30.23
+  },
+  {
+   "i": 76,
+   "text": "release",
+   "start": 30.271,
+   "end": 30.752
+  },
+  {
+   "i": 77,
+   "text": "oxygen.",
+   "start": 30.782,
+   "end": 31.681
+  },
+  {
+   "i": 78,
+   "text": "I",
+   "start": 32.094,
+   "end": 32.203
+  },
+  {
+   "i": 79,
+   "text": "can",
+   "start": 32.256,
+   "end": 32.459
+  },
+  {
+   "i": 80,
+   "text": "live",
+   "start": 32.5,
+   "end": 32.761
+  },
+  {
+   "i": 81,
+   "text": "off",
+   "start": 32.767,
+   "end": 32.946
+  },
+  {
+   "i": 82,
+   "text": "saltwater.",
+   "start": 32.976,
+   "end": 33.91
+  },
+  {
+   "i": 83,
+   "text": "How",
+   "start": 34.253,
+   "end": 34.491
+  },
+  {
+   "i": 84,
+   "text": "many",
+   "start": 34.543,
+   "end": 34.827
+  },
+  {
+   "i": 85,
+   "text": "of",
+   "start": 34.845,
+   "end": 34.955
+  },
+  {
+   "i": 86,
+   "text": "me",
+   "start": 34.985,
+   "end": 35.141
+  },
+  {
+   "i": 87,
+   "text": "do",
+   "start": 35.159,
+   "end": 35.292
+  },
+  {
+   "i": 88,
+   "text": "you",
+   "start": 35.333,
+   "end": 35.466
+  },
+  {
+   "i": 89,
+   "text": "see?”",
+   "start": 35.519,
+   "end": 36.232
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "zade": "loY1uopAz31XyhAEhNSa"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "zade",
+   "tokens": [
+    34,
+    35
+   ],
+   "gain_db": -8.4
+  },
+  {
+   "quote": 1,
+   "speaker": "zade",
+   "tokens": [
+    40,
+    51
+   ],
+   "gain_db": -8.4
+  }
+ ],
+ "built": "2026-09-16 13:34"
+}

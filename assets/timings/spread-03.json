@@ -1,0 +1,526 @@
+{
+ "id": "03",
+ "voice": "hope+children",
+ "model": "eleven_multilingual_v2",
+ "duration": 30.846,
+ "words": [
+  {
+   "i": 0,
+   "text": "“Can",
+   "start": 0.03,
+   "end": 0.255
+  },
+  {
+   "i": 1,
+   "text": "we",
+   "start": 0.285,
+   "end": 0.441
+  },
+  {
+   "i": 2,
+   "text": "help?”",
+   "start": 0.482,
+   "end": 0.91
+  },
+  {
+   "i": 3,
+   "text": "Zade",
+   "start": 1.18,
+   "end": 1.557
+  },
+  {
+   "i": 4,
+   "text": "asked.",
+   "start": 1.563,
+   "end": 2.277
+  },
+  {
+   "i": 5,
+   "text": "“Yes,",
+   "start": 2.411,
+   "end": 2.88
+  },
+  {
+   "i": 6,
+   "text": "you",
+   "start": 2.922,
+   "end": 3.101
+  },
+  {
+   "i": 7,
+   "text": "can",
+   "start": 3.119,
+   "end": 3.298
+  },
+  {
+   "i": 8,
+   "text": "help",
+   "start": 3.328,
+   "end": 3.542
+  },
+  {
+   "i": 9,
+   "text": "me",
+   "start": 3.56,
+   "end": 3.693
+  },
+  {
+   "i": 10,
+   "text": "solve",
+   "start": 3.723,
+   "end": 4.065
+  },
+  {
+   "i": 11,
+   "text": "some",
+   "start": 4.065,
+   "end": 4.297
+  },
+  {
+   "i": 12,
+   "text": "riddles",
+   "start": 4.303,
+   "end": 4.738
+  },
+  {
+   "i": 13,
+   "text": "to",
+   "start": 4.779,
+   "end": 4.889
+  },
+  {
+   "i": 14,
+   "text": "get",
+   "start": 4.918,
+   "end": 5.109
+  },
+  {
+   "i": 15,
+   "text": "a",
+   "start": 5.116,
+   "end": 5.179
+  },
+  {
+   "i": 16,
+   "text": "password",
+   "start": 5.197,
+   "end": 5.806
+  },
+  {
+   "i": 17,
+   "text": "that",
+   "start": 5.812,
+   "end": 5.992
+  },
+  {
+   "i": 18,
+   "text": "will",
+   "start": 5.998,
+   "end": 6.201
+  },
+  {
+   "i": 19,
+   "text": "take",
+   "start": 6.207,
+   "end": 6.445
+  },
+  {
+   "i": 20,
+   "text": "me",
+   "start": 6.445,
+   "end": 6.561
+  },
+  {
+   "i": 21,
+   "text": "to",
+   "start": 6.567,
+   "end": 6.654
+  },
+  {
+   "i": 22,
+   "text": "the",
+   "start": 6.672,
+   "end": 6.781
+  },
+  {
+   "i": 23,
+   "text": "party,”",
+   "start": 6.788,
+   "end": 7.28
+  },
+  {
+   "i": 24,
+   "text": "the",
+   "start": 7.28,
+   "end": 7.373
+  },
+  {
+   "i": 25,
+   "text": "young",
+   "start": 7.403,
+   "end": 7.617
+  },
+  {
+   "i": 26,
+   "text": "falcon",
+   "start": 7.67,
+   "end": 8.128
+  },
+  {
+   "i": 27,
+   "text": "looked",
+   "start": 8.158,
+   "end": 8.476
+  },
+  {
+   "i": 28,
+   "text": "at",
+   "start": 8.483,
+   "end": 8.616
+  },
+  {
+   "i": 29,
+   "text": "Aliya",
+   "start": 8.645,
+   "end": 9.057
+  },
+  {
+   "i": 30,
+   "text": "and",
+   "start": 9.086,
+   "end": 9.219
+  },
+  {
+   "i": 31,
+   "text": "Zade",
+   "start": 9.249,
+   "end": 9.591
+  },
+  {
+   "i": 32,
+   "text": "with",
+   "start": 9.591,
+   "end": 9.777
+  },
+  {
+   "i": 33,
+   "text": "hope.",
+   "start": 9.806,
+   "end": 10.38
+  },
+  {
+   "i": 34,
+   "text": "“Let’s",
+   "start": 10.75,
+   "end": 11.047
+  },
+  {
+   "i": 35,
+   "text": "try,”",
+   "start": 11.076,
+   "end": 11.57
+  },
+  {
+   "i": 36,
+   "text": "Aliya",
+   "start": 11.84,
+   "end": 12.235
+  },
+  {
+   "i": 37,
+   "text": "offered.",
+   "start": 12.276,
+   "end": 12.955
+  },
+  {
+   "i": 38,
+   "text": "The",
+   "start": 13.437,
+   "end": 13.616
+  },
+  {
+   "i": 39,
+   "text": "young",
+   "start": 13.658,
+   "end": 13.918
+  },
+  {
+   "i": 40,
+   "text": "falcon",
+   "start": 13.971,
+   "end": 14.441
+  },
+  {
+   "i": 41,
+   "text": "flapped",
+   "start": 14.47,
+   "end": 14.917
+  },
+  {
+   "i": 42,
+   "text": "his",
+   "start": 14.923,
+   "end": 15.079
+  },
+  {
+   "i": 43,
+   "text": "wings",
+   "start": 15.121,
+   "end": 15.474
+  },
+  {
+   "i": 44,
+   "text": "in",
+   "start": 15.492,
+   "end": 15.602
+  },
+  {
+   "i": 45,
+   "text": "excitement.",
+   "start": 15.62,
+   "end": 16.484
+  },
+  {
+   "i": 46,
+   "text": "“For",
+   "start": 16.827,
+   "end": 17.123
+  },
+  {
+   "i": 47,
+   "text": "our",
+   "start": 17.141,
+   "end": 17.32
+  },
+  {
+   "i": 48,
+   "text": "first",
+   "start": 17.35,
+   "end": 17.703
+  },
+  {
+   "i": 49,
+   "text": "puzzle,",
+   "start": 17.745,
+   "end": 18.435
+  },
+  {
+   "i": 50,
+   "text": "we",
+   "start": 18.534,
+   "end": 18.737
+  },
+  {
+   "i": 51,
+   "text": "must",
+   "start": 18.789,
+   "end": 19.085
+  },
+  {
+   "i": 52,
+   "text": "see",
+   "start": 19.115,
+   "end": 19.387
+  },
+  {
+   "i": 53,
+   "text": "the",
+   "start": 19.405,
+   "end": 19.514
+  },
+  {
+   "i": 54,
+   "text": "red",
+   "start": 19.556,
+   "end": 19.805
+  },
+  {
+   "i": 55,
+   "text": "fox.",
+   "start": 19.858,
+   "end": 20.71
+  },
+  {
+   "i": 56,
+   "text": "We",
+   "start": 20.961,
+   "end": 21.151
+  },
+  {
+   "i": 57,
+   "text": "need",
+   "start": 21.17,
+   "end": 21.418
+  },
+  {
+   "i": 58,
+   "text": "to",
+   "start": 21.425,
+   "end": 21.535
+  },
+  {
+   "i": 59,
+   "text": "listen",
+   "start": 21.576,
+   "end": 21.941
+  },
+  {
+   "i": 60,
+   "text": "to",
+   "start": 21.959,
+   "end": 22.045
+  },
+  {
+   "i": 61,
+   "text": "him",
+   "start": 22.098,
+   "end": 22.289
+  },
+  {
+   "i": 62,
+   "text": "closely",
+   "start": 22.331,
+   "end": 22.939
+  },
+  {
+   "i": 63,
+   "text": "because",
+   "start": 22.992,
+   "end": 23.392
+  },
+  {
+   "i": 64,
+   "text": "he",
+   "start": 23.41,
+   "end": 23.52
+  },
+  {
+   "i": 65,
+   "text": "enjoys",
+   "start": 23.561,
+   "end": 24.042
+  },
+  {
+   "i": 66,
+   "text": "playing",
+   "start": 24.072,
+   "end": 24.437
+  },
+  {
+   "i": 67,
+   "text": "games,”",
+   "start": 24.455,
+   "end": 25.157
+  },
+  {
+   "i": 68,
+   "text": "said",
+   "start": 25.221,
+   "end": 25.494
+  },
+  {
+   "i": 69,
+   "text": "the",
+   "start": 25.494,
+   "end": 25.586
+  },
+  {
+   "i": 70,
+   "text": "falcon.",
+   "start": 25.605,
+   "end": 26.388
+  },
+  {
+   "i": 71,
+   "text": "“Follow",
+   "start": 26.673,
+   "end": 27.305
+  },
+  {
+   "i": 72,
+   "text": "me,”",
+   "start": 27.334,
+   "end": 27.618
+  },
+  {
+   "i": 73,
+   "text": "the",
+   "start": 27.618,
+   "end": 27.711
+  },
+  {
+   "i": 74,
+   "text": "falcon",
+   "start": 27.741,
+   "end": 28.199
+  },
+  {
+   "i": 75,
+   "text": "called",
+   "start": 28.24,
+   "end": 28.698
+  },
+  {
+   "i": 76,
+   "text": "as",
+   "start": 28.902,
+   "end": 29.162
+  },
+  {
+   "i": 77,
+   "text": "he",
+   "start": 29.192,
+   "end": 29.302
+  },
+  {
+   "i": 78,
+   "text": "flew",
+   "start": 29.366,
+   "end": 29.685
+  },
+  {
+   "i": 79,
+   "text": "from",
+   "start": 29.703,
+   "end": 29.94
+  },
+  {
+   "i": 80,
+   "text": "the",
+   "start": 29.958,
+   "end": 30.068
+  },
+  {
+   "i": 81,
+   "text": "tree.",
+   "start": 30.086,
+   "end": 30.846
+  }
+ ],
+ "voices": {
+  "narrator": "iCrDUkL56s3C8sCRl7wb",
+  "zade": "loY1uopAz31XyhAEhNSa",
+  "aliya": "Pt5YrLNyu6d2s3s4CVMg"
+ },
+ "splices": [
+  {
+   "quote": 0,
+   "speaker": "zade",
+   "tokens": [
+    0,
+    2
+   ],
+   "gain_db": -10.0
+  },
+  {
+   "quote": 2,
+   "speaker": "aliya",
+   "tokens": [
+    34,
+    35
+   ],
+   "gain_db": -11.1
+  }
+ ],
+ "built": "2026-09-16 13:34"
+}
